@@ -19,6 +19,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Arafat | Full-Stack MERN Developer",
   description: "Portfolio of Arafat - Full-Stack MERN Developer specializing in React, Next.js, Node.js, Express, and MongoDB.",
+  icons: {
+    icon: [
+      { url: "/gellary/fav-arafat.png" },
+      { url: "/favicon.png" },
+    ],
+    shortcut: "/gellary/fav-arafat.png",
+    apple: "/gellary/fav-arafat.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -28,6 +36,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased light`}
     >
+      <head>
+        <link rel="icon" href="/gellary/fav-arafat.png?v=2" type="image/png" />
+        <link rel="shortcut icon" href="/gellary/fav-arafat.png?v=2" />
+        <link rel="apple-touch-icon" href="/gellary/fav-arafat.png?v=2" />
+      </head>
       <body
         suppressHydrationWarning
         className="min-h-full flex flex-col bg-[#edf0f5] text-slate-900"
