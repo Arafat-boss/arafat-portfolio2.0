@@ -207,15 +207,15 @@ export default function SelectedWork() {
   return (
     <section
       id="projects"
-      className="py-20 transition-colors duration-300 scroll-mt-20"
+      className="py-16 sm:py-20 transition-colors duration-300 scroll-mt-20 gsap-fade-up"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* FROSTED GLASS CONTAINER CARD (MATCHING USER REFERENCE DESIGN) */}
         <div className="relative overflow-hidden rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-8 md:p-10">
           {/* Header Title & "View All Projects" Pill Button */}
           <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+              <h2 className="split text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
                 Selected Work
               </h2>
             </div>
@@ -244,14 +244,14 @@ export default function SelectedWork() {
           </div>
 
           {/* 3-COLUMN PROJECTS GRID (MATCHING REFERENCE CARDS) */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="gsap-stagger-group grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {projectsData.map((project) => (
               <a
                 key={project.id}
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex flex-col overflow-hidden rounded-[24px] border border-black/[0.04] bg-white/80 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-black/[0.08] hover:shadow-[0_16px_35px_-8px_rgba(0,0,0,0.08)] dark:border-white/[0.06] dark:bg-white/[0.035] dark:hover:border-white/[0.12] dark:hover:bg-white/[0.06] dark:hover:shadow-[0_16px_35px_-8px_rgba(0,0,0,0.6)]"
+                className="gsap-stagger-item group relative flex flex-col overflow-hidden rounded-[24px] border border-black/[0.04] bg-white/80 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-black/[0.08] hover:shadow-[0_16px_35px_-8px_rgba(0,0,0,0.08)] dark:border-white/[0.06] dark:bg-white/[0.035] dark:hover:border-white/[0.12] dark:hover:bg-white/[0.06] dark:hover:shadow-[0_16px_35px_-8px_rgba(0,0,0,0.6)]"
               >
                 {/* Visual Showcase Preview Area */}
                 <div

@@ -35,7 +35,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-20 transition-colors duration-300 scroll-mt-20 overflow-hidden">
+    <section id="contact" className="relative py-20 transition-colors duration-300 scroll-mt-20 overflow-hidden gsap-fade-up">
       {/* COLOR GRADIENT AURA & MESH */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[950px] rounded-full bg-gradient-to-tr from-indigo-500/20 via-purple-500/15 to-pink-500/20 blur-[140px]" />
@@ -92,7 +92,7 @@ export default function ContactSection() {
                   LET&apos;S CONNECT
                 </p>
 
-                <h2 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-white">
+                <h2 className="split mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-white">
                   Have a project in mind?
                 </h2>
                 <p className="mt-2 text-base font-medium text-zinc-600 dark:text-white/80">

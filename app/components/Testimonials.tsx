@@ -139,7 +139,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-16 sm:py-20 transition-colors duration-300 scroll-mt-20">
+    <section id="testimonials" className="py-16 sm:py-20 transition-colors duration-300 scroll-mt-20 gsap-fade-up">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* FROSTED GLASS CONTAINER CARD (MATCHING USER REFERENCE DESIGN) */}
         <div className="relative rounded-[24px] sm:rounded-[28px] border border-black/10 bg-white/70 p-4 sm:p-8 md:p-10 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80">
@@ -149,7 +149,7 @@ export default function Testimonials() {
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
                 TESTIMONIALS
               </p>
-              <h2 className="mt-1 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+              <h2 className="split mt-1 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
                 What Clients Say
               </h2>
             </div>

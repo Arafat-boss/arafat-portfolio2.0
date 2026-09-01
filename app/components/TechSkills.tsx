@@ -296,9 +296,9 @@ export default function TechSkills() {
   return (
     <section
       id="skills"
-      className="border-b border-black/10 bg-black/[0.015] py-20 transition-colors duration-300 dark:border-white/10 dark:bg-white/[0.015] scroll-mt-20"
+      className="border-b border-black/10 bg-black/[0.015] py-16 sm:py-20 transition-colors duration-300 dark:border-white/10 dark:bg-white/[0.015] scroll-mt-20 gsap-fade-up"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* FROSTED GLASS CONTAINER CARD (MATCHING USER REFERENCE DESIGN) */}
         <div className="relative rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-8 md:p-10">
           {/* Header Subtitle & Title */}
@@ -307,7 +307,7 @@ export default function TechSkills() {
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
                 TOOLS & SKILLS
               </p>
-              <h2 className="mt-1 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+              <h2 className="split mt-1 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
                 Technologies I Use
               </h2>
             </div>
@@ -320,7 +320,7 @@ export default function TechSkills() {
           </div>
 
           {/* FULL-WIDTH RESPONSIVE DISPLAY (FILLS 100% WIDTH WITH NO EMPTY SPACE ON RIGHT) */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9 w-full gap-2.5 sm:gap-3.5 py-4">
+          <div className="gsap-stagger-group grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9 w-full gap-2.5 sm:gap-3.5 py-4">
             {featuredSkills.map((skill) => {
               const glowColor = `${skill.color}33`;
               return (
@@ -328,7 +328,7 @@ export default function TechSkills() {
                   key={skill.id}
                   onMouseEnter={() => setHoveredSkill(skill)}
                   onMouseLeave={() => setHoveredSkill(null)}
-                  className="group relative z-0 flex h-[88px] sm:h-[96px] w-full cursor-pointer flex-col items-center justify-center rounded-2xl border border-black/10 bg-white/90 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-300 hover:z-30 hover:-translate-y-1.5 hover:scale-105 hover:border-black/20 hover:shadow-xl dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none dark:hover:border-white/25 dark:hover:bg-white/[0.08]"
+                  className="gsap-stagger-item group relative z-0 flex h-[88px] sm:h-[96px] w-full cursor-pointer flex-col items-center justify-center rounded-2xl border border-black/10 bg-white/90 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-300 hover:z-30 hover:-translate-y-1.5 hover:scale-105 hover:border-black/20 hover:shadow-xl dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none dark:hover:border-white/25 dark:hover:bg-white/[0.08]"
                   style={{
                     boxShadow: hoveredSkill?.id === skill.id ? `0 14px 28px -4px ${glowColor}` : undefined,
                   }}

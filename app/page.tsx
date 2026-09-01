@@ -58,7 +58,7 @@ export default function Home() {
       {/* SERVICES */}
       <section
         id="services"
-        className="border-y border-black/10 bg-black/[0.015] transition-colors duration-300 dark:border-white/10 dark:bg-white/[0.015] scroll-mt-20"
+        className="border-y border-black/10 bg-black/[0.015] transition-colors duration-300 dark:border-white/10 dark:bg-white/[0.015] scroll-mt-20 gsap-fade-up"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
           <div className="mb-12 sm:mb-16">
@@ -66,20 +66,19 @@ export default function Home() {
               What I Do
             </p>
 
-            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-white">
-              Services built around
+            <h2 className="split text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-white">
+              Services built around{" "}
               <span className="text-zinc-400 dark:text-white/35">
-                {" "}
                 your goals.
               </span>
             </h2>
           </div>
 
-          <div className="grid gap-5 grid-cols-1 md:grid-cols-2">
+          <div className="gsap-stagger-group grid gap-5 grid-cols-1 md:grid-cols-2">
             {services.map((service) => (
               <div
                 key={service.number}
-                className="rounded-2xl border border-black/10 bg-[#fdfdfd] p-6 sm:p-8 transition hover:border-black/25 hover:shadow-md dark:border-white/10 dark:bg-[#080808] dark:hover:border-white/25 dark:hover:shadow-none"
+                className="gsap-stagger-item rounded-2xl border border-black/10 bg-[#fdfdfd] p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-black/25 hover:shadow-lg dark:border-white/10 dark:bg-[#080808] dark:hover:border-white/25 dark:hover:shadow-none"
               >
                 <div className="mb-6 sm:mb-10 font-mono text-xs text-zinc-400 dark:text-white/25">
                   / {service.number}
@@ -99,14 +98,14 @@ export default function Home() {
       </section>
 
       {/* PROCESS */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28 gsap-fade-up">
         <div className="grid gap-10 sm:gap-16 lg:grid-cols-[.7fr_1.3fr]">
           <div>
             <p className="mb-3 sm:mb-5 text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-zinc-500 dark:text-white/30">
               My Process
             </p>
 
-            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-white">
+            <h2 className="split text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-white">
               Simple.
               <br />
               <span className="text-zinc-400 dark:text-white/35">
@@ -117,7 +116,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+          <div className="gsap-stagger-group divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
             {[
               [
                 "01",
@@ -142,7 +141,7 @@ export default function Home() {
             ].map(([number, title, description]) => (
               <div
                 key={number}
-                className="grid gap-2 sm:gap-4 py-5 sm:py-7 grid-cols-1 sm:grid-cols-[60px_180px_1fr]"
+                className="gsap-stagger-item grid gap-2 sm:gap-4 py-5 sm:py-7 grid-cols-1 sm:grid-cols-[60px_180px_1fr] transition-all duration-300 hover:bg-black/[0.02] dark:hover:bg-white/[0.02] px-2 rounded-xl"
               >
                 <span className="font-mono text-xs text-zinc-400 dark:text-white/25">
                   {number}
@@ -168,7 +167,7 @@ export default function Home() {
       <ContactSection />
 
       {/* FOOTER */}
-      <footer className="border-t border-black/10 transition-colors duration-300 dark:border-white/10">
+      <footer className="border-t border-black/10 transition-colors duration-300 dark:border-white/10 gsap-fade-up">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-6 py-8 text-xs sm:text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between lg:px-8 dark:text-white/30">
           <p>© 2026 MD. ARAFAT SARKER. All rights reserved.</p>
 
