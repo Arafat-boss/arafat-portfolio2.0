@@ -1,8 +1,25 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #edf0f5;
+  --foreground: #0f172a;
+  --card-bg: rgba(255, 255, 255, 0.3);
+  --border-color: rgba(0, 0, 0, 0.07);
+  --nav-bg: rgba(237, 240, 245, 0.75);
+  --muted-text: rgba(15, 23, 42, 0.65);
+  --subtle-bg: rgba(0, 0, 0, 0.03);
+}
+
+.dark {
+  --background: #080808;
+  --foreground: #ffffff;
+  --card-bg: #0e0e0e;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --nav-bg: rgba(8, 8, 8, 0.85);
+  --muted-text: rgba(255, 255, 255, 0.55);
+  --subtle-bg: rgba(255, 255, 255, 0.02);
 }
 
 @theme inline {
@@ -12,15 +29,75 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* NEUMORPHIC SOFT EMBOSS BUTTON DESIGN (SOFT REFINED TONES) */
+.btn-neumorphic,
+button.btn-neumorphic,
+a.btn-neumorphic {
+  color: #374151;
+  padding: 0.7em 1.7em;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 0.65em;
+  background: #ebebeb;
+  cursor: pointer;
+  border: 1px solid #e2e2e2;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 2px 2px 5px #d4d4d4, -2px -2px 5px #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-neumorphic:hover,
+button.btn-neumorphic:hover,
+a.btn-neumorphic:hover {
+  color: #1f2937;
+  border: 1px solid white;
+  box-shadow: 3px 3px 7px #cecece, -3px -3px 7px #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-neumorphic:active,
+button.btn-neumorphic:active,
+a.btn-neumorphic:active {
+  box-shadow: 1px 1px 3px #d4d4d4, -1px -1px 3px #ffffff;
+  transform: translateY(0);
+}
+
+/* Dark Mode Neumorphic Soft Graphite (Softened Dark Tone) */
+.dark .btn-neumorphic,
+.dark button.btn-neumorphic,
+.dark a.btn-neumorphic {
+  color: #e4e4e7;
+  background: #242428;
+  border: 1px solid #323238;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25), -2px -2px 5px rgba(255, 255, 255, 0.04);
+}
+
+.dark .btn-neumorphic:hover,
+.dark button.btn-neumorphic:hover,
+.dark a.btn-neumorphic:hover {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3), -3px -3px 7px rgba(255, 255, 255, 0.06);
+}
+
+.dark .btn-neumorphic:active,
+.dark button.btn-neumorphic:active,
+.dark a.btn-neumorphic:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35), -1px -1px 3px rgba(255, 255, 255, 0.03);
 }

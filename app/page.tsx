@@ -1,69 +1,213 @@
-import Image from "next/image";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
+import TechSkills from "./components/TechSkills";
+import SelectedWork from "./components/SelectedWork";
+import ProjectGallery from "./components/ProjectGallery";
+import Testimonials from "./components/Testimonials";
+import ContactSection from "./components/ContactSection";
+import StatsCounter from "./components/StatsCounter";
+
+const services = [
+  {
+    number: "01",
+    title: "Full-Stack Development",
+    description:
+      "Complete web applications using the MERN stack with clean architecture and scalable backend systems.",
+  },
+  {
+    number: "02",
+    title: "Frontend Development",
+    description:
+      "Modern, responsive and high-performance interfaces using React, Next.js and Tailwind CSS.",
+  },
+  {
+    number: "03",
+    title: "Backend & API",
+    description:
+      "Secure REST APIs, authentication, database architecture and backend development using Node.js and Express.",
+  },
+  {
+    number: "04",
+    title: "Website Development",
+    description:
+      "Professional websites for startups, businesses and personal brands with a strong focus on UX and performance.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-transparent text-zinc-900 selection:bg-zinc-900 selection:text-white dark:text-white dark:selection:bg-white dark:selection:text-black">
+      {/* RESPONSIVE NAVBAR */}
+      <Navbar />
+
+      {/* HERO SECTION */}
+      <Hero />
+
+      {/* STATS (Auto Count-Up Animation) */}
+      <StatsCounter />
+
+      {/* DETAILED TECH SKILLS & PROFICIENCIES */}
+      <TechSkills />
+
+      {/* SELECTED WORK & PROJECTS */}
+      <SelectedWork />
+
+      {/* PROJECT GALLERY (FULL ARCHIVE & FILTERING) */}
+      <ProjectGallery />
+
+      {/* SERVICES */}
+      <section
+        id="services"
+        className="border-y border-black/10 bg-black/[0.015] transition-colors duration-300 dark:border-white/10 dark:bg-white/[0.015] scroll-mt-20"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+          <div className="mb-12 sm:mb-16">
+            <p className="mb-3 sm:mb-5 text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-zinc-500 dark:text-white/30">
+              What I Do
+            </p>
+
+            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-white">
+              Services built around
+              <span className="text-zinc-400 dark:text-white/35">
+                {" "}
+                your goals.
+              </span>
+            </h2>
+          </div>
+
+          <div className="grid gap-5 grid-cols-1 md:grid-cols-2">
+            {services.map((service) => (
+              <div
+                key={service.number}
+                className="rounded-2xl border border-black/10 bg-[#fdfdfd] p-6 sm:p-8 transition hover:border-black/25 hover:shadow-md dark:border-white/10 dark:bg-[#080808] dark:hover:border-white/25 dark:hover:shadow-none"
+              >
+                <div className="mb-6 sm:mb-10 font-mono text-xs text-zinc-400 dark:text-white/25">
+                  / {service.number}
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-white">
+                  {service.title}
+                </h3>
+
+                <p className="mt-3 sm:mt-4 max-w-lg text-xs sm:text-sm leading-relaxed sm:leading-7 text-zinc-600 dark:text-white/40">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* PROCESS */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+        <div className="grid gap-10 sm:gap-16 lg:grid-cols-[.7fr_1.3fr]">
+          <div>
+            <p className="mb-3 sm:mb-5 text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-zinc-500 dark:text-white/30">
+              My Process
+            </p>
+
+            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-white">
+              Simple.
+              <br />
+              <span className="text-zinc-400 dark:text-white/35">
+                Transparent.
+              </span>
+              <br />
+              Effective.
+            </h2>
+          </div>
+
+          <div className="divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+            {[
+              [
+                "01",
+                "Discover",
+                "Understand your goals, audience and technical requirements.",
+              ],
+              [
+                "02",
+                "Plan",
+                "Create the project structure, user flow and development roadmap.",
+              ],
+              [
+                "03",
+                "Develop",
+                "Build the frontend, backend, APIs and database with clean code.",
+              ],
+              [
+                "04",
+                "Launch",
+                "Test, optimize and deploy the final product for real users.",
+              ],
+            ].map(([number, title, description]) => (
+              <div
+                key={number}
+                className="grid gap-2 sm:gap-4 py-5 sm:py-7 grid-cols-1 sm:grid-cols-[60px_180px_1fr]"
+              >
+                <span className="font-mono text-xs text-zinc-400 dark:text-white/25">
+                  {number}
+                </span>
+
+                <h3 className="font-semibold text-base sm:text-lg text-zinc-900 dark:text-white">
+                  {title}
+                </h3>
+
+                <p className="text-xs sm:text-sm leading-relaxed sm:leading-6 text-zinc-600 dark:text-white/40">
+                  {description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* TESTIMONIALS FROM USA CLIENTS */}
+      <Testimonials />
+
+      {/* CONTACT SECTION (HAVE A PROJECT IN MIND?) */}
+      <ContactSection />
+
+      {/* FOOTER */}
+      <footer className="border-t border-black/10 transition-colors duration-300 dark:border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-6 py-8 text-xs sm:text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between lg:px-8 dark:text-white/30">
+          <p>© 2026 MD. ARAFAT SARKER. All rights reserved.</p>
+
+          <div className="flex flex-wrap gap-4 sm:gap-6 font-medium">
+            <a
+              href="https://github.com/Arafat-boss"
+              target="_blank"
+              rel="noreferrer"
+              className="transition hover:text-zinc-900 dark:hover:text-white"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/md-arafat-sarker/"
+              target="_blank"
+              rel="noreferrer"
+              className="transition hover:text-zinc-900 dark:hover:text-white"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://www.facebook.com/Arraf.Ja/"
+              target="_blank"
+              rel="noreferrer"
+              className="transition hover:text-zinc-900 dark:hover:text-white"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://drive.google.com/uc?export=download&id=1JWrzIuntfLVd3K_1Lgi8jWN9c9kIX56y"
+              target="_blank"
+              rel="noreferrer"
+              className="transition hover:text-zinc-900 dark:hover:text-white"
+            >
+              Resume
+            </a>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }
