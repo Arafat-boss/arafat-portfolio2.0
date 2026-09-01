@@ -21,12 +21,14 @@ export const metadata: Metadata = {
   description: "Portfolio of Arafat - Full-Stack MERN Developer specializing in React, Next.js, Node.js, Express, and MongoDB.",
   icons: {
     icon: [
-      { url: "/gellary/fav-arafat.png" },
-      { url: "/favicon.png" },
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
-    shortcut: "/gellary/fav-arafat.png",
-    apple: "/gellary/fav-arafat.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -37,9 +39,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased light`}
     >
       <head>
-        <link rel="icon" href="/gellary/fav-arafat.png?v=2" type="image/png" />
-        <link rel="shortcut icon" href="/gellary/fav-arafat.png?v=2" />
-        <link rel="apple-touch-icon" href="/gellary/fav-arafat.png?v=2" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
         suppressHydrationWarning
