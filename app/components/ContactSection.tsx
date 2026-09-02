@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { siteConfig } from "@/lib/data/siteConfig";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -11,27 +12,58 @@ export default function ContactSection() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { personal } = siteConfig;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setStatusMessage(null);
 
-    // Simulate clean form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        projectType: "Full-Stack Web Application",
-        message: "",
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 6000);
-    }, 900);
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setStatusMessage({
+          type: "success",
+          text: result.message || "✓ Message sent successfully! I will get back to you shortly.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          projectType: "Full-Stack Web Application",
+          message: "",
+        });
+
+        setTimeout(() => {
+          setStatusMessage(null);
+        }, 7000);
+      } else {
+        setStatusMessage({
+          type: "error",
+          text: result.error || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (err: any) {
+      setStatusMessage({
+        type: "error",
+        text: "Network error occurred. Please check your connection or reach out via email.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -54,7 +86,7 @@ export default function ContactSection() {
               {/* Inner Glowing Nucleus */}
               <div className="h-36 w-36 sm:h-48 sm:w-48 rounded-full bg-gradient-to-tr from-indigo-500/40 via-violet-500/35 to-pink-400/40 blur-xl animate-pulse" />
 
-              {/* 3D Spinning Orbital Rings (Clockwise) */}
+              {/* 3D Spinning Orbital Rings */}
               <svg
                 viewBox="0 0 100 100"
                 fill="none"
@@ -68,7 +100,7 @@ export default function ContactSection() {
                 <ellipse cx="50" cy="50" rx="42" ry="24" transform="rotate(75 50 50)" />
               </svg>
 
-              {/* 3D Counter-Spinning Inner Rings (Counter-Clockwise) */}
+              {/* 3D Counter-Spinning Inner Rings */}
               <svg
                 viewBox="0 0 100 100"
                 fill="none"
@@ -85,7 +117,7 @@ export default function ContactSection() {
           </div>
 
           <div className="relative z-10 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.35fr] lg:items-center">
-            {/* LEFT COLUMN: CONTACT DETAILS (BLACK IN LIGHT BG, WHITE IN DARK BG) */}
+            {/* LEFT COLUMN: CONTACT DETAILS */}
             <div className="flex flex-col justify-between">
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
@@ -104,7 +136,7 @@ export default function ContactSection() {
               <div className="mt-8 space-y-4">
                 {/* Email */}
                 <a
-                  href="mailto:mmarafatu@gmail.com"
+                  href={`mailto:${personal.email}`}
                   className="group flex items-center gap-3.5 text-xs text-zinc-700 transition-colors hover:text-zinc-900 dark:text-white/90 dark:hover:text-white sm:text-sm"
                 >
                   <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-black/10 bg-black/5 text-zinc-800 shadow-xs backdrop-blur-md transition-transform duration-200 group-hover:scale-105 dark:border-white/20 dark:bg-white/10 dark:text-white">
@@ -121,12 +153,12 @@ export default function ContactSection() {
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                     </svg>
                   </div>
-                  <span className="font-medium">mmarafatu@gmail.com</span>
+                  <span className="font-medium">{personal.email}</span>
                 </a>
 
                 {/* Phone */}
                 <a
-                  href="tel:+8801703512784"
+                  href={`tel:${personal.phone.replace(/[^0-9+]/g, "")}`}
                   className="group flex items-center gap-3.5 text-xs text-zinc-700 transition-colors hover:text-zinc-900 dark:text-white/90 dark:hover:text-white sm:text-sm"
                 >
                   <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-black/10 bg-black/5 text-zinc-800 shadow-xs backdrop-blur-md transition-transform duration-200 group-hover:scale-105 dark:border-white/20 dark:bg-white/10 dark:text-white">
@@ -142,7 +174,7 @@ export default function ContactSection() {
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
                   </div>
-                  <span className="font-medium">+880 1703-512784</span>
+                  <span className="font-medium">{personal.phone}</span>
                 </a>
 
                 {/* Location */}
@@ -161,7 +193,7 @@ export default function ContactSection() {
                       <circle cx="12" cy="10" r="3" />
                     </svg>
                   </div>
-                  <span className="font-medium">Dhaka, Bangladesh • Global Remote (US EST/PST)</span>
+                  <span className="font-medium">{personal.location}</span>
                 </div>
               </div>
             </div>
@@ -242,12 +274,12 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-neumorphic w-full !py-3.5 !text-sm group disabled:opacity-60"
+                    className="btn-neumorphic w-full !py-3.5 !text-sm group disabled:opacity-60 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>
                         <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                        <span>Sending...</span>
+                        <span>Sending to Server...</span>
                       </>
                     ) : (
                       <>
@@ -268,9 +300,15 @@ export default function ContactSection() {
                     )}
                   </button>
 
-                  {isSubmitted && (
-                    <p className="animate-fade-in text-center text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                      ✓ Message sent successfully! I will get back to you shortly.
+                  {statusMessage && (
+                    <p
+                      className={`text-center text-xs font-semibold animate-fade-in ${
+                        statusMessage.type === "success"
+                          ? "text-emerald-600 dark:text-emerald-400"
+                          : "text-red-500 dark:text-red-400"
+                      }`}
+                    >
+                      {statusMessage.text}
                     </p>
                   )}
                 </div>

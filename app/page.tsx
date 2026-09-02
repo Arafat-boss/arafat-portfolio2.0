@@ -6,35 +6,12 @@ import ProjectGallery from "./components/ProjectGallery";
 import Testimonials from "./components/Testimonials";
 import ContactSection from "./components/ContactSection";
 import StatsCounter from "./components/StatsCounter";
-
-const services = [
-  {
-    number: "01",
-    title: "Full-Stack Development",
-    description:
-      "Complete web applications using the MERN stack with clean architecture and scalable backend systems.",
-  },
-  {
-    number: "02",
-    title: "Frontend Development",
-    description:
-      "Modern, responsive and high-performance interfaces using React, Next.js and Tailwind CSS.",
-  },
-  {
-    number: "03",
-    title: "Backend & API",
-    description:
-      "Secure REST APIs, authentication, database architecture and backend development using Node.js and Express.",
-  },
-  {
-    number: "04",
-    title: "Website Development",
-    description:
-      "Professional websites for startups, businesses and personal brands with a strong focus on UX and performance.",
-  },
-];
+import { servicesData, processStepsData } from "@/lib/data/services";
+import { siteConfig } from "@/lib/data/siteConfig";
 
 export default function Home() {
+  const { personal, socialLinks } = siteConfig;
+
   return (
     <main className="min-h-screen bg-transparent text-zinc-900 selection:bg-zinc-900 selection:text-white dark:text-white dark:selection:bg-white dark:selection:text-black">
       {/* RESPONSIVE NAVBAR */}
@@ -52,7 +29,7 @@ export default function Home() {
       {/* SELECTED WORK & PROJECTS */}
       <SelectedWork />
 
-      {/* PROJECT GALLERY (FULL ARCHIVE & FILTERING) */}
+      {/* PROJECT GALLERY (FULL ARCHIVE & FILTERING CAROUSEL) */}
       <ProjectGallery />
 
       {/* SERVICES */}
@@ -75,7 +52,7 @@ export default function Home() {
           </div>
 
           <div className="gsap-stagger-group grid gap-5 grid-cols-1 md:grid-cols-2">
-            {services.map((service) => (
+            {servicesData.map((service) => (
               <div
                 key={service.number}
                 className="gsap-stagger-item rounded-2xl border border-black/10 bg-[#fdfdfd] p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-black/25 hover:shadow-lg dark:border-white/10 dark:bg-[#080808] dark:hover:border-white/25 dark:hover:shadow-none"
@@ -117,42 +94,21 @@ export default function Home() {
           </div>
 
           <div className="gsap-stagger-group divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
-            {[
-              [
-                "01",
-                "Discover",
-                "Understand your goals, audience and technical requirements.",
-              ],
-              [
-                "02",
-                "Plan",
-                "Create the project structure, user flow and development roadmap.",
-              ],
-              [
-                "03",
-                "Develop",
-                "Build the frontend, backend, APIs and database with clean code.",
-              ],
-              [
-                "04",
-                "Launch",
-                "Test, optimize and deploy the final product for real users.",
-              ],
-            ].map(([number, title, description]) => (
+            {processStepsData.map((step) => (
               <div
-                key={number}
+                key={step.number}
                 className="gsap-stagger-item grid gap-2 sm:gap-4 py-5 sm:py-7 grid-cols-1 sm:grid-cols-[60px_180px_1fr] transition-all duration-300 hover:bg-black/[0.02] dark:hover:bg-white/[0.02] px-2 rounded-xl"
               >
                 <span className="font-mono text-xs text-zinc-400 dark:text-white/25">
-                  {number}
+                  {step.number}
                 </span>
 
                 <h3 className="font-semibold text-base sm:text-lg text-zinc-900 dark:text-white">
-                  {title}
+                  {step.title}
                 </h3>
 
                 <p className="text-xs sm:text-sm leading-relaxed sm:leading-6 text-zinc-600 dark:text-white/40">
-                  {description}
+                  {step.description}
                 </p>
               </div>
             ))}
@@ -169,41 +125,20 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="border-t border-black/10 transition-colors duration-300 dark:border-white/10 gsap-fade-up">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-6 py-8 text-xs sm:text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between lg:px-8 dark:text-white/30">
-          <p>© 2026 MD. ARAFAT SARKER. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {personal.name}. All rights reserved.</p>
 
           <div className="flex flex-wrap gap-4 sm:gap-6 font-medium">
-            <a
-              href="https://github.com/Arafat-boss"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-zinc-900 dark:hover:text-white"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/md-arafat-sarker/"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-zinc-900 dark:hover:text-white"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://www.facebook.com/Arraf.Ja/"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-zinc-900 dark:hover:text-white"
-            >
-              Facebook
-            </a>
-            <a
-              href="https://drive.google.com/uc?export=download&id=1JWrzIuntfLVd3K_1Lgi8jWN9c9kIX56y"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-zinc-900 dark:hover:text-white"
-            >
-              Resume
-            </a>
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noreferrer"
+                className="transition hover:text-zinc-900 dark:hover:text-white"
+              >
+                {social.name}
+              </a>
+            ))}
           </div>
         </div>
       </footer>

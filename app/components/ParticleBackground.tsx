@@ -43,7 +43,7 @@ export default function ParticleBackground() {
     const mouse = {
       x: -1000,
       y: -1000,
-      radius: 220, // Light aura reveal radius
+      radius: 230, // Light aura reveal radius
     };
 
     // Scroll state tracking
@@ -62,7 +62,7 @@ export default function ParticleBackground() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // Initialize particles with very low base opacity
+    // Initialize particles with delicate base opacity
     const particleCount = Math.min(Math.floor((width * height) / 15000), 85);
     const particles: FloatingParticle[] = [];
 
@@ -77,7 +77,6 @@ export default function ParticleBackground() {
         vx: (Math.random() - 0.5) * 0.2 * depth,
         vy: -(Math.random() * 0.18 + 0.06) * depth,
         radius: (Math.random() * 1.6 + 0.9) * Math.min(depth, 1.2),
-        // Very low base alpha (subtle/soft until mouse hover light illuminates it)
         baseAlpha: Math.random() * 0.06 + 0.04,
         depth,
         phase: Math.random() * Math.PI * 2,
@@ -118,7 +117,7 @@ export default function ParticleBackground() {
       ctx.clearRect(0, 0, width, height);
       const currentlyDark = document.documentElement.classList.contains("dark");
 
-      // Draw subtle luminous connection lines between nearby particles when inside the mouse light
+      // Draw subtle luminous purple connection lines between nearby particles when inside the mouse light
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
         const dx1 = p1.x - mouse.x;
@@ -134,15 +133,15 @@ export default function ParticleBackground() {
 
             if (dist2 < mouse.radius) {
               const pDist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-              if (pDist < 100) {
-                const lineAlpha = (1 - pDist / 100) * (1 - dist1 / mouse.radius) * (currentlyDark ? 0.25 : 0.15);
+              if (pDist < 105) {
+                const lineAlpha = (1 - pDist / 105) * (1 - dist1 / mouse.radius) * (currentlyDark ? 0.35 : 0.25);
                 ctx.beginPath();
                 ctx.moveTo(p1.x, p1.y);
                 ctx.lineTo(p2.x, p2.y);
                 ctx.strokeStyle = currentlyDark
-                  ? `rgba(255, 255, 255, ${lineAlpha})`
-                  : `rgba(0, 0, 0, ${lineAlpha})`;
-                ctx.lineWidth = 0.6;
+                  ? `rgba(192, 132, 252, ${lineAlpha})` // Soft glowing purple (dark mode)
+                  : `rgba(168, 85, 247, ${lineAlpha})`; // Elegant light purple (light mode)
+                ctx.lineWidth = 0.7;
                 ctx.stroke();
               }
             }
@@ -178,14 +177,12 @@ export default function ParticleBackground() {
         let pAlpha = p.baseAlpha;
         let isLitByMouse = false;
 
-        // ILLUMINATION EFFECT: Brighten significantly when within the mouse light beam
+        // ILLUMINATION EFFECT: Brighten significantly with purple glow when within the mouse light beam
         if (distMouse < mouse.radius && distMouse > 0) {
           isLitByMouse = true;
-          // Smooth non-linear falloff
-          const lightIntensity = Math.pow(1 - distMouse / mouse.radius, 1.3);
+          const lightIntensity = Math.pow(1 - distMouse / mouse.radius, 1.25);
 
-          // Particles light up clearly under cursor light
-          pAlpha = p.baseAlpha + lightIntensity * (currentlyDark ? 0.85 : 0.7);
+          pAlpha = p.baseAlpha + lightIntensity * (currentlyDark ? 0.9 : 0.75);
 
           // Subtle interactive magnetic push away from the cursor core
           const pushForce = Math.max(0, 1 - distMouse / 90);
@@ -193,23 +190,26 @@ export default function ParticleBackground() {
           p.y += (dyMouse / distMouse) * pushForce * 0.8;
         }
 
-        // Particle color
+        // Particle color (Light purple hue under cursor spotlight)
         const particleColor = currentlyDark
-          ? `rgba(255, 255, 255, ${pAlpha})`
-          : `rgba(15, 23, 42, ${pAlpha})`;
+          ? isLitByMouse
+            ? `rgba(216, 180, 254, ${pAlpha})` // Soft lavender purple
+            : `rgba(255, 255, 255, ${pAlpha})`
+          : isLitByMouse
+            ? `rgba(147, 51, 234, ${pAlpha})` // Light purple
+            : `rgba(140, 140, 160, ${pAlpha})`;
 
         ctx.beginPath();
-        // Slightly enlarge particle when illuminated by light
         const renderRadius = isLitByMouse ? p.radius * 1.35 : p.radius;
         ctx.arc(p.x, p.y, renderRadius, 0, Math.PI * 2);
         ctx.fillStyle = particleColor;
 
         if (isLitByMouse) {
-          // Luminous flashlight glow around illuminated particles
-          ctx.shadowBlur = currentlyDark ? 10 : 5;
+          // Luminous purple glow around illuminated particles
+          ctx.shadowBlur = currentlyDark ? 12 : 8;
           ctx.shadowColor = currentlyDark
-            ? `rgba(255, 255, 255, ${pAlpha * 0.8})`
-            : `rgba(0, 0, 0, 0.3)`;
+            ? `rgba(192, 132, 252, ${pAlpha * 0.9})`
+            : `rgba(168, 85, 247, 0.55)`;
         } else {
           ctx.shadowBlur = 0;
         }
@@ -238,9 +238,9 @@ export default function ParticleBackground() {
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden transition-colors duration-500"
       aria-hidden="true"
     >
-      {/* Ambient background glows (Pure Luxury Monochrome) */}
-      <div className="absolute left-1/2 top-1/4 h-[750px] w-[750px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.02] blur-[160px] dark:bg-white/[0.015]" />
-      <div className="absolute right-10 bottom-24 h-[650px] w-[650px] rounded-full bg-white/[0.015] blur-[150px] dark:bg-white/[0.01]" />
+      {/* Ambient background glows (Soft Purple & Violet Tones) */}
+      <div className="absolute left-1/2 top-1/4 h-[750px] w-[750px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/[0.035] blur-[160px] dark:bg-purple-500/[0.025]" />
+      <div className="absolute right-10 bottom-24 h-[650px] w-[650px] rounded-full bg-indigo-500/[0.03] blur-[150px] dark:bg-indigo-500/[0.02]" />
 
       {/* MATRIX TECH GRID WITH PARALLAX */}
       <div
@@ -258,21 +258,21 @@ export default function ParticleBackground() {
         }}
       />
 
-      {/* INTERACTIVE MOUSE SPOTLIGHT / FLASHLIGHT AURA */}
+      {/* INTERACTIVE MOUSE SPOTLIGHT / LIGHT PURPLE AURA */}
       {mousePos.x > 0 && mousePos.y > 0 && (
         <div
-          className="pointer-events-none absolute h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full transition-transform duration-75 ease-out will-change-transform"
+          className="pointer-events-none absolute h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full transition-transform duration-75 ease-out will-change-transform"
           style={{
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
             background: isDark
-              ? `radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 40%, transparent 70%)`
-              : `radial-gradient(circle, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.018) 40%, transparent 70%)`,
+              ? `radial-gradient(circle, rgba(168, 85, 247, 0.16) 0%, rgba(147, 51, 234, 0.06) 40%, rgba(126, 34, 206, 0.02) 60%, transparent 75%)`
+              : `radial-gradient(circle, rgba(168, 85, 247, 0.14) 0%, rgba(192, 132, 252, 0.06) 40%, rgba(216, 180, 254, 0.02) 60%, transparent 75%)`,
           }}
         />
       )}
 
-      {/* CANVAS PARTICLES (Very subtle idle opacity, brightly lit by mouse hover spotlight) */}
+      {/* CANVAS PARTICLES (Delicate idle state, illuminated with soft purple glow by mouse hover) */}
       <canvas
         ref={canvasRef}
         className="block h-full w-full opacity-100"

@@ -2,20 +2,13 @@
 
 import { useState, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
-
-const NAV_LINKS = [
-  { href: "#hero", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#services", label: "Services" },
-  { href: "#testimonials", label: "Reviews" },
-  { href: "#contact", label: "Contact" },
-];
+import { siteConfig } from "@/lib/data/siteConfig";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const { navLinks, personal } = siteConfig;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,14 +39,14 @@ export default function Navbar() {
         {/* LOGO */}
         <a
           href="#hero"
-          className="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 transition hover:opacity-80 dark:text-white"
+          className="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 transition hover:opacity-80 dark:text-white uppercase"
         >
-          ARAFAT<span className="text-zinc-400 dark:text-white/40">.</span>
+          {personal.shortName}<span className="text-zinc-400 dark:text-white/40">.</span>
         </a>
 
         {/* DESKTOP NAV LINKS (HIDDEN ON MOBILE/TABLET) */}
         <div className="hidden items-center gap-6 lg:gap-8 text-sm font-medium text-zinc-600 md:flex dark:text-white/60">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -77,11 +70,11 @@ export default function Navbar() {
             Let&apos;s Talk
           </a>
 
-          {/* MOBILE HAMBURGER BUTTON (VISIBLE ONLY ON MOBILE / TABLET < MD) */}
+          {/* MOBILE HAMBURGER BUTTON */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-black/5 text-zinc-700 transition hover:bg-black/10 md:hidden dark:border-white/10 dark:bg-white/5 dark:text-white"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-black/5 text-zinc-700 transition hover:bg-black/10 md:hidden dark:border-white/10 dark:bg-white/5 dark:text-white cursor-pointer"
           >
             {mobileMenuOpen ? (
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-4 w-4">
@@ -108,7 +101,7 @@ export default function Navbar() {
             <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-white/40">
               Navigation
             </p>
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -129,7 +122,7 @@ export default function Navbar() {
               Get In Touch 🚀
             </a>
             <p className="mt-3 text-center text-xs text-zinc-400 dark:text-white/40">
-              MD. ARAFAT SARKER • Full-Stack Developer
+              {personal.name} • {personal.role}
             </p>
           </div>
         </div>

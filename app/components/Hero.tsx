@@ -6,11 +6,14 @@ import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 
+import { siteConfig } from "@/lib/data/siteConfig";
+
 // Register GSAP plugins
 gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const { personal } = siteConfig;
 
   useGSAP(
     () => {
@@ -366,7 +369,7 @@ export default function Hero() {
                     I like to work collaboratively by nature, and I enjoy working as a team both professionally to deliver scalable, high-performance digital products.
                   </p>
                   <p className="text-xs font-mono text-zinc-500 dark:text-white/45 pt-1">
-                    📧 mmarafatu@gmail.com &bull; 📱 +8801703512784
+                    📧 {personal.email} &bull; 📱 {personal.phone}
                   </p>
                 </div>
 

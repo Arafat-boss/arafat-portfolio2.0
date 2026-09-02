@@ -5,6 +5,7 @@ import GSAPProvider from "./components/GSAPProvider";
 import ParticleBackground from "./components/ParticleBackground";
 import ButtonExplosion from "./components/ButtonExplosion";
 import Preloader from "./components/Preloader";
+import { siteConfig } from "@/lib/data/siteConfig";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,8 +18,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Arafat | Full-Stack MERN Developer",
-  description: "Portfolio of Arafat - Full-Stack MERN Developer specializing in React, Next.js, Node.js, Express, and MongoDB.",
+  title: `${siteConfig.personal.shortName} | ${siteConfig.personal.title}`,
+  description: `${siteConfig.personal.name} - ${siteConfig.personal.headline} Specializing in React, Next.js, Node.js, Express, and MongoDB.`,
+  keywords: [
+    "Arafat",
+    "MD. ARAFAT SARKER",
+    "Full-Stack Developer",
+    "MERN Stack",
+    "Next.js Developer",
+    "React Developer",
+    "Node.js",
+    "MongoDB",
+    "Tailwind CSS",
+    "Frontend Developer",
+  ],
+  authors: [{ name: siteConfig.personal.name, url: "https://github.com/Arafat-boss" }],
+  openGraph: {
+    title: `${siteConfig.personal.name} | ${siteConfig.personal.role}`,
+    description: siteConfig.personal.bio,
+    type: "website",
+    locale: "en_US",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },
