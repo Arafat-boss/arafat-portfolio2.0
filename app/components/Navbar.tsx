@@ -62,12 +62,20 @@ export default function Navbar() {
           {/* Theme Toggle Button */}
           <ThemeToggle />
 
-          {/* Let's Talk CTA Button */}
+          {/* Resume Button */}
           <a
-            href="#contact"
-            className="btn-neumorphic text-xs !px-3 sm:!px-4 !py-1.5 sm:!py-2"
+            href={personal.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+            className="btn-neumorphic text-xs !px-3 sm:!px-4 !py-1.5 sm:!py-2 inline-flex items-center gap-1.5"
           >
-            Let&apos;s Talk
+            <span>Resume</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-3.5 w-3.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
           </a>
 
           {/* MOBILE HAMBURGER BUTTON */}
@@ -113,15 +121,30 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="border-t border-black/10 pt-4 pb-6 dark:border-white/10">
+          <div className="border-t border-black/10 pt-4 pb-6 dark:border-white/10 flex flex-col gap-2.5">
+            <a
+              href={personal.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              onClick={() => setMobileMenuOpen(false)}
+              className="btn-neumorphic w-full !py-3 !text-sm inline-flex items-center justify-center gap-2"
+            >
+              <span>Download Resume</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-4 w-4">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </a>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="btn-neumorphic w-full !py-3 !text-sm"
+              className="rounded-xl border border-black/10 bg-black/5 dark:border-white/10 dark:bg-white/5 py-2.5 text-center text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition hover:bg-black/10 dark:hover:bg-white/10"
             >
               Get In Touch 🚀
             </a>
-            <p className="mt-3 text-center text-xs text-zinc-400 dark:text-white/40">
+            <p className="mt-2 text-center text-xs text-zinc-400 dark:text-white/40">
               {personal.name} • {personal.role}
             </p>
           </div>
