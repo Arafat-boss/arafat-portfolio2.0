@@ -149,23 +149,16 @@ export default function Testimonials() {
                     </p>
                   </div>
 
-                  <div className="mt-6 flex items-center gap-3 border-t border-black/[0.04] pt-4 dark:border-white/[0.04]">
-                    <img
-                      src={item.avatar}
-                      alt={item.name}
-                      className="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover object-center ring-2 ring-indigo-500/20 shadow-sm"
-                    />
-                    <div className="min-w-0">
-                      <h4 className="truncate text-xs sm:text-sm font-bold text-zinc-900 dark:text-white">
-                        {item.name}
-                      </h4>
-                      <p className="truncate text-[11px] text-zinc-500 dark:text-zinc-400">
-                        {item.role}, <span className="font-semibold text-zinc-700 dark:text-zinc-300">{item.company}</span>
-                      </p>
-                      <p className="text-[10px] text-zinc-400 dark:text-white/30 font-mono mt-0.5">
-                        📍 {item.location}
-                      </p>
-                    </div>
+                  <div className="mt-6 border-t border-black/[0.04] pt-4 dark:border-white/[0.04]">
+                    <h4 className="truncate text-xs sm:text-sm font-bold text-zinc-900 dark:text-white">
+                      {item.name}
+                    </h4>
+                    <p className="truncate text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">
+                      {item.role}, <span className="font-semibold text-zinc-700 dark:text-zinc-300">{item.company}</span>
+                    </p>
+                    <p className="text-[10px] text-zinc-400 dark:text-white/30 font-mono mt-0.5">
+                      📍 {item.location}
+                    </p>
                   </div>
                 </div>
               ))

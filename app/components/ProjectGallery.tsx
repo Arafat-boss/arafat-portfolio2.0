@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { GalleryItem } from "@/lib/types/project";
 
 export default function ProjectGallery() {
@@ -11,6 +12,11 @@ export default function ProjectGallery() {
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [modalItem, setModalItem] = useState<GalleryItem | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Live dynamic fetch directly from MongoDB 'Gellary' collection
   useEffect(() => {
@@ -159,12 +165,6 @@ export default function ProjectGallery() {
       document.body.style.overflow = "auto";
     };
   }, [modalItem, handleModalClose, handleModalPrev, handleModalNext]);
-
-  // Active progress calculation
-  const progressPercent =
-    galleryList.length > 0
-      ? Math.min(100, Math.round(((currentIndex + visibleCount) / galleryList.length) * 100))
-      : 0;
 
   const stepPercent = 100 / visibleCount;
   const dragDelta = isDragging ? dragCurrentX - dragStartX : 0;
@@ -356,19 +356,8 @@ export default function ProjectGallery() {
           )}
         </div>
 
-        {/* BOTTOM PAGINATION & PROGRESS CONTROLS */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-black/10 pt-5 dark:border-white/10">
-          <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-white/40">
-            <span>
-              Showing {String(galleryList.length > 0 ? currentIndex + 1 : 0).padStart(2, "0")} -{" "}
-              {String(Math.min(currentIndex + visibleCount, galleryList.length)).padStart(2, "0")}
-            </span>
-            <span>/</span>
-            <span className="font-semibold text-zinc-800 dark:text-zinc-200">
-              {String(galleryList.length).padStart(2, "0")} Mockups
-            </span>
-          </div>
-
+        {/* BOTTOM PAGINATION DOTS */}
+        <div className="mt-8 flex items-center justify-center border-t border-black/10 pt-5 dark:border-white/10">
           <div className="flex items-center gap-1.5">
             {Array.from({ length: maxIndex + 1 }).map((_, dotIdx) => {
               const isActive = dotIdx === currentIndex;
@@ -386,129 +375,121 @@ export default function ProjectGallery() {
               );
             })}
           </div>
-
-          <div className="flex items-center gap-3 w-40 sm:w-48">
-            <span className="font-mono text-xs text-zinc-400 dark:text-white/30">0%</span>
-            <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
-              <div
-                style={{ width: `${progressPercent}%` }}
-                className="h-full rounded-full bg-indigo-600 transition-all duration-300 ease-out dark:bg-indigo-400"
-              />
-            </div>
-            <span className="font-mono text-xs text-zinc-400 dark:text-white/30">100%</span>
-          </div>
         </div>
       </div>
 
-      {/* FULLSCREEN LIGHTBOX POPUP MODAL */}
-      {modalItem && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-3 sm:p-6 backdrop-blur-xl transition-opacity duration-300"
-          onClick={handleModalClose}
-        >
+      {/* FULLSCREEN LIGHTBOX POPUP MODAL (PORTALED TO BODY FOR PERFECT VIEWPORT CENTERING) */}
+      {mounted &&
+        modalItem &&
+        createPortal(
           <div
-            className="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-[22px] sm:rounded-[28px] border border-white/15 bg-[#0f0f13] shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/90 p-3 sm:p-6 backdrop-blur-xl transition-opacity duration-300"
+            onClick={handleModalClose}
           >
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 sm:px-6 sm:py-3.5">
-              <div className="flex items-center gap-2.5">
-                <span className="rounded-full bg-indigo-500/20 px-2.5 py-0.5 text-xs font-semibold text-indigo-400">
-                  {modalItem.category}
-                </span>
-                <span className="font-mono text-xs text-white/50">
-                  {modalItem.number} / {String(galleryList.length).padStart(2, "0")}
-                </span>
+            <div
+              className="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-[22px] sm:rounded-[28px] border border-white/15 bg-[#0f0f13] shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 sm:px-6 sm:py-3.5">
+                <div className="flex items-center gap-2.5">
+                  <span className="rounded-full bg-indigo-500/20 px-2.5 py-0.5 text-xs font-semibold text-indigo-400">
+                    {modalItem.category}
+                  </span>
+                  <span className="font-mono text-xs text-white/50">
+                    {modalItem.number} / {String(galleryList.length).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <a
+                    href={encodeURI(modalItem.src)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
+                  >
+                    <span>Open Full High-Res</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+
+                  <button
+                    onClick={handleModalClose}
+                    aria-label="Close modal"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/80 transition hover:bg-white/20 hover:text-white cursor-pointer"
+                  >
+                    ✕
+                  </button>
+                </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <a
-                  href={encodeURI(modalItem.src)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
-                >
-                  <span>Open Full High-Res</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
+              <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-black/60 p-3 sm:p-6 min-h-[220px] max-h-[55vh] sm:max-h-[62vh]">
+                <img
+                  src={encodeURI(modalItem.src)}
+                  alt={modalItem.title}
+                  className="max-h-[50vh] sm:max-h-[58vh] w-auto max-w-full rounded-xl object-contain shadow-2xl transition-all duration-300 mx-auto"
+                />
 
                 <button
-                  onClick={handleModalClose}
-                  aria-label="Close modal"
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/80 transition hover:bg-white/20 hover:text-white cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleModalPrev();
+                  }}
+                  aria-label="Previous Image"
+                  className="absolute left-3 sm:left-4 top-1/2 flex h-9 w-9 sm:h-11 sm:w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/75 text-white shadow-xl backdrop-blur-md transition hover:scale-110 hover:bg-black/95 active:scale-95 cursor-pointer"
                 >
-                  ✕
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4 sm:h-5 sm:w-5">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleModalNext();
+                  }}
+                  aria-label="Next Image"
+                  className="absolute right-3 sm:right-4 top-1/2 flex h-9 w-9 sm:h-11 sm:w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/75 text-white shadow-xl backdrop-blur-md transition hover:scale-110 hover:bg-black/95 active:scale-95 cursor-pointer"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4 sm:h-5 sm:w-5">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
                 </button>
               </div>
-            </div>
 
-            <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-black/60 p-3 sm:p-6 min-h-[220px] max-h-[55vh] sm:max-h-[62vh]">
-              <img
-                src={encodeURI(modalItem.src)}
-                alt={modalItem.title}
-                className="max-h-[50vh] sm:max-h-[58vh] w-auto max-w-full rounded-xl object-contain shadow-2xl transition-all duration-300"
-              />
+              <div className="border-t border-white/10 bg-[#121216] px-4 py-3 sm:px-6 sm:py-4">
+                <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+                  <div>
+                    <h3 className="text-sm sm:text-base font-bold text-white">
+                      {modalItem.title}
+                    </h3>
+                    <p className="mt-1 max-w-xl text-xs sm:text-sm text-white/60 leading-relaxed">
+                      {modalItem.description}
+                    </p>
+                  </div>
 
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleModalPrev();
-                }}
-                aria-label="Previous Image"
-                className="absolute left-3 sm:left-4 top-1/2 flex h-9 w-9 sm:h-11 sm:w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/75 text-white shadow-xl backdrop-blur-md transition hover:scale-110 hover:bg-black/95 active:scale-95 cursor-pointer"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4 sm:h-5 sm:w-5">
-                  <polyline points="15 18 9 12 15 6" />
-                </svg>
-              </button>
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleModalNext();
-                }}
-                aria-label="Next Image"
-                className="absolute right-3 sm:right-4 top-1/2 flex h-9 w-9 sm:h-11 sm:w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/75 text-white shadow-xl backdrop-blur-md transition hover:scale-110 hover:bg-black/95 active:scale-95 cursor-pointer"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4 sm:h-5 sm:w-5">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </button>
-            </div>
-
-            <div className="border-t border-white/10 bg-[#121216] px-4 py-3 sm:px-6 sm:py-4">
-              <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
-                <div>
-                  <h3 className="text-sm sm:text-base font-bold text-white">
-                    {modalItem.title}
-                  </h3>
-                  <p className="mt-1 max-w-xl text-xs sm:text-sm text-white/60 leading-relaxed">
-                    {modalItem.description}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2 pt-1 sm:pt-0">
-                  <button
-                    onClick={handleModalPrev}
-                    className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10 cursor-pointer"
-                  >
-                    ← Prev
-                  </button>
-                  <button
-                    onClick={handleModalNext}
-                    className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10 cursor-pointer"
-                  >
-                    Next →
-                  </button>
+                  <div className="flex items-center gap-2 pt-1 sm:pt-0">
+                    <button
+                      onClick={handleModalPrev}
+                      className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10 cursor-pointer"
+                    >
+                      ← Prev
+                    </button>
+                    <button
+                      onClick={handleModalNext}
+                      className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10 cursor-pointer"
+                    >
+                      Next →
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </section>
   );
 }

@@ -1,4 +1,49 @@
 import React from "react";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiSketch,
+  SiWebflow,
+  SiFramer,
+  SiNotion,
+  SiHtml5,
+  SiCss,
+  SiRedux,
+  SiBootstrap,
+  SiFirebase,
+  SiJsonwebtokens,
+  SiMongoose,
+  SiPostgresql,
+  SiPrisma,
+  SiGit,
+  SiGithub,
+  SiPostman,
+  SiVercel,
+  SiDocker,
+  SiPython,
+  SiCplusplus,
+  SiSass,
+  SiGraphql,
+  SiMysql,
+  SiRedis,
+  SiLinux,
+  SiVite,
+  SiWebpack,
+  SiNpm,
+  SiYarn,
+  SiPnpm,
+  SiSupabase,
+  SiSanity,
+  SiStrapi,
+} from "react-icons/si";
+import { TbApi, TbBrandVscode } from "react-icons/tb";
+import { FaAws } from "react-icons/fa6";
 
 interface IconProps {
   name: string;
@@ -7,228 +52,220 @@ interface IconProps {
 }
 
 export function SkillIcon({ name, className = "h-7 w-7", color }: IconProps) {
-  switch (name.toLowerCase()) {
+  const normalized = (name || "").toLowerCase().replace(/[\s_.-]+/g, "");
+
+  switch (normalized) {
     case "react":
-      return (
-        <svg viewBox="0 0 24 24" className={className} style={{ color: color || "#61DAFB" }}>
-          <circle cx="12" cy="12" r="2.2" fill="currentColor" />
-          <g fill="none" stroke="currentColor" strokeWidth="1.3">
-            <ellipse cx="12" cy="12" rx="9" ry="3.5" />
-            <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(60 12 12)" />
-            <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(120 12 12)" />
-          </g>
-        </svg>
-      );
+    case "reactjs":
+    case "reactnative":
+      return <SiReact className={className} style={{ color: color || "#61DAFB" }} />;
+
+    case "next":
     case "nextjs":
+    case "nextdotjs":
       return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={`${className} text-black dark:text-white`}>
-          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.82 14.887L9.843 7.842h-1.68V16.15h1.56V10.15l6.097 7.857a8.428 8.428 0 0 0 .999-.12zM14.5 7.842h1.56v5.27l-1.56-2.01V7.842z" />
+        <svg viewBox="0 0 24 24" className={className} fill="none">
+          <circle cx="12" cy="12" r="11.5" className="fill-black dark:fill-white" />
+          <path
+            d="M17.1 17.6L9.3 7.5H7.5V16.5H9V9.6L16 18.4C16.4 18.2 16.8 17.9 17.1 17.6Z"
+            className="fill-white dark:fill-black"
+          />
+          <rect x="15" y="7.5" width="1.5" height="8.5" className="fill-white dark:fill-black" />
         </svg>
       );
+
     case "ts":
     case "typescript":
-      return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-          <rect width="20" height="20" x="2" y="2" rx="4" fill="#3178C6" />
-          <path fill="#fff" d="M11.5 8.5H6.5v2h1.8v6.2h1.8v-6.2h1.4v-2zm6.2 2.8c-.1-.6-.5-1.1-1.7-1.6-.5-.2-1-.3-1.2-.6-.1-.1-.1-.2-.1-.3 0-.6.5-.9 1.2-.9.6 0 1 .2 1.3.6l1.1-.8c-.5-.7-1.3-1-2.5-1-1.6 0-2.7.9-2.7 2.3 0 .9.5 1.5 1.5 1.9.6.2 1.2.4 1.4.7.1.1.1.3.1.4 0 .7-.6 1-1.4 1-1 0-1.6-.5-2-1.1l-1.2.7c.6.9 1.5 1.5 3.2 1.5 1.9 0 3-.9 3-2.5 0-.1 0-.2-.1-.3v-.1z" />
-        </svg>
-      );
+      return <SiTypescript className={className} style={{ color: color || "#3178C6" }} />;
+
     case "js":
     case "javascript":
-      return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-          <rect width="20" height="20" x="2" y="2" rx="4" fill="#F7DF1E" />
-          <path fill="#000" d="M19.5 16.7c-.1-.8-.7-1.5-2.3-2.2-.5-.3-1.2-.4-1.4-.8-.1-.1-.1-.3-.1-.5 0-.7.6-1.1 1.4-1.1.8 0 1.3.3 1.6.8l1.3-1c-.6-.9-1.6-1.3-3-1.3-1.9 0-3.2 1.1-3.2 2.9 0 1.1.6 1.9 1.8 2.4.7.3 1.5.5 1.7.9.1.2.1.4.1.5 0 .8-.7 1.3-1.7 1.3-1.3 0-2-.6-2.4-1.3l-1.4.9c.7 1.2 1.9 1.8 3.8 1.8 2.3 0 3.7-1.2 3.7-3.1v-.1h-.1zm-7.6 1.8h1.8V9.5h-1.8v7.4c0 1.1-.5 1.5-1.4 1.5-.4 0-.8-.1-1-.2l-.4 1.4c.4.2.9.3 1.7.3 1.6 0 2.2-.9 2.2-2.3v-1.1h-.1z" />
-        </svg>
-      );
+      return <SiJavascript className={className} style={{ color: color || "#F7DF1E" }} />;
+
     case "tailwind":
-      return (
-        <svg viewBox="0 0 24 24" fill="#06B6D4" className={className}>
-          <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
-        </svg>
-      );
+    case "tailwindcss":
+      return <SiTailwindcss className={className} style={{ color: color || "#06B6D4" }} />;
+
+    case "node":
     case "nodejs":
-      return (
-        <svg viewBox="0 0 24 24" fill="#339933" className={className}>
-          <path d="M12 2a1.5 1.5 0 0 0-.75.2l-8 4.62A1.5 1.5 0 0 0 2.5 8.12v9.24a1.5 1.5 0 0 0 .75 1.3l8 4.62a1.5 1.5 0 0 0 1.5 0l8-4.62a1.5 1.5 0 0 0 .75-1.3V8.12a1.5 1.5 0 0 0-.75-1.3l-8-4.62A1.5 1.5 0 0 0 12 2zm0 2.3l7 4.04v8.08l-7 4.04-7-4.04V8.34l7-4.04zm-.5 3.7a1 1 0 0 0-1 1v4.5a1 1 0 0 0 2 0v-4.5a1 1 0 0 0-1-1zm3 2a1 1 0 0 0-1 1v2.5a1 1 0 0 0 2 0V11a1 1 0 0 0-1-1z" />
-        </svg>
-      );
+    case "nodedotjs":
+      return <SiNodedotjs className={className} style={{ color: color || "#5FA04E" }} />;
+
     case "express":
-      return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={`${className} text-zinc-700 dark:text-zinc-200`}>
-          <path d="M2.5 7h4l2.2 3.6L11 7h4l-4.2 6.2 4.6 6.8h-4.2L9.2 16l-2 4H3.1l4.2-6.5L2.5 7zm13 8c0-2.8 2-4.8 4.8-4.8s4.7 2 4.7 4.8h-7.2c.2 1.6 1.4 2.6 3 2.6 1 0 1.8-.4 2.3-1l1.5 1.1c-.8 1.2-2.2 2-3.8 2-2.8 0-5.3-2.1-5.3-4.7zm7.2-1.1c-.2-1.4-1.3-2.4-2.5-2.4s-2.3 1-2.5 2.4h5z" />
-        </svg>
-      );
+    case "expressjs":
+      return <SiExpress className={`${className} text-zinc-800 dark:text-zinc-100`} style={color ? { color } : undefined} />;
+
     case "mongodb":
-      return (
-        <svg viewBox="0 0 24 24" fill="#47A248" className={className}>
-          <path d="M12 1.5c-.3 0-.6.1-.8.4-1.2 1.4-6.2 7.7-6.2 13.1 0 4.6 3.1 7.5 7 7.5s7-2.9 7-7.5c0-5.4-5-11.7-6.2-13.1-.2-.3-.5-.4-.8-.4zm0 2.8c.8 1.5 5 7.6 5 11.7 0 3.3-2 5.5-5 5.5V4.3zm-1 0v17.2c-3 0-5-2.2-5-5.5 0-4.1 4.2-10.2 5-11.7z" />
-        </svg>
-      );
+    case "mongo":
+      return <SiMongodb className={className} style={{ color: color || "#47A248" }} />;
+
     case "figma":
       return (
-        <svg viewBox="0 0 24 24" className={className}>
-          <path d="M8 2h4v4H8V2z" fill="#F24E1E" />
-          <path d="M12 2h4a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-4V2z" fill="#FF7262" />
-          <path d="M8 6h4v4H8V6z" fill="#A259FF" />
-          <path d="M12 6h4a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-4V6z" fill="#1ABCFE" />
-          <path d="M8 10h4v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-4z" fill="#0ACF83" />
+        <svg viewBox="0 0 38 57" className={className} fill="none">
+          <path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z" fill="#1ABCFE" />
+          <path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z" fill="#0ACF83" />
+          <path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#FF7262" />
+          <path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#F24E1E" />
+          <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#A259FF" />
         </svg>
       );
+
     case "sketch":
-      return (
-        <svg viewBox="0 0 24 24" className={className}>
-          <path d="M12 2L4 7.5l2.5 13.5L12 22l5.5-1L20 7.5 12 2z" fill="#FDB300" />
-          <path d="M12 2L6.5 7.5h11L12 2z" fill="#FED843" />
-          <path d="M6.5 7.5L12 22l-5.5-1-2.5-13.5h5.5z" fill="#EA6C00" />
-          <path d="M17.5 7.5L12 22l5.5-1 2.5-13.5h-5.5z" fill="#EA6C00" />
-          <path d="M6.5 7.5L12 22l5.5-14.5h-11z" fill="#FDAD00" />
-        </svg>
-      );
+      return <SiSketch className={className} style={{ color: color || "#F7B500" }} />;
+
     case "adobexd":
+    case "xd":
       return (
         <svg viewBox="0 0 24 24" className={className}>
-          <rect width="20" height="20" x="2" y="2" rx="4.5" fill="#470137" />
-          <path fill="#FF61F6" d="M6.8 7.5h2.2l1.9 3.2 1.9-3.2H15l-2.9 4.8 3.1 5.2h-2.3l-2.1-3.6-2.1 3.6H6.5l3.2-5.2L6.8 7.5zm9 0h1.8v10h-1.8v-10zm2 0h1.8c2.4 0 3.9 1.6 3.9 5s-1.5 5-3.9 5h-1.8v-10zm1.8 8.2c1.3 0 2.1-.9 2.1-3.2s-.8-3.2-2.1-3.2v6.4z" />
+          <rect width="22" height="22" x="1" y="1" rx="5" fill="#470137" stroke="#FF61F6" strokeWidth="1" />
+          <text x="12" y="15.5" fill="#FF61F6" fontSize="11" fontWeight="bold" fontFamily="system-ui, sans-serif" textAnchor="middle">
+            Xd
+          </text>
         </svg>
       );
+
     case "photoshop":
+    case "ps":
+    case "adobephotoshop":
       return (
         <svg viewBox="0 0 24 24" className={className}>
-          <rect width="20" height="20" x="2" y="2" rx="4.5" fill="#001E36" />
-          <path fill="#31A8FF" d="M6.5 7h4.2c2.1 0 3.4 1.1 3.4 2.8 0 1.3-.8 2.2-1.9 2.5 1.5.3 2.4 1.4 2.4 2.9 0 2-1.5 3.3-3.8 3.3H6.5V7zm2.1 2v3h2.1c1 0 1.7-.5 1.7-1.5s-.7-1.5-1.7-1.5H8.6zm0 4.8v3.2h2.3c1.2 0 1.9-.6 1.9-1.6 0-1-.7-1.6-1.9-1.6H8.6zm7.2 2.8c.4.3.9.5 1.6.5.9 0 1.4-.4 1.4-1 0-.6-.5-.9-1.5-1.2-1.4-.4-2.3-1-2.3-2.3 0-1.5 1.2-2.6 3-2.6 1 0 1.8.3 2.3.7l-.6 1.5c-.4-.3-.9-.5-1.6-.5-.8 0-1.3.4-1.3.9 0 .6.5.8 1.5 1.1 1.5.4 2.3 1.1 2.3 2.4 0 1.6-1.3 2.7-3.2 2.7-1.1 0-2.1-.4-2.7-.9l1.1-1.3z" />
+          <rect width="22" height="22" x="1" y="1" rx="5" fill="#001E36" stroke="#31A8FF" strokeWidth="1" />
+          <text x="12" y="15.5" fill="#31A8FF" fontSize="11" fontWeight="bold" fontFamily="system-ui, sans-serif" textAnchor="middle">
+            Ps
+          </text>
         </svg>
       );
+
     case "illustrator":
+    case "ai":
+    case "adobeillustrator":
       return (
         <svg viewBox="0 0 24 24" className={className}>
-          <rect width="20" height="20" x="2" y="2" rx="4.5" fill="#330000" />
-          <path fill="#FF9A00" d="M7 16l2.8-8h1.4L14 16h-1.6l-.7-2.2H9.3L8.6 16H7zm2.8-3.6h2.4L11 8.8h-.1l-1.1 3.6zm6.7-4.4c.5 0 .9-.4.9-.9s-.4-.9-.9-.9-.9.4-.9.9.4.9.9.9zm-.8 8V10h1.6v6h-1.6z" />
+          <rect width="22" height="22" x="1" y="1" rx="5" fill="#330000" stroke="#FF9A00" strokeWidth="1" />
+          <text x="12" y="15.5" fill="#FF9A00" fontSize="11" fontWeight="bold" fontFamily="system-ui, sans-serif" textAnchor="middle">
+            Ai
+          </text>
         </svg>
       );
+
     case "webflow":
-      return (
-        <svg viewBox="0 0 24 24" fill="#146EF5" className={className}>
-          <path d="M19.9 8.2l-3.3 9.3h-3.4l2.1-5.7h-.1l-2.4 5.7h-3.4L6.1 8.2h3.4l1.6 5.6h.1l1.7-5.6h3.6l-1.9 5.5h.1l1.9-5.5h3.4z" />
-        </svg>
-      );
+      return <SiWebflow className={className} style={{ color: color || "#146EF5" }} />;
+
     case "framer":
-      return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={`${className} text-black dark:text-white`}>
-          <path d="M4 2h16v8h-8zM4 10h8l8 8H4zM4 18h8v4z" />
-        </svg>
-      );
+      return <SiFramer className={`${className} text-black dark:text-white`} style={{ color: color || "#0055FF" }} />;
+
     case "notion":
-      return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={`${className} text-black dark:text-white`}>
-          <path d="M4.46 3.65c.67.54.91.54 2.14.44l10.9-1.02c.79-.08 1.48.24 1.7.97.05.16 1.48 10.63 1.48 10.63.19 1.43-.24 2.13-1.65 2.27l-12.7 1.05c-.97.08-1.46-.38-1.65-1.43L3.19 4.97c-.19-1.05.3-1.86 1.27-1.32zm3.32 3.65v8.71l6.98-7.94v8.27l2.09-.16V6.98l-7.07 8.04V7.47l-2-.17z" />
-        </svg>
-      );
+      return <SiNotion className={`${className} text-black dark:text-white`} style={color ? { color } : undefined} />;
+
     case "html":
-      return (
-        <svg viewBox="0 0 24 24" fill="#E34F26" className={className}>
-          <path d="M2.5 1.5h19l-1.7 19.3L12 23.5l-7.8-2.7L2.5 1.5zm14.2 5.8H7.3l.2 2.5h8.9l-.5 6.1-3.9 1.1-3.9-1.1-.2-2.5H6.2l.4 4.3L12 19l5.4-1.5.7-7.9H7.1L6.9 7.3h10l-.2 0z" />
-        </svg>
-      );
+    case "html5":
+      return <SiHtml5 className={className} style={{ color: color || "#E34F26" }} />;
+
     case "css":
-      return (
-        <svg viewBox="0 0 24 24" fill="#1572B6" className={className}>
-          <path d="M2.5 1.5h19l-1.7 19.3L12 23.5l-7.8-2.7L2.5 1.5zm14.4 5.8H6.9l.2 2.5h8.9l-.3 3.1H7.4l.2 2.5h8l-.5 5.8L12 20.3l-3.1-.8-.2-2.3H6.2l.4 4.5L12 22.8l5.4-1.5 1.3-14z" />
-        </svg>
-      );
+    case "css3":
+      return <SiCss className={className} style={{ color: color || "#1572B6" }} />;
+
     case "redux":
-      return (
-        <svg viewBox="0 0 24 24" fill="#764ABC" className={className}>
-          <path d="M16.5 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm-9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm8.5 4.5c0-4.14-3.36-7.5-7.5-7.5-.9 0-1.76.16-2.55.45l1.09 1.89c.47-.16.97-.24 1.46-.24 2.98 0 5.4 2.42 5.4 5.4s-2.42 5.4-5.4 5.4c-.49 0-.99-.08-1.46-.24l-1.09 1.89c.79.29 1.65.45 2.55.45 4.14 0 7.5-3.36 7.5-7.5zm-17 0c0 4.14 3.36 7.5 7.5 7.5.9 0 1.76-.16 2.55-.45l-1.09-1.89c-.47.16-.97.24-1.46.24-2.98 0-5.4-2.42-5.4-5.4s2.42-5.4 5.4-5.4c.49 0 .99.08 1.46.24l1.09-1.89c-.79-.29-1.65-.45-2.55-.45-4.14 0-7.5 3.36-7.5 7.5z" />
-        </svg>
-      );
+      return <SiRedux className={className} style={{ color: color || "#764ABC" }} />;
+
     case "bootstrap":
-      return (
-        <svg viewBox="0 0 24 24" fill="#7952B3" className={className}>
-          <path d="M5.4 2A3.4 3.4 0 0 0 2 5.4v13.2A3.4 3.4 0 0 0 5.4 22h13.2a3.4 3.4 0 0 0 3.4-3.4V5.4A3.4 3.4 0 0 0 18.6 2H5.4zm3.95 4.5h4.15c2.08 0 3.4 1.13 3.4 2.8 0 1.25-.8 2.2-1.95 2.5 1.5.3 2.45 1.4 2.45 2.9 0 2-1.5 3.3-3.8 3.3H9.35V6.5zm2.1 2v3h2c1 0 1.7-.55 1.7-1.5s-.7-1.5-1.7-1.5h-2zm0 4.8v3.2h2.2c1.2 0 1.9-.6 1.9-1.6 0-1-.7-1.6-1.9-1.6h-2.2z" />
-        </svg>
-      );
+      return <SiBootstrap className={className} style={{ color: color || "#7952B3" }} />;
+
     case "firebase":
-      return (
-        <svg viewBox="0 0 24 24" fill="#FFCA28" className={className}>
-          <path d="M4 16.5l2.4-14.7a.6.6 0 0 1 1.1-.3l3.8 7.1L4 16.5zm16 0L17.8 4a.6.6 0 0 0-1.1-.2L4 16.5l7 4a2 2 0 0 0 2 0l7-4zm-2.2 1.4L13 10a.6.6 0 0 0-1-.1L4 16.5l7 4a2 2 0 0 0 2 0l4.8-2.6z" />
-        </svg>
-      );
+      return <SiFirebase className={className} style={{ color: color || "#FFCA28" }} />;
+
     case "restapi":
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00BAE2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
-          <circle cx="18" cy="5" r="3" />
-          <circle cx="6" cy="12" r="3" />
-          <circle cx="18" cy="19" r="3" />
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-        </svg>
-      );
+    case "api":
+    case "rest":
+      return <TbApi className={className} style={{ color: color || "#00BAE2" }} />;
+
     case "jwt":
-      return (
-        <svg viewBox="0 0 24 24" fill="#D63AFF" className={className}>
-          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5h-2v-2h2zm0-4h-2V7h2z" />
-        </svg>
-      );
+    case "jsonwebtokens":
+      return <SiJsonwebtokens className={className} style={{ color: color || "#D63AFF" }} />;
+
     case "mongoose":
-      return (
-        <svg viewBox="0 0 24 24" fill="#E23237" className={className}>
-          <path d="M12 2L2 7.5v9L12 22l10-5.5v-9L12 2zm0 2.2l7.5 4.1v6.8L12 19.3l-7.5-4.2V8.3L12 4.2zM7.5 9.5v5l4.5-2.5v-5l-4.5 2.5zm9 0l-4.5-2.5v5l4.5 2.5v-5z" />
-        </svg>
-      );
+      return <SiMongoose className={className} style={{ color: color || "#880000" }} />;
+
     case "postgresql":
-      return (
-        <svg viewBox="0 0 24 24" fill="#4169E1" className={className}>
-          <path d="M12.16 2.01c-3.15 0-5.32 1.56-6.42 3.82-.44.9-.66 1.94-.7 3.08-.05 1.38.32 2.65.94 3.73-.25.86-.34 1.83-.24 2.89.15 1.56.78 2.94 1.82 3.97a7.6 7.6 0 0 0 5.43 2.15c2.3 0 4.3-.9 5.74-2.4 1.45-1.5 2.2-3.48 2.2-5.74 0-3.3-1.63-6.2-4.32-8.08-1.28-.9-2.82-1.42-4.45-1.42zm-.16 1.84c1.33 0 2.57.43 3.6 1.15 2.28 1.6 3.65 4.08 3.65 6.91 0 1.9-.62 3.53-1.8 4.77-1.18 1.23-2.8 1.97-4.68 1.97a6.2 6.2 0 0 1-4.43-1.74c-.84-.83-1.34-1.92-1.46-3.15-.07-.76-.02-1.5.17-2.18l.28-1-.88-.58a5.1 5.1 0 0 1-.95-3.08c.03-.92.21-1.73.56-2.43.88-1.8 2.6-3 5.94-3zm-1.8 4.2c-.66 0-1.2.54-1.2 1.2s.54 1.2 1.2 1.2 1.2-.54 1.2-1.2-.54-1.2-1.2-1.2zm3.6 0c-.66 0-1.2.54-1.2 1.2s.54 1.2 1.2 1.2 1.2-.54 1.2-1.2-.54-1.2-1.2-1.2z" />
-        </svg>
-      );
+    case "postgres":
+      return <SiPostgresql className={className} style={{ color: color || "#4169E1" }} />;
+
     case "prisma":
-      return (
-        <svg viewBox="0 0 24 24" fill="#5A67D8" className={className}>
-          <path d="M12.7 2.3a1 1 0 0 0-1.4 0L3.4 10.2a1 1 0 0 0 0 1.4l7.9 7.9a1 1 0 0 0 1.4 0l7.9-7.9a1 1 0 0 0 0-1.4L12.7 2.3zm-.7 3.1l5.5 5.5-5.5 5.5-5.5-5.5 5.5-5.5z" />
-        </svg>
-      );
+      return <SiPrisma className={`${className} text-zinc-800 dark:text-zinc-100`} style={color ? { color } : undefined} />;
+
     case "git":
-      return (
-        <svg viewBox="0 0 24 24" fill="#F05032" className={className}>
-          <path d="M21.6 10.9L13.1 2.4c-.6-.6-1.5-.6-2.1 0L9.4 4l3.1 3.1c.5-.2 1.1-.1 1.5.3.4.4.5 1 .3 1.5l3 3c.5-.2 1.1-.1 1.5.3.6.6.6 1.5 0 2.1-.6.6-1.5.6-2.1 0-.4-.4-.5-1-.3-1.5l-2.9-2.9v5.1c.2.2.4.4.4.8 0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5c0-.4.2-.7.4-.9v-5.2c-.2-.2-.4-.5-.4-.9 0-.5.2-1 .6-1.3L8 5.4 2.4 11c-.6.6-.6 1.5 0 2.1l8.5 8.5c.6.6 1.5.6 2.1 0l8.6-8.6c.6-.6.6-1.5 0-2.1z" />
-        </svg>
-      );
+      return <SiGit className={className} style={{ color: color || "#F05032" }} />;
+
     case "github":
-      return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={`${className} text-black dark:text-white`}>
-          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
-        </svg>
-      );
+      return <SiGithub className={`${className} text-black dark:text-white`} style={color ? { color } : undefined} />;
+
     case "vscode":
-      return (
-        <svg viewBox="0 0 24 24" fill="#007ACC" className={className}>
-          <path d="M17.5 2L7 11.5 3 8 1.5 9.5 5 12l-3.5 2.5L3 16l4-3.5L17.5 22l5-2.5V4.5L17.5 2zm1.5 5v10l-6-5 6-5z" />
-        </svg>
-      );
+    case "visualstudiocode":
+      return <TbBrandVscode className={className} style={{ color: color || "#007ACC" }} />;
+
     case "postman":
-      return (
-        <svg viewBox="0 0 24 24" fill="#FF6C37" className={className}>
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.8 6.5a1.8 1.8 0 1 1-3.6 0 1.8 1.8 0 0 1 3.6 0zm-5.6 7.8l-1.8-1.8 4.2-4.2 1.8 1.8-4.2 4.2zm6.6-1.4l-1.8 1.8-1.8-1.8 1.8-1.8 1.8 1.8z" />
-        </svg>
-      );
+      return <SiPostman className={className} style={{ color: color || "#FF6C37" }} />;
+
     case "vercel":
-      return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={`${className} text-black dark:text-white`}>
-          <path d="M12 2L2 20h20L12 2z" />
-        </svg>
-      );
+      return <SiVercel className={`${className} text-black dark:text-white`} style={color ? { color } : undefined} />;
+
     case "docker":
-      return (
-        <svg viewBox="0 0 24 24" fill="#2496ED" className={className}>
-          <path d="M13.98 10.02h2.04V8h-2.04v2.02zm-2.73 0h2.04V8h-2.04v2.02zm-2.72 0h2.04V8H8.53v2.02zm-2.73 0h2.04V8H5.8v2.02zm8.18-2.72h2.04V5.28h-2.04V7.3zm-2.73 0h2.04V5.28h-2.04V7.3zm-2.72 0h2.04V5.28H8.53V7.3zm8.18 5.45c-.47-.28-1.52-.39-2.33-.2-.14-.7-.57-1.32-1.07-1.8H3.07c-.4.88-.34 2.65-.28 3.5.21 2.92 2.37 5.25 5.56 5.25 4.3 0 7.82-2.58 8.87-6.04.56.04 1.76.08 2.27-.9.03-.06.05-.12.06-.18a2.53 2.53 0 0 0-2.37-.63z" />
-        </svg>
-      );
+      return <SiDocker className={className} style={{ color: color || "#2496ED" }} />;
+
+    case "python":
+      return <SiPython className={className} style={{ color: color || "#3776AB" }} />;
+
+    case "c++":
+    case "cpp":
+    case "cplusplus":
+      return <SiCplusplus className={className} style={{ color: color || "#00599C" }} />;
+
+    case "sass":
+    case "scss":
+      return <SiSass className={className} style={{ color: color || "#CC6699" }} />;
+
+    case "graphql":
+      return <SiGraphql className={className} style={{ color: color || "#E10098" }} />;
+
+    case "mysql":
+      return <SiMysql className={className} style={{ color: color || "#4479A1" }} />;
+
+    case "redis":
+      return <SiRedis className={className} style={{ color: color || "#DC382D" }} />;
+
+    case "aws":
+    case "amazon":
+    case "amazonwebservices":
+      return <FaAws className={className} style={{ color: color || "#FF9900" }} />;
+
+    case "linux":
+      return <SiLinux className={className} style={{ color: color || "#FCC624" }} />;
+
+    case "vite":
+      return <SiVite className={className} style={{ color: color || "#646CFF" }} />;
+
+    case "webpack":
+      return <SiWebpack className={className} style={{ color: color || "#8DD6F9" }} />;
+
+    case "npm":
+      return <SiNpm className={className} style={{ color: color || "#CB3837" }} />;
+
+    case "yarn":
+      return <SiYarn className={className} style={{ color: color || "#2C8EBB" }} />;
+
+    case "pnpm":
+      return <SiPnpm className={className} style={{ color: color || "#F69220" }} />;
+
+    case "supabase":
+      return <SiSupabase className={className} style={{ color: color || "#3FCF8E" }} />;
+
+    case "sanity":
+      return <SiSanity className={className} style={{ color: color || "#F03E2F" }} />;
+
+    case "strapi":
+      return <SiStrapi className={className} style={{ color: color || "#2F2E8B" }} />;
+
     default:
-      return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
-        </svg>
-      );
+      return <SiReact className={className} style={{ color: color || "#6366F1" }} />;
   }
 }

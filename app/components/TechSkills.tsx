@@ -64,64 +64,82 @@ export default function TechSkills() {
             </div>
           </div>
 
-          {/* FULL-WIDTH RESPONSIVE DISPLAY */}
-          <div className="mt-8 flex flex-col gap-6">
-            {loading ? (
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-8">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div key={i} className="h-24 animate-pulse rounded-2xl border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]" />
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8">
-                {featuredSkills.map((skill) => {
-                  const isHovered = hoveredSkill?.id === skill.id;
+            {/* FULL-WIDTH RESPONSIVE DISPLAY */}
+            <div className="mt-8 flex flex-col gap-6">
+              {loading ? (
+                <div className="grid grid-cols-3 gap-2 sm:gap-2.5 lg:gap-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9">
+                  {Array.from({ length: 9 }).map((_, i) => (
+                    <div key={i} className="h-24 animate-pulse rounded-2xl border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]" />
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-3 gap-2 sm:gap-2.5 lg:gap-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9">
+                  {featuredSkills.map((skill) => {
+                    const isHovered = hoveredSkill?.id === skill.id;
 
-                  return (
-                    <div
-                      key={skill.id}
-                      onMouseEnter={() => setHoveredSkill(skill)}
-                      onMouseLeave={() => setHoveredSkill(null)}
-                      className={`group relative flex flex-col items-center justify-center rounded-2xl border p-4 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg dark:hover:shadow-none ${
-                        isHovered
-                          ? "border-indigo-500/40 bg-indigo-50/50 shadow-md dark:border-indigo-400/30 dark:bg-indigo-950/20"
-                          : "border-black/[0.06] bg-white/90 hover:border-black/20 dark:border-white/[0.06] dark:bg-white/[0.03] dark:hover:border-white/20"
+                    return (
+                      <div
+                        key={skill.id}
+                        onMouseEnter={() => setHoveredSkill(skill)}
+                        onMouseLeave={() => setHoveredSkill(null)}
+                        className={`group relative flex flex-col items-center justify-center rounded-2xl border p-2.5 sm:p-3 md:p-3.5 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg dark:hover:shadow-none ${
+                          isHovered
+                            ? "border-indigo-500/40 bg-indigo-50/50 shadow-md dark:border-indigo-400/30 dark:bg-indigo-950/20"
+                            : "border-black/[0.06] bg-white/90 hover:border-black/20 dark:border-white/[0.06] dark:bg-white/[0.03] dark:hover:border-white/20"
+                        }`}
+                      >
+                        <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                          <SkillIcon name={skill.icon} color={skill.color} className="h-7 w-7 sm:h-8 sm:w-8" />
+                        </div>
+
+                        <span className="mt-2 text-[11px] sm:text-xs font-semibold text-zinc-900 dark:text-white truncate max-w-full">
+                          {skill.name}
+                        </span>
+
+                        <span className="text-[9px] sm:text-[10px] text-zinc-400 dark:text-white/40">
+                          {skill.level}
+                        </span>
+                      </div>
+                    );
+                  })}
+
+                  {remainingSkillsCount > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      className={`group flex flex-col items-center justify-center rounded-2xl border border-dashed p-2.5 sm:p-3 md:p-3.5 text-center transition-all duration-300 hover:-translate-y-1.5 cursor-pointer ${
+                        isExpanded
+                          ? "border-zinc-400/40 bg-zinc-500/5 hover:border-zinc-500 hover:bg-zinc-500/10 dark:border-zinc-600 dark:bg-white/[0.03] dark:hover:bg-white/[0.06]"
+                          : "border-indigo-500/40 bg-indigo-500/5 hover:border-indigo-500 hover:bg-indigo-500/10 dark:border-indigo-400/30 dark:bg-indigo-500/10 dark:hover:bg-indigo-500/20"
                       }`}
                     >
-                      <div className="flex h-10 w-10 items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                        <SkillIcon name={skill.icon} color={skill.color} className="h-8 w-8" />
+                      <div
+                        className={`flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 ${
+                          isExpanded
+                            ? "bg-zinc-500/10 text-zinc-600 dark:text-zinc-300"
+                            : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
+                        }`}
+                      >
+                        {isExpanded ? (
+                          <span className="text-sm font-bold">↑</span>
+                        ) : (
+                          <span className="text-xs sm:text-sm font-bold">+{remainingSkillsCount}</span>
+                        )}
                       </div>
-
-                      <span className="mt-2.5 text-xs font-semibold text-zinc-900 dark:text-white">
-                        {skill.name}
+                      <span
+                        className={`mt-2 text-[11px] sm:text-xs font-bold truncate max-w-full ${
+                          isExpanded ? "text-zinc-700 dark:text-zinc-300" : "text-indigo-600 dark:text-indigo-400"
+                        }`}
+                      >
+                        {isExpanded ? "Show Less" : "More Stack"}
                       </span>
-
-                      <span className="text-[10px] text-zinc-400 dark:text-white/40">
-                        {skill.level}
+                      <span className="text-[9px] sm:text-[10px] text-zinc-400 dark:text-white/40">
+                        {isExpanded ? "Click to collapse" : "Click to expand"}
                       </span>
-                    </div>
-                  );
-                })}
-
-                {remainingSkillsCount > 0 && !isExpanded && (
-                  <button
-                    type="button"
-                    onClick={() => setIsExpanded(true)}
-                    className="group flex flex-col items-center justify-center rounded-2xl border border-dashed border-indigo-500/40 bg-indigo-500/5 p-4 text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500 hover:bg-indigo-500/10 cursor-pointer dark:border-indigo-400/30 dark:bg-indigo-500/10 dark:hover:bg-indigo-500/20"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 transition-transform duration-300 group-hover:scale-110">
-                      <span className="text-sm font-bold">+{remainingSkillsCount}</span>
-                    </div>
-                    <span className="mt-2.5 text-xs font-bold text-indigo-600 dark:text-indigo-400">
-                      More Stack
-                    </span>
-                    <span className="text-[10px] text-zinc-400 dark:text-white/40">
-                      Click to expand
-                    </span>
-                  </button>
-                )}
-              </div>
-            )}
+                    </button>
+                  )}
+                </div>
+              )}
 
             {/* EXPANDED VIEW */}
             <div
