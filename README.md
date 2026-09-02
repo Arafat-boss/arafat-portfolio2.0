@@ -167,11 +167,11 @@ npm install
 ```
 
 ### 3. Setup Environment Variables
-Create a `.env.local` file in the root directory and add your MongoDB credentials:
+Create a `.env.local` file in the root directory and add your MongoDB configuration:
 
 ```env
-MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority
-MONGODB_DB=portfolio
+MONGODB_URI=your_mongodb_connection_string
+MONGODB_DB=your_database_name
 ```
 
 ### 4. Run Development Server
@@ -191,10 +191,10 @@ npm run start
 
 ## 🔒 Environment Variables
 
-| Variable | Required | Description | Example |
-|---|---|---|---|
-| `MONGODB_URI` | **Yes** | MongoDB connection URI string | `mongodb+srv://user:pass@cluster.mongodb.net/` |
-| `MONGODB_DB` | No | Database name (defaults to `portfolio`) | `portfolio` |
+| Variable | Required | Description |
+|---|---|---|
+| `MONGODB_URI` | **Yes** | MongoDB connection URI string |
+| `MONGODB_DB` | No | Database name (optional) |
 
 ---
 
