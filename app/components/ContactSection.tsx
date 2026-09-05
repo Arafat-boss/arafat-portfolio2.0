@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { siteConfig } from "@/lib/data/siteConfig";
 
 export default function ContactSection() {
@@ -25,20 +26,73 @@ export default function ContactSection() {
     setStatusMessage(null);
 
     try {
-      const response = await fetch("/api/contact", {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_i4rr1ws";
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_k80jxxr";
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "JTib6uHqfPbZGrtrG";
+
+      const templateParams = {
+        // Name aliases
+        name: formData.name,
+        from_name: formData.name,
+        client_name: formData.name,
+        user_name: formData.name,
+
+        // Email aliases
+        email: formData.email,
+        from_email: formData.email,
+        reply_to: formData.email,
+        user_email: formData.email,
+
+        // Service / Project Type aliases (covers all template variables)
+        service: formData.projectType,
+        service_type: formData.projectType,
+        serviceType: formData.projectType,
+        services: formData.projectType,
+        project: formData.projectType,
+        project_type: formData.projectType,
+        projectType: formData.projectType,
+        project_name: formData.projectType,
+        projectName: formData.projectType,
+        selected_service: formData.projectType,
+        selectedService: formData.projectType,
+        title: formData.projectType,
+        subject: `Contact Us: ${formData.projectType}`,
+        category: formData.projectType,
+        type: formData.projectType,
+        topic: formData.projectType,
+        inquiry: formData.projectType,
+        inquiry_type: formData.projectType,
+
+        // Message & Time
+        message: formData.message,
+        user_message: formData.message,
+        time: new Date().toLocaleString(),
+        date: new Date().toLocaleDateString(),
+      };
+
+      // 1. Send Email via EmailJS
+      const emailPromise = emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      // 2. Save Message to MongoDB Database in parallel
+      const dbPromise = fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-      });
+      })
+        .then((res) => res.json())
+        .catch((err) => ({ success: false, error: err?.message }));
 
-      const result = await response.json();
+      const [emailResult, dbResult] = await Promise.allSettled([emailPromise, dbPromise]);
 
-      if (response.ok && result.success) {
+      const isEmailSuccess = emailResult.status === "fulfilled";
+      const isDbSuccess = dbResult.status === "fulfilled" && (dbResult.value as any)?.success;
+
+      if (isEmailSuccess || isDbSuccess) {
         setStatusMessage({
           type: "success",
-          text: result.message || "✓ Message sent successfully! I will get back to you shortly.",
+          text: "✓ Message sent successfully! I will get back to you shortly.",
         });
         setFormData({
           name: "",
@@ -51,12 +105,17 @@ export default function ContactSection() {
           setStatusMessage(null);
         }, 7000);
       } else {
+        const errorReason =
+          emailResult.status === "rejected"
+            ? (emailResult.reason?.text || emailResult.reason?.message || "Failed to send email")
+            : "Failed to send message. Please try again.";
         setStatusMessage({
           type: "error",
-          text: result.error || "Failed to send message. Please try again.",
+          text: `Failed to send message: ${errorReason}`,
         });
       }
     } catch (err: any) {
+      console.error("Contact submission error:", err);
       setStatusMessage({
         type: "error",
         text: "Network error occurred. Please check your connection or reach out via email.",
@@ -65,6 +124,7 @@ export default function ContactSection() {
       setIsSubmitting(false);
     }
   };
+
 
   return (
     <section id="contact" className="relative py-20 transition-colors duration-300 scroll-mt-20 overflow-hidden gsap-fade-up">
@@ -210,7 +270,7 @@ export default function ContactSection() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Your Name"
-                      className="w-full rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40 dark:focus:border-indigo-400 dark:focus:bg-black/40"
+                      className="w-full rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
                     />
                   </div>
 
@@ -221,7 +281,7 @@ export default function ContactSection() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="Your Email"
-                      className="w-full rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40 dark:focus:border-indigo-400 dark:focus:bg-black/40"
+                      className="w-full rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
                     />
                   </div>
                 </div>
@@ -231,14 +291,14 @@ export default function ContactSection() {
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full appearance-none rounded-xl border border-black/10 bg-white/90 px-4 py-3 pr-10 text-xs font-medium text-zinc-900 backdrop-blur-md focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:focus:border-indigo-400"
+                    className="w-full appearance-none rounded-xl border border-black/10 bg-white/90 px-4 py-3 pr-10 text-xs font-medium text-zinc-900 backdrop-blur-md transition-colors cursor-pointer hover:bg-white focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:hover:bg-[#202025] dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
                   >
-                    <option value="Full-Stack Web Application" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white">Full-Stack Web Application</option>
-                    <option value="Frontend (Next.js / React.js)" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white">Frontend (Next.js / React.js)</option>
-                    <option value="Backend API & Database" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white">Backend API & Database</option>
-                    <option value="MERN Stack MVP" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white">MERN Stack MVP</option>
-                    <option value="UI/UX Design to Code" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white">UI/UX Design to Code</option>
-                    <option value="Other Inquiries" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white">Other Inquiries</option>
+                    <option value="Full-Stack Web Application" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">Full-Stack Web Application</option>
+                    <option value="Frontend (Next.js / React.js)" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">Frontend (Next.js / React.js)</option>
+                    <option value="Backend API & Database" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">Backend API & Database</option>
+                    <option value="MERN Stack MVP" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">MERN Stack MVP</option>
+                    <option value="UI/UX Design to Code" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">UI/UX Design to Code</option>
+                    <option value="Other Inquiries" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">Other Inquiries</option>
                   </select>
 
                   {/* Dropdown Chevron Icon */}
@@ -265,9 +325,10 @@ export default function ContactSection() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Your Message"
-                    className="w-full resize-none rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40 dark:focus:border-indigo-400 dark:focus:bg-black/40"
+                    className="w-full resize-none rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
                   />
                 </div>
+
 
                 {/* Row 4: Full-Width Submit Button */}
                 <div className="space-y-3 pt-1">
