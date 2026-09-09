@@ -246,12 +246,14 @@ export default function Hero() {
             {[
               "React.js",
               "Next.js",
+              "WordPress",
+              "Wix",
+              "Squarespace",
               "Node.js",
               "Express.js",
               "MongoDB",
               "TypeScript",
               "Tailwind CSS",
-              "Firebase",
             ].map((tech) => (
               <span
                 key={tech}

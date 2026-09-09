@@ -3,12 +3,13 @@
 import { useState, useEffect } from "react";
 import { SkillItem } from "@/lib/types/skill";
 import { SkillIcon } from "./Icons";
+import { defaultSkillsData } from "@/lib/data/skills";
 
-const categories = ["All", "Languages", "Frontend", "Backend", "Database", "Tools", "Design"];
+const categories = ["All", "Tools", "Frontend", "Backend", "Database", "Design", "Languages"];
 
 export default function TechSkills() {
-  const [skills, setSkills] = useState<SkillItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [skills, setSkills] = useState<SkillItem[]>(defaultSkillsData);
+  const [loading, setLoading] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [hoveredSkill, setHoveredSkill] = useState<SkillItem | null>(null);
@@ -20,14 +21,12 @@ export default function TechSkills() {
         const res = await fetch("/api/skills");
         if (res.ok) {
           const json = await res.json();
-          if (json.success && Array.isArray(json.data)) {
+          if (json.success && Array.isArray(json.data) && json.data.length > 0) {
             setSkills(json.data);
           }
         }
       } catch (err) {
         console.error("Error fetching skills from MongoDB:", err);
-      } finally {
-        setLoading(false);
       }
     }
     loadSkills();

@@ -1,6 +1,12 @@
 import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
 
-const uri = "mongodb+srv://arafat-portfolio:c5WFK9iFOPF7pPpV@cluster0.ybjyx.mongodb.net/?appName=Cluster0";
+const uri = process.env.MONGODB_URI || "";
+if (!uri) {
+  console.error("Please set MONGODB_URI in .env.local");
+  process.exit(1);
+}
 const client = new MongoClient(uri);
 
 async function run() {
