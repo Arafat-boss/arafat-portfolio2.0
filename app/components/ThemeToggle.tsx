@@ -40,7 +40,7 @@ export default function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="h-9 w-9 rounded-full border border-black/10 dark:border-white/10" />
+      <div className="h-9 w-9 rounded-lg border border-black/10 dark:border-white/10" />
     );
   }
 
@@ -48,7 +48,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className="group relative flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-black/5 text-zinc-700 transition-all duration-300 hover:border-black/25 hover:bg-black/10 hover:scale-105 active:scale-95 dark:border-white/15 dark:bg-white/5 dark:text-zinc-300 dark:hover:border-white/30 dark:hover:bg-white/10 dark:hover:text-white"
+      className="group relative flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-700 transition-all duration-300 hover:border-black/25 hover:bg-black/10 hover:scale-105 active:scale-95 dark:border-white/15 dark:bg-white/5 dark:text-zinc-300 dark:hover:border-white/30 dark:hover:bg-white/10 dark:hover:text-white"
     >
       {theme === "dark" ? (
         // Sun Icon for Dark Mode (Click to turn light)

@@ -46,7 +46,7 @@ export default function TechSkills() {
       className="border-b border-black/10 bg-black/[0.015] py-16 sm:py-20 transition-colors duration-300 dark:border-white/10 dark:bg-white/[0.015] scroll-mt-20 gsap-fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-8 md:p-10">
+        <div className="relative rounded-xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-7 md:p-8">
           <div className="mb-4 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
@@ -57,7 +57,7 @@ export default function TechSkills() {
               </h2>
             </div>
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-black/5 bg-black/[0.03] px-3.5 py-1.5 text-xs font-medium text-zinc-600 dark:border-white/5 dark:bg-white/[0.04] dark:text-zinc-400">
+            <div className="inline-flex items-center gap-2 rounded-md border border-black/5 bg-black/[0.03] px-3.5 py-1.5 text-xs font-medium text-zinc-600 dark:border-white/5 dark:bg-white/[0.04] dark:text-zinc-400">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>{skills.length > 0 ? `${skills.length}+ Tools & Frameworks` : "Loading Stack..."}</span>
             </div>
@@ -68,7 +68,7 @@ export default function TechSkills() {
               {loading ? (
                 <div className="grid grid-cols-3 gap-2 sm:gap-2.5 lg:gap-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9">
                   {Array.from({ length: 9 }).map((_, i) => (
-                    <div key={i} className="h-24 animate-pulse rounded-2xl border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]" />
+                    <div key={i} className="h-24 animate-pulse rounded-lg border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]" />
                   ))}
                 </div>
               ) : (
@@ -81,7 +81,7 @@ export default function TechSkills() {
                         key={skill.id}
                         onMouseEnter={() => setHoveredSkill(skill)}
                         onMouseLeave={() => setHoveredSkill(null)}
-                        className={`group relative flex flex-col items-center justify-center rounded-2xl border p-2.5 sm:p-3 md:p-3.5 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg dark:hover:shadow-none ${
+                        className={`group relative flex flex-col items-center justify-center rounded-lg border p-2.5 sm:p-3 md:p-3.5 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg dark:hover:shadow-none ${
                           isHovered
                             ? "border-indigo-500/40 bg-indigo-50/50 shadow-md dark:border-indigo-400/30 dark:bg-indigo-950/20"
                             : "border-black/[0.06] bg-white/90 hover:border-black/20 dark:border-white/[0.06] dark:bg-white/[0.03] dark:hover:border-white/20"
@@ -106,14 +106,14 @@ export default function TechSkills() {
                     <button
                       type="button"
                       onClick={() => setIsExpanded(!isExpanded)}
-                      className={`group flex flex-col items-center justify-center rounded-2xl border border-dashed p-2.5 sm:p-3 md:p-3.5 text-center transition-all duration-300 hover:-translate-y-1.5 cursor-pointer ${
+                      className={`group flex flex-col items-center justify-center rounded-lg border border-dashed p-2.5 sm:p-3 md:p-3.5 text-center transition-all duration-300 hover:-translate-y-1.5 cursor-pointer ${
                         isExpanded
                           ? "border-zinc-400/40 bg-zinc-500/5 hover:border-zinc-500 hover:bg-zinc-500/10 dark:border-zinc-600 dark:bg-white/[0.03] dark:hover:bg-white/[0.06]"
                           : "border-indigo-500/40 bg-indigo-500/5 hover:border-indigo-500 hover:bg-indigo-500/10 dark:border-indigo-400/30 dark:bg-indigo-500/10 dark:hover:bg-indigo-500/20"
                       }`}
                     >
                       <div
-                        className={`flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 ${
+                        className={`flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-md transition-transform duration-300 group-hover:scale-110 ${
                           isExpanded
                             ? "bg-zinc-500/10 text-zinc-600 dark:text-zinc-300"
                             : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
@@ -152,7 +152,7 @@ export default function TechSkills() {
                     key={cat}
                     type="button"
                     onClick={() => setActiveCategory(cat)}
-                    className={`rounded-full px-3.5 py-1 text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                    className={`rounded-md px-3 py-1 text-xs font-semibold transition-all duration-200 cursor-pointer ${
                       activeCategory === cat
                         ? "bg-indigo-600 text-white shadow-sm dark:bg-indigo-500"
                         : "bg-black/5 text-zinc-600 hover:bg-black/10 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10"
@@ -172,7 +172,7 @@ export default function TechSkills() {
                       key={skill.id}
                       onMouseEnter={() => setHoveredSkill(skill)}
                       onMouseLeave={() => setHoveredSkill(null)}
-                      className={`group relative flex flex-col items-center justify-center rounded-2xl border p-3.5 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-md ${
+                      className={`group relative flex flex-col items-center justify-center rounded-lg border p-3 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-md ${
                         isHovered
                           ? "border-indigo-500/40 bg-indigo-50/50 dark:border-indigo-400/30 dark:bg-indigo-950/20"
                           : "border-black/[0.05] bg-white/70 hover:border-black/15 dark:border-white/[0.05] dark:bg-white/[0.02] dark:hover:border-white/15"

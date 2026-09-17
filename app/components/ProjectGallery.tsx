@@ -198,7 +198,7 @@ export default function ProjectGallery() {
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => setIsAutoplay((prev) => !prev)}
-              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
+              className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
                 isAutoplay
                   ? "border-indigo-500/30 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
                   : "border-black/10 bg-black/[0.03] text-zinc-600 dark:border-white/10 dark:bg-white/[0.05] dark:text-white/60"
@@ -225,7 +225,7 @@ export default function ProjectGallery() {
               <button
                 onClick={handlePrev}
                 aria-label="Previous Slide"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black/[0.02] hover:shadow-md active:translate-y-0 dark:border-white/15 dark:bg-[#121216] dark:text-white dark:hover:border-white/30 dark:hover:bg-white/10 cursor-pointer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 bg-white shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black/[0.02] hover:shadow-md active:translate-y-0 dark:border-white/15 dark:bg-[#121216] dark:text-white dark:hover:border-white/30 dark:hover:bg-white/10 cursor-pointer"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4">
                   <polyline points="15 18 9 12 15 6" />
@@ -235,7 +235,7 @@ export default function ProjectGallery() {
               <button
                 onClick={handleNext}
                 aria-label="Next Slide"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black/[0.02] hover:shadow-md active:translate-y-0 dark:border-white/15 dark:bg-[#121216] dark:text-white dark:hover:border-white/30 dark:hover:bg-white/10 cursor-pointer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 bg-white shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-black/25 hover:bg-black/[0.02] hover:shadow-md active:translate-y-0 dark:border-white/15 dark:bg-[#121216] dark:text-white dark:hover:border-white/30 dark:hover:bg-white/10 cursor-pointer"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4">
                   <polyline points="9 18 15 12 9 6" />
@@ -264,7 +264,7 @@ export default function ProjectGallery() {
                   style={{ flex: `0 0 ${100 / visibleCount}%` }}
                   className="px-2.5"
                 >
-                  <div className="h-64 animate-pulse rounded-2xl border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]" />
+                  <div className="h-64 animate-pulse rounded-xl border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]" />
                 </div>
               ))}
             </div>
@@ -289,7 +289,7 @@ export default function ProjectGallery() {
                   >
                     <div
                       onClick={() => handleCardClick(item)}
-                      className={`group relative flex flex-col h-full overflow-hidden rounded-2xl sm:rounded-3xl border border-black/10 bg-white/80 p-3 sm:p-4 shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-black/20 hover:shadow-xl dark:border-white/10 dark:bg-[#0f0f13]/85 dark:hover:border-white/25 dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] ${
+                      className={`group relative flex flex-col h-full overflow-hidden rounded-xl border border-black/10 bg-white/80 p-3 sm:p-4 shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-black/20 hover:shadow-xl dark:border-white/10 dark:bg-[#0f0f13]/85 dark:hover:border-white/25 dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] ${
                         isCurrent ? "opacity-100" : "opacity-90"
                       }`}
                     >
@@ -297,12 +297,12 @@ export default function ProjectGallery() {
                         <span className="font-mono text-xs font-semibold text-zinc-400 dark:text-white/30">
                           / {item.number}
                         </span>
-                        <span className="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-[11px] font-medium text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400">
+                        <span className="rounded-md bg-indigo-500/10 px-2.5 py-0.5 text-[11px] font-medium text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400">
                           {item.category}
                         </span>
                       </div>
 
-                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-black/5 dark:bg-white/5">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-black/5 dark:bg-white/5">
                         <img
                           src={encodeURI(item.src)}
                           alt={item.title}
@@ -312,7 +312,7 @@ export default function ProjectGallery() {
                         />
 
                         <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
-                          <span className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/40 bg-white/95 text-zinc-900 shadow-xl backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
+                          <span className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-lg border border-white/40 bg-white/95 text-zinc-900 shadow-xl backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
                             <svg
                               viewBox="0 0 24 24"
                               fill="none"
@@ -366,9 +366,9 @@ export default function ProjectGallery() {
                   key={dotIdx}
                   onClick={() => setCurrentIndex(dotIdx)}
                   aria-label={`Go to slide ${dotIdx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  className={`h-1.5 rounded-sm transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? "w-7 bg-indigo-600 dark:bg-indigo-400"
+                      ? "w-6 bg-indigo-600 dark:bg-indigo-400"
                       : "w-2 bg-black/15 hover:bg-black/30 dark:bg-white/15 dark:hover:bg-white/30"
                   }`}
                 />
@@ -387,12 +387,12 @@ export default function ProjectGallery() {
             onClick={handleModalClose}
           >
             <div
-              className="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-[22px] sm:rounded-[28px] border border-white/15 bg-[#0f0f13] shadow-2xl"
+              className="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-xl border border-white/15 bg-[#0f0f13] shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 sm:px-6 sm:py-3.5">
                 <div className="flex items-center gap-2.5">
-                  <span className="rounded-full bg-indigo-500/20 px-2.5 py-0.5 text-xs font-semibold text-indigo-400">
+                  <span className="rounded-md bg-indigo-500/20 px-2.5 py-0.5 text-xs font-semibold text-indigo-400">
                     {modalItem.category}
                   </span>
                   <span className="font-mono text-xs text-white/50">
@@ -405,7 +405,7 @@ export default function ProjectGallery() {
                     href={encodeURI(modalItem.src)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
+                    className="hidden sm:inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
                   >
                     <span>Open Full High-Res</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3">
@@ -418,7 +418,7 @@ export default function ProjectGallery() {
                   <button
                     onClick={handleModalClose}
                     aria-label="Close modal"
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/80 transition hover:bg-white/20 hover:text-white cursor-pointer"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/10 text-white/80 transition hover:bg-white/20 hover:text-white cursor-pointer"
                   >
                     ✕
                   </button>
@@ -429,7 +429,7 @@ export default function ProjectGallery() {
                 <img
                   src={encodeURI(modalItem.src)}
                   alt={modalItem.title}
-                  className="max-h-[50vh] sm:max-h-[58vh] w-auto max-w-full rounded-xl object-contain shadow-2xl transition-all duration-300 mx-auto"
+                  className="max-h-[50vh] sm:max-h-[58vh] w-auto max-w-full rounded-lg object-contain shadow-2xl transition-all duration-300 mx-auto"
                 />
 
                 <button
@@ -438,7 +438,7 @@ export default function ProjectGallery() {
                     handleModalPrev();
                   }}
                   aria-label="Previous Image"
-                  className="absolute left-3 sm:left-4 top-1/2 flex h-9 w-9 sm:h-11 sm:w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/75 text-white shadow-xl backdrop-blur-md transition hover:scale-110 hover:bg-black/95 active:scale-95 cursor-pointer"
+                  className="absolute left-3 sm:left-4 top-1/2 flex h-9 w-9 sm:h-10 sm:w-10 -translate-y-1/2 items-center justify-center rounded-lg border border-white/15 bg-black/75 text-white shadow-xl backdrop-blur-md transition hover:scale-105 hover:bg-black/95 active:scale-95 cursor-pointer"
                 >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4 sm:h-5 sm:w-5">
                     <polyline points="15 18 9 12 15 6" />
@@ -451,7 +451,7 @@ export default function ProjectGallery() {
                     handleModalNext();
                   }}
                   aria-label="Next Image"
-                  className="absolute right-3 sm:right-4 top-1/2 flex h-9 w-9 sm:h-11 sm:w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/75 text-white shadow-xl backdrop-blur-md transition hover:scale-110 hover:bg-black/95 active:scale-95 cursor-pointer"
+                  className="absolute right-3 sm:right-4 top-1/2 flex h-9 w-9 sm:h-10 sm:w-10 -translate-y-1/2 items-center justify-center rounded-lg border border-white/15 bg-black/75 text-white shadow-xl backdrop-blur-md transition hover:scale-105 hover:bg-black/95 active:scale-95 cursor-pointer"
                 >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4 sm:h-5 sm:w-5">
                     <polyline points="9 18 15 12 9 6" />

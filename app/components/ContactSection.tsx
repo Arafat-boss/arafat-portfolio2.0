@@ -135,7 +135,7 @@ export default function ContactSection() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* CONTAINER CARD */}
-        <div className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-black/10 bg-white/60 p-4 sm:p-8 md:p-12 shadow-sm backdrop-blur-xl transition-all duration-500 dark:border-white/10 dark:bg-[#0c0c0e]/80">
+        <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white/60 p-4 sm:p-7 md:p-10 shadow-sm backdrop-blur-xl transition-all duration-500 dark:border-white/10 dark:bg-[#0c0c0e]/80">
           {/* LARGE ROTATING 3D GLASS ORB & GYROSCOPIC ORBITAL RINGS */}
           <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 flex h-[280px] w-[280px] sm:h-[480px] sm:w-[480px] lg:h-[680px] lg:w-[680px] items-center justify-center opacity-15 sm:opacity-20 dark:opacity-25 transition-opacity duration-700">
             {/* Ambient luminous fluid aura */}
@@ -199,7 +199,7 @@ export default function ContactSection() {
                   href={`mailto:${personal.email}`}
                   className="group flex items-center gap-3.5 text-xs text-zinc-700 transition-colors hover:text-zinc-900 dark:text-white/90 dark:hover:text-white sm:text-sm"
                 >
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-black/10 bg-black/5 text-zinc-800 shadow-xs backdrop-blur-md transition-transform duration-200 group-hover:scale-105 dark:border-white/20 dark:bg-white/10 dark:text-white">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-800 shadow-xs backdrop-blur-md transition-transform duration-200 group-hover:scale-105 dark:border-white/20 dark:bg-white/10 dark:text-white">
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
@@ -221,7 +221,7 @@ export default function ContactSection() {
                   href={`tel:${personal.phone.replace(/[^0-9+]/g, "")}`}
                   className="group flex items-center gap-3.5 text-xs text-zinc-700 transition-colors hover:text-zinc-900 dark:text-white/90 dark:hover:text-white sm:text-sm"
                 >
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-black/10 bg-black/5 text-zinc-800 shadow-xs backdrop-blur-md transition-transform duration-200 group-hover:scale-105 dark:border-white/20 dark:bg-white/10 dark:text-white">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-800 shadow-xs backdrop-blur-md transition-transform duration-200 group-hover:scale-105 dark:border-white/20 dark:bg-white/10 dark:text-white">
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
@@ -239,7 +239,7 @@ export default function ContactSection() {
 
                 {/* Location */}
                 <div className="flex items-center gap-3.5 text-xs text-zinc-700 dark:text-white/90 sm:text-sm">
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-black/10 bg-black/5 text-zinc-800 shadow-xs backdrop-blur-md dark:border-white/20 dark:bg-white/10 dark:text-white">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-800 shadow-xs backdrop-blur-md dark:border-white/20 dark:bg-white/10 dark:text-white">
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
@@ -259,7 +259,7 @@ export default function ContactSection() {
             </div>
 
             {/* RIGHT COLUMN: FROSTED GLASS FORM */}
-            <div className="relative rounded-[22px] border border-black/10 bg-white/70 p-6 shadow-md backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04] sm:p-8">
+            <div className="relative rounded-xl border border-black/10 bg-white/70 p-5 shadow-md backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04] sm:p-7">
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Row 1: Name & Email */}
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
@@ -270,7 +270,7 @@ export default function ContactSection() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Your Name"
-                      className="w-full rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
+                      className="w-full rounded-lg border border-black/10 bg-white/90 px-3.5 py-2.5 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
                     />
                   </div>
 
@@ -281,7 +281,7 @@ export default function ContactSection() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="Your Email"
-                      className="w-full rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
+                      className="w-full rounded-lg border border-black/10 bg-white/90 px-3.5 py-2.5 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
                     />
                   </div>
                 </div>
@@ -291,7 +291,7 @@ export default function ContactSection() {
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full appearance-none rounded-xl border border-black/10 bg-white/90 px-4 py-3 pr-10 text-xs font-medium text-zinc-900 backdrop-blur-md transition-colors cursor-pointer hover:bg-white focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:hover:bg-[#202025] dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
+                    className="w-full appearance-none rounded-lg border border-black/10 bg-white/90 px-3.5 py-2.5 pr-10 text-xs font-medium text-zinc-900 backdrop-blur-md transition-colors cursor-pointer hover:bg-white focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:hover:bg-[#202025] dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
                   >
                     <option value="Full-Stack Web Application" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">Full-Stack Web Application</option>
                     <option value="Frontend (Next.js / React.js)" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">Frontend (Next.js / React.js)</option>
@@ -325,7 +325,7 @@ export default function ContactSection() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Your Message"
-                    className="w-full resize-none rounded-xl border border-black/10 bg-white/90 px-4 py-3 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
+                    className="w-full resize-none rounded-lg border border-black/10 bg-white/90 px-3.5 py-2.5 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 backdrop-blur-md transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
                   />
                 </div>
 
@@ -335,7 +335,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-neumorphic w-full !py-3.5 !text-sm group disabled:opacity-60 cursor-pointer"
+                    className="btn-neumorphic w-full !py-3 !text-sm group disabled:opacity-60 cursor-pointer rounded-lg"
                   >
                     {isSubmitting ? (
                       <>

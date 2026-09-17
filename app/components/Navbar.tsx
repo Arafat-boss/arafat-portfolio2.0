@@ -82,7 +82,7 @@ export default function Navbar() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-black/5 text-zinc-700 transition hover:bg-black/10 md:hidden dark:border-white/10 dark:bg-white/5 dark:text-white cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-700 transition hover:bg-black/10 md:hidden dark:border-white/10 dark:bg-white/5 dark:text-white cursor-pointer"
           >
             {mobileMenuOpen ? (
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-4 w-4">
@@ -105,7 +105,7 @@ export default function Navbar() {
         <div
           className="fixed inset-x-0 top-16 sm:top-20 z-40 flex h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] flex-col justify-between border-b border-black/10 bg-white/95 p-6 backdrop-blur-2xl transition-all duration-300 md:hidden dark:border-white/10 dark:bg-[#0c0c0e]/95"
         >
-          <div className="flex flex-col space-y-4 pt-2">
+          <div className="flex flex-col space-y-3 pt-2">
             <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-white/40">
               Navigation
             </p>
@@ -114,7 +114,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-xl px-3 py-2 text-base font-semibold text-zinc-800 transition hover:bg-black/5 hover:text-indigo-600 dark:text-zinc-200 dark:hover:bg-white/5 dark:hover:text-indigo-400"
+                className="rounded-lg px-3 py-2 text-base font-semibold text-zinc-800 transition hover:bg-black/5 hover:text-indigo-600 dark:text-zinc-200 dark:hover:bg-white/5 dark:hover:text-indigo-400"
               >
                 {link.label}
               </a>
@@ -128,7 +128,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               download
               onClick={() => setMobileMenuOpen(false)}
-              className="btn-neumorphic w-full !py-3 !text-sm inline-flex items-center justify-center gap-2"
+              className="btn-neumorphic w-full !py-2.5 !text-sm inline-flex items-center justify-center gap-2 rounded-lg"
             >
               <span>Download Resume</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-4 w-4">
@@ -140,7 +140,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="rounded-xl border border-black/10 bg-black/5 dark:border-white/10 dark:bg-white/5 py-2.5 text-center text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition hover:bg-black/10 dark:hover:bg-white/10"
+              className="rounded-lg border border-black/10 bg-black/5 dark:border-white/10 dark:bg-white/5 py-2.5 text-center text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition hover:bg-black/10 dark:hover:bg-white/10"
             >
               Get In Touch 🚀
             </a>

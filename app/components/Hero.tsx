@@ -199,7 +199,7 @@ export default function Hero() {
         {/* LEFT CONTENT */}
         <div className="hero-copy relative z-10">
           {/* Badge */}
-          <div className="hero-badge mb-5 sm:mb-7 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-zinc-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-white/60">
+          <div className="hero-badge mb-5 sm:mb-7 inline-flex items-center gap-2 rounded-md border border-black/10 bg-black/[0.03] px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-zinc-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-white/60">
             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
             Available for freelance projects
           </div>
@@ -227,7 +227,7 @@ export default function Hero() {
           <div className="hero-buttons mt-8 sm:mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <a
               href="#projects"
-              className="btn-neumorphic text-sm !py-3 sm:!py-3.5"
+              className="btn-neumorphic text-sm !py-3 sm:!py-3.5 rounded-lg"
             >
               <span>View My Work</span>
               <span>→</span>
@@ -235,14 +235,14 @@ export default function Hero() {
 
             <a
               href="#contact"
-              className="btn-neumorphic text-sm !py-3 sm:!py-3.5"
+              className="btn-neumorphic text-sm !py-3 sm:!py-3.5 rounded-lg"
             >
               <span>Start a Project</span>
             </a>
           </div>
 
           {/* Tech Stack */}
-          <div className="mt-12 flex flex-wrap gap-3">
+          <div className="mt-12 flex flex-wrap gap-2.5">
             {[
               "React.js",
               "Next.js",
@@ -257,7 +257,7 @@ export default function Hero() {
             ].map((tech) => (
               <span
                 key={tech}
-                className="tech-badge rounded-full border border-black/10 bg-black/[0.02] px-4 py-2 text-xs font-medium text-zinc-700 transition hover:border-black/25 dark:border-white/10 dark:bg-white/[0.02] dark:text-white/60 dark:hover:border-white/30"
+                className="tech-badge rounded-md border border-black/10 bg-black/[0.02] px-3.5 py-1.5 text-xs font-medium text-zinc-700 transition hover:border-black/25 dark:border-white/10 dark:bg-white/[0.02] dark:text-white/60 dark:hover:border-white/30"
               >
                 {tech}
               </span>
@@ -265,7 +265,7 @@ export default function Hero() {
           </div>
 
           {/* MOBILE HERO IMAGE (< lg) - FULL VISIBLE HEAD & PORTRAIT */}
-          <div className="relative mt-8 sm:mt-10 flex items-center justify-center overflow-hidden rounded-3xl lg:hidden">
+          <div className="relative mt-8 sm:mt-10 flex items-center justify-center overflow-hidden rounded-xl lg:hidden">
             <img
               src="https://i.ibb.co.com/DHtbRXZS/imaget.png"
               alt="MD. ARAFAT SARKER"
@@ -275,13 +275,13 @@ export default function Hero() {
           </div>
 
           {/* MOBILE BIO CARD (< lg) */}
-          <div className="mobile-bio-card mt-6 block rounded-3xl border border-black/10 bg-white/95 p-6 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-[#111]/95 dark:shadow-2xl lg:hidden">
+          <div className="mobile-bio-card mt-6 block rounded-xl border border-black/10 bg-white/95 p-6 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-[#111]/95 dark:shadow-2xl lg:hidden">
             <div className="flex items-center justify-between border-b border-black/10 pb-4 dark:border-white/10">
               <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500 dark:text-white/40">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 A little about me
               </span>
-              <span className="rounded-full bg-black/5 px-2.5 py-1 font-mono text-[11px] text-zinc-500 dark:bg-white/5 dark:text-white/40">
+              <span className="rounded-md bg-black/5 px-2.5 py-1 font-mono text-[11px] text-zinc-500 dark:bg-white/5 dark:text-white/40">
                 Full-Stack
               </span>
             </div>
@@ -301,13 +301,13 @@ export default function Hero() {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2 text-xs font-medium text-zinc-600 dark:text-white/55">
-              <span className="rounded-full border border-black/10 bg-black/[0.02] px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.02]">
+              <span className="rounded-md border border-black/10 bg-black/[0.02] px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.02]">
                 3+ years experience
               </span>
-              <span className="rounded-full border border-black/10 bg-black/[0.02] px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.02]">
+              <span className="rounded-md border border-black/10 bg-black/[0.02] px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.02]">
                 Remote friendly
               </span>
-              <span className="rounded-full border border-black/10 bg-black/[0.02] px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.02]">
+              <span className="rounded-md border border-black/10 bg-black/[0.02] px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.02]">
                 Clean Architecture
               </span>
             </div>
@@ -320,7 +320,7 @@ export default function Hero() {
 
           <div className="hero-image-wrap relative mb-0">
             {/* Image Container with smooth bottom feathering mask & gradient overlay */}
-            <div className="relative overflow-hidden rounded-2xl [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]">
+            <div className="relative overflow-hidden rounded-xl [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]">
               <img
                 src="https://i.ibb.co.com/DHtbRXZS/imaget.png"
                 alt="Arafat's featured work"
@@ -329,18 +329,18 @@ export default function Hero() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#fcfcfc] via-[#fcfcfc]/70 to-transparent dark:from-[#080808] dark:via-[#080808]/70 dark:to-transparent" />
             </div>
 
-            {/* DESKTOP BIO CARD - POSITIONED ON THE LEFT OF THE IMAGE WITH INCREASED WIDTH */}
-            <div className="bio-card absolute right-full mr-5 lg:mr-7 top-1/2 z-20 w-[540px] lg:w-[620px] xl:w-[700px] 2xl:w-[750px] -translate-y-1/2 rounded-3xl border border-black/10 bg-white/95 p-7 shadow-2xl backdrop-blur-2xl transition-colors duration-300 dark:border-white/10 dark:bg-[#0c0c0e]/95 dark:shadow-black/70 lg:p-8">
+            {/* DESKTOP BIO CARD - POSITIONED ON THE LEFT OF THE IMAGE WITH CRISP SLEEK RADII */}
+            <div className="bio-card absolute right-full mr-5 lg:mr-7 top-1/2 z-20 w-[540px] lg:w-[620px] xl:w-[700px] 2xl:w-[750px] -translate-y-1/2 rounded-xl border border-black/10 bg-white/95 p-7 shadow-2xl backdrop-blur-2xl transition-colors duration-300 dark:border-white/10 dark:bg-[#0c0c0e]/95 dark:shadow-black/70 lg:p-8">
               {/* Top Header */}
               <div className="flex items-center justify-between border-b border-black/10 pb-4 dark:border-white/10">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/50">
+                  <span className="inline-flex items-center gap-2 rounded-md border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/50">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
                     A little about me
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="rounded-full border border-black/5 bg-black/[0.02] px-3 py-1 font-mono text-xs text-zinc-500 dark:border-white/5 dark:bg-white/[0.03] dark:text-white/40">
+                  <span className="rounded-md border border-black/5 bg-black/[0.02] px-3 py-1 font-mono text-xs text-zinc-500 dark:border-white/5 dark:bg-white/[0.03] dark:text-white/40">
                     Full-Stack • MERN
                   </span>
                   <span
@@ -378,7 +378,7 @@ export default function Hero() {
                 {/* Right Col: Pillars & Badges */}
                 <div className="flex flex-col justify-between gap-3.5">
                   <div className="space-y-2.5">
-                    <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-3.5 dark:border-white/5 dark:bg-white/[0.02]">
+                    <div className="rounded-lg border border-black/5 bg-black/[0.02] p-3.5 dark:border-white/5 dark:bg-white/[0.02]">
                       <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-white/30">
                         Design & Frontend
                       </p>
@@ -387,7 +387,7 @@ export default function Hero() {
                       </p>
                     </div>
 
-                    <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-3.5 dark:border-white/5 dark:bg-white/[0.02]">
+                    <div className="rounded-lg border border-black/5 bg-black/[0.02] p-3.5 dark:border-white/5 dark:bg-white/[0.02]">
                       <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-white/30">
                         Backend & Systems
                       </p>
@@ -398,13 +398,13 @@ export default function Hero() {
                   </div>
 
                   <div className="flex flex-wrap gap-2 pt-1 text-xs font-medium text-zinc-600 dark:text-white/55">
-                    <span className="rounded-full border border-black/10 bg-black/[0.02] px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.02]">
+                    <span className="rounded-md border border-black/10 bg-black/[0.02] px-2.5 py-1 dark:border-white/10 dark:bg-white/[0.02]">
                       3+ years exp
                     </span>
-                    <span className="rounded-full border border-black/10 bg-black/[0.02] px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.02]">
+                    <span className="rounded-md border border-black/10 bg-black/[0.02] px-2.5 py-1 dark:border-white/10 dark:bg-white/[0.02]">
                       Remote friendly
                     </span>
-                    <span className="rounded-full border border-black/10 bg-black/[0.02] px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.02]">
+                    <span className="rounded-md border border-black/10 bg-black/[0.02] px-2.5 py-1 dark:border-white/10 dark:bg-white/[0.02]">
                       Clean Architecture
                     </span>
                   </div>

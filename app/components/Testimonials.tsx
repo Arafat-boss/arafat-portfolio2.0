@@ -51,7 +51,7 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="py-16 sm:py-20 transition-colors duration-300 scroll-mt-20 gsap-fade-up">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-[24px] sm:rounded-[28px] border border-black/10 bg-white/70 p-4 sm:p-8 md:p-10 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80">
+        <div className="relative rounded-xl border border-black/10 bg-white/70 p-4 sm:p-7 md:p-8 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80">
           <div className="mb-4 sm:mb-6 flex items-center justify-between gap-4">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
@@ -67,7 +67,7 @@ export default function Testimonials() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous Testimonial"
-                className="flex h-8 w-8 sm:h-9 sm:w-9 cursor-pointer items-center justify-center rounded-full border border-black/[0.06] bg-white/80 text-zinc-700 shadow-xs backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-white hover:shadow-md active:scale-95 dark:border-white/10 dark:bg-white/[0.05] dark:text-zinc-200 dark:hover:bg-white/[0.1]"
+                className="flex h-8 w-8 sm:h-9 sm:w-9 cursor-pointer items-center justify-center rounded-lg border border-black/[0.06] bg-white/80 text-zinc-700 shadow-xs backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-white hover:shadow-md active:scale-95 dark:border-white/10 dark:bg-white/[0.05] dark:text-zinc-200 dark:hover:bg-white/[0.1]"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -86,7 +86,7 @@ export default function Testimonials() {
                 type="button"
                 onClick={handleNext}
                 aria-label="Next Testimonial"
-                className="flex h-8 w-8 sm:h-9 sm:w-9 cursor-pointer items-center justify-center rounded-full border border-black/[0.06] bg-white/80 text-zinc-700 shadow-xs backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-white hover:shadow-md active:scale-95 dark:border-white/10 dark:bg-white/[0.05] dark:text-zinc-200 dark:hover:bg-white/[0.1]"
+                className="flex h-8 w-8 sm:h-9 sm:w-9 cursor-pointer items-center justify-center rounded-lg border border-black/[0.06] bg-white/80 text-zinc-700 shadow-xs backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-white hover:shadow-md active:scale-95 dark:border-white/10 dark:bg-white/[0.05] dark:text-zinc-200 dark:hover:bg-white/[0.1]"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -116,14 +116,14 @@ export default function Testimonials() {
               Array.from({ length: 3 }).map((_, i) => (
                 <div
                   key={i}
-                  className="h-48 w-[300px] flex-shrink-0 animate-pulse rounded-2xl border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]"
+                  className="h-48 w-[300px] flex-shrink-0 animate-pulse rounded-xl border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]"
                 />
               ))
             ) : testimonials.length > 0 ? (
               testimonials.map((item) => (
                 <div
                   key={item.id}
-                  className="group relative z-0 flex w-[calc(100vw-64px)] max-w-[340px] sm:w-[320px] md:w-[360px] flex-shrink-0 flex-col justify-between rounded-2xl border border-black/[0.04] bg-white/85 p-5 sm:p-6 shadow-xs backdrop-blur-xl transition-all duration-300 hover:z-20 hover:-translate-y-1.5 hover:border-black/[0.08] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.12)] dark:border-white/[0.06] dark:bg-white/[0.035] dark:hover:border-white/[0.12] dark:hover:bg-white/[0.06] dark:hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.65)] snap-start"
+                  className="group relative z-0 flex w-[calc(100vw-64px)] max-w-[340px] sm:w-[320px] md:w-[360px] flex-shrink-0 flex-col justify-between rounded-xl border border-black/[0.06] bg-white/85 p-5 sm:p-6 shadow-xs backdrop-blur-xl transition-all duration-300 hover:z-20 hover:-translate-y-1.5 hover:border-black/[0.1] hover:shadow-lg dark:border-white/[0.06] dark:bg-white/[0.035] dark:hover:border-white/[0.12] dark:hover:bg-white/[0.06] dark:hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.65)] snap-start"
                 >
                   <div>
                     <div className="flex items-center justify-between pb-3">

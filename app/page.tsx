@@ -55,9 +55,9 @@ export default function Home() {
             {servicesData.map((service) => (
               <div
                 key={service.number}
-                className="gsap-stagger-item rounded-2xl border border-black/10 bg-[#fdfdfd] p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-black/25 hover:shadow-lg dark:border-white/10 dark:bg-[#080808] dark:hover:border-white/25 dark:hover:shadow-none"
+                className="gsap-stagger-item rounded-xl border border-black/10 bg-[#fdfdfd] p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-black/25 hover:shadow-md dark:border-white/10 dark:bg-[#0c0c0e] dark:hover:border-white/25 dark:hover:shadow-none"
               >
-                <div className="mb-6 sm:mb-10 font-mono text-xs text-zinc-400 dark:text-white/25">
+                <div className="mb-5 sm:mb-8 font-mono text-xs text-zinc-400 dark:text-white/25">
                   / {service.number}
                 </div>
 
@@ -97,7 +97,7 @@ export default function Home() {
             {processStepsData.map((step) => (
               <div
                 key={step.number}
-                className="gsap-stagger-item grid gap-2 sm:gap-4 py-5 sm:py-7 grid-cols-1 sm:grid-cols-[60px_180px_1fr] transition-all duration-300 hover:bg-black/[0.02] dark:hover:bg-white/[0.02] px-2 rounded-xl"
+                className="gsap-stagger-item grid gap-2 sm:gap-4 py-5 sm:py-6 grid-cols-1 sm:grid-cols-[60px_180px_1fr] transition-all duration-300 hover:bg-black/[0.02] dark:hover:bg-white/[0.02] px-3 rounded-lg"
               >
                 <span className="font-mono text-xs text-zinc-400 dark:text-white/25">
                   {step.number}
