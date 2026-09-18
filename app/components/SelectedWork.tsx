@@ -4,135 +4,11 @@ import { useState, useEffect } from "react";
 import { ProjectItem } from "@/lib/types/project";
 import { siteConfig } from "@/lib/data/siteConfig";
 
-// High-fidelity vector UI mockup renderers when image is not yet loaded
-function ProjectMockup({ project }: { project: ProjectItem }) {
-  if (project.imageSrc) {
-    return (
-      <img
-        src={project.imageSrc}
-        alt={project.title}
-        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-      />
-    );
-  }
-
-  // Visual Mockup Illustration based on project type
-  switch (project.mockupType) {
-    case "mobile":
-      return (
-        <div className="relative flex h-full w-full items-center justify-center gap-2.5 p-4">
-          <div className="h-44 w-24 rounded-2xl border border-white/40 bg-white/70 p-2 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:-translate-y-2 dark:border-white/15 dark:bg-white/[0.08]">
-            <div className="mb-2 h-1.5 w-6 rounded-full bg-violet-400/60" />
-            <div className="mb-2 h-10 w-full rounded-lg bg-violet-500/15 p-1.5">
-              <div className="h-2 w-10 rounded bg-violet-500/40" />
-              <div className="mt-1 h-1.5 w-6 rounded bg-violet-500/20" />
-            </div>
-            <div className="space-y-1.5">
-              <div className="h-4 w-full rounded bg-black/5 dark:bg-white/10" />
-              <div className="h-4 w-full rounded bg-black/5 dark:bg-white/10" />
-              <div className="h-4 w-full rounded bg-black/5 dark:bg-white/10" />
-            </div>
-          </div>
-          <div className="z-10 h-48 w-28 rounded-2xl border border-white/60 bg-white/90 p-2.5 shadow-xl backdrop-blur-md transition-all duration-300 group-hover:-translate-y-3 dark:border-white/20 dark:bg-[#18181b]/95">
-            <div className="mb-2 flex items-center justify-between">
-              <div className="h-2 w-8 rounded-full bg-indigo-500" />
-              <div className="h-2 w-2 rounded-full bg-indigo-400" />
-            </div>
-            <div className="mb-2 h-12 w-full rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 p-2 text-white shadow-sm">
-              <div className="h-2 w-10 rounded bg-white/70" />
-              <div className="mt-1.5 h-3 w-14 rounded bg-white/90" />
-            </div>
-            <div className="grid grid-cols-2 gap-1.5">
-              <div className="h-8 rounded-lg bg-indigo-500/10 p-1" />
-              <div className="h-8 rounded-lg bg-purple-500/10 p-1" />
-            </div>
-            <div className="mt-2 h-5 w-full rounded-lg bg-indigo-600/20" />
-          </div>
-          <div className="h-44 w-24 rounded-2xl border border-white/40 bg-white/70 p-2 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:-translate-y-2 dark:border-white/15 dark:bg-white/[0.08]">
-            <div className="mb-2 h-1.5 w-8 rounded-full bg-purple-400/60" />
-            <div className="space-y-1.5">
-              <div className="h-6 w-full rounded-lg bg-purple-500/15" />
-              <div className="h-6 w-full rounded-lg bg-purple-500/15" />
-              <div className="h-6 w-full rounded-lg bg-purple-500/15" />
-            </div>
-          </div>
-        </div>
-      );
-
-    case "dashboard":
-      return (
-        <div className="relative flex h-full w-full items-center justify-center p-4">
-          <div className="w-full max-w-[280px] rounded-2xl border border-white/50 bg-white/85 p-3 shadow-xl backdrop-blur-md transition-all duration-300 group-hover:-translate-y-2 dark:border-white/15 dark:bg-[#18181b]/95">
-            <div className="mb-2.5 flex items-center justify-between border-b border-black/5 pb-2 dark:border-white/5">
-              <div className="flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-indigo-500" />
-                <div className="h-2 w-12 rounded bg-black/15 dark:bg-white/20" />
-              </div>
-              <div className="flex gap-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-black/20 dark:bg-white/20" />
-                <span className="h-1.5 w-1.5 rounded-full bg-black/20 dark:bg-white/20" />
-              </div>
-            </div>
-            <div className="mb-2.5 grid grid-cols-3 gap-1.5">
-              <div className="rounded-lg bg-indigo-500/10 p-1.5 text-center">
-                <div className="mx-auto h-1.5 w-6 rounded bg-indigo-500/40" />
-                <div className="mx-auto mt-1 h-2.5 w-8 rounded bg-indigo-600" />
-              </div>
-              <div className="rounded-lg bg-blue-500/10 p-1.5 text-center">
-                <div className="mx-auto h-1.5 w-6 rounded bg-blue-500/40" />
-                <div className="mx-auto mt-1 h-2.5 w-8 rounded bg-blue-600" />
-              </div>
-              <div className="rounded-lg bg-cyan-500/10 p-1.5 text-center">
-                <div className="mx-auto h-1.5 w-6 rounded bg-cyan-500/40" />
-                <div className="mx-auto mt-1 h-2.5 w-8 rounded bg-cyan-600" />
-              </div>
-            </div>
-            <div className="h-16 w-full rounded-xl bg-gradient-to-t from-indigo-500/20 via-indigo-500/5 to-transparent p-2">
-              <div className="flex h-full items-end justify-between gap-1">
-                <div className="h-[40%] w-3 rounded-t bg-indigo-400/60" />
-                <div className="h-[70%] w-3 rounded-t bg-indigo-500/80" />
-                <div className="h-[55%] w-3 rounded-t bg-indigo-400/60" />
-                <div className="h-[90%] w-3 rounded-t bg-indigo-600" />
-                <div className="h-[65%] w-3 rounded-t bg-indigo-500/70" />
-                <div className="h-[80%] w-3 rounded-t bg-indigo-600" />
-                <div className="h-[45%] w-3 rounded-t bg-indigo-400/60" />
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-
-    case "landing":
-    default:
-      return (
-        <div className="relative flex h-full w-full items-center justify-center p-4">
-          <div className="w-full max-w-[280px] rounded-2xl border border-white/50 bg-white/85 p-3 shadow-xl backdrop-blur-md transition-all duration-300 group-hover:-translate-y-2 dark:border-white/15 dark:bg-[#18181b]/95">
-            <div className="mb-2 flex items-center justify-between">
-              <div className="h-2 w-10 rounded bg-indigo-600" />
-              <div className="flex gap-1.5">
-                <div className="h-1.5 w-6 rounded bg-black/10 dark:bg-white/20" />
-                <div className="h-1.5 w-6 rounded bg-black/10 dark:bg-white/20" />
-              </div>
-            </div>
-            <div className="mb-2 flex items-center gap-2 rounded-xl bg-gradient-to-r from-zinc-100 to-indigo-50/50 p-2 dark:from-white/5 dark:to-indigo-900/20">
-              <div className="flex-1">
-                <div className="h-2.5 w-16 rounded bg-zinc-800 dark:bg-white" />
-                <div className="mt-1 h-1.5 w-20 rounded bg-zinc-400 dark:bg-zinc-500" />
-                <div className="mt-2 h-3.5 w-12 rounded-full bg-indigo-600" />
-              </div>
-              <div className="h-12 w-14 rounded-lg bg-indigo-500/20 flex items-center justify-center">
-                <span className="text-sm">🎮</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-1.5">
-              <div className="h-10 rounded-lg bg-black/5 p-1 dark:bg-white/5" />
-              <div className="h-10 rounded-lg bg-black/5 p-1 dark:bg-white/5" />
-            </div>
-          </div>
-        </div>
-      );
-  }
-}
+const fallbackBanners: Record<string, string> = {
+  "study-platform": "/projects/study-platform-live.png",
+  "volunteer-platform": "/projects/volunteer-platform-live.png",
+  "game-reviews": "/projects/game-reviews-live.png",
+};
 
 export default function SelectedWork() {
   const [projects, setProjects] = useState<ProjectItem[]>([]);
@@ -146,7 +22,7 @@ export default function SelectedWork() {
         const res = await fetch("/api/projects?type=featured");
         if (res.ok) {
           const json = await res.json();
-          if (json.success && Array.isArray(json.data)) {
+          if (json.success && Array.isArray(json.data) && json.data.length > 0) {
             setProjects(json.data);
           }
         }
@@ -165,10 +41,13 @@ export default function SelectedWork() {
       className="py-16 sm:py-20 transition-colors duration-300 scroll-mt-20 gsap-fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-8 md:p-10">
-          <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-7 md:p-8">
+          <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div>
-              <h2 className="split text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
+                PORTFOLIO
+              </p>
+              <h2 className="split mt-1 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
                 Selected Work
               </h2>
             </div>
@@ -177,7 +56,7 @@ export default function SelectedWork() {
               href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-neumorphic self-start text-xs !px-4 !py-2 sm:self-auto"
+              className="btn-neumorphic self-start text-xs !px-4 !py-2 sm:self-auto rounded-lg"
             >
               <span>View All Projects</span>
               <svg
@@ -196,58 +75,79 @@ export default function SelectedWork() {
           </div>
 
           {/* 3-COLUMN PROJECTS GRID */}
-          <div className="gsap-stagger-group grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="gsap-stagger-group grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {loading ? (
               Array.from({ length: 3 }).map((_, i) => (
                 <div
                   key={i}
-                  className="h-80 animate-pulse rounded-[24px] border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]"
+                  className="h-80 animate-pulse rounded-xl border border-black/5 bg-black/[0.03] dark:border-white/5 dark:bg-white/[0.03]"
                 />
               ))
             ) : projects.length > 0 ? (
-              projects.map((project) => (
-                <a
-                  key={project.id}
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="gsap-stagger-item group relative flex flex-col overflow-hidden rounded-[24px] border border-black/[0.04] bg-white/80 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-black/[0.08] hover:shadow-[0_16px_35px_-8px_rgba(0,0,0,0.08)] dark:border-white/[0.06] dark:bg-white/[0.035] dark:hover:border-white/[0.12] dark:hover:bg-white/[0.06] dark:hover:shadow-[0_16px_35px_-8px_rgba(0,0,0,0.6)]"
-                >
-                  <div
-                    className={`relative flex h-60 w-full items-center justify-center overflow-hidden bg-gradient-to-br ${project.themeGradient || "from-indigo-500/20 via-purple-500/10 to-pink-500/20"} p-4 transition-transform duration-500`}
+              projects.map((project) => {
+                const bannerSrc = project.imageSrc || fallbackBanners[project.id] || "/gellary/3rd mocup.png";
+
+                return (
+                  <a
+                    key={project.id}
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gsap-stagger-item group relative flex flex-col overflow-hidden rounded-xl border border-black/[0.07] bg-white/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/40 hover:shadow-lg dark:border-white/[0.08] dark:bg-[#121216]/90 dark:hover:border-indigo-400/40 dark:hover:shadow-[0_16px_35px_-8px_rgba(0,0,0,0.7)]"
                   >
-                    <ProjectMockup project={project} />
-                  </div>
+                    {/* ACTUAL WEBSITE BANNER IMAGE CONTAINER */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/5 border-b border-black/[0.06] dark:border-white/[0.06] dark:bg-black/30">
+                      <img
+                        src={encodeURI(bannerSrc)}
+                        alt={project.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+                      />
 
-                  <div className="p-3">
-                    <div className="flex items-center justify-between rounded-2xl border border-black/[0.03] bg-white/90 p-4 shadow-xs backdrop-blur-xl transition-all duration-300 group-hover:border-black/[0.06] group-hover:bg-white group-hover:shadow-sm dark:border-white/[0.05] dark:bg-white/[0.04] dark:group-hover:border-white/[0.08] dark:group-hover:bg-white/[0.07]">
-                      <div className="min-w-0 pr-3">
-                        <h3 className="truncate text-sm font-bold text-zinc-900 transition-colors duration-200 group-hover:text-indigo-600 dark:text-white dark:group-hover:text-indigo-400 sm:text-base">
-                          {project.title}
-                        </h3>
-                        <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
-                          {project.subtitle}
-                        </p>
-                      </div>
-
-                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-black/[0.04] bg-black/5 text-zinc-700 shadow-xs transition-all duration-300 group-hover:scale-110 group-hover:border-indigo-500 group-hover:bg-indigo-600 group-hover:text-white dark:border-white/[0.06] dark:bg-white/10 dark:text-zinc-200 dark:group-hover:bg-indigo-500 dark:group-hover:text-white">
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        >
-                          <line x1="7" y1="17" x2="17" y2="7" />
-                          <polyline points="7 7 17 7 17 17" />
-                        </svg>
+                      {/* Subtle hover overlay with live badge */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end justify-between p-3">
+                        <span className="text-[11px] font-semibold text-white bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md">
+                          Live Preview ↗
+                        </span>
+                        {project.category && (
+                          <span className="text-[10px] font-mono text-white/80 bg-white/10 backdrop-blur-md px-2 py-0.5 rounded-md">
+                            {project.category}
+                          </span>
+                        )}
                       </div>
                     </div>
-                  </div>
-                </a>
-              ))
+
+                    {/* CARD FOOTER INFO */}
+                    <div className="p-3.5 sm:p-4">
+                      <div className="flex items-center justify-between rounded-lg border border-black/[0.04] bg-black/[0.02] p-3 backdrop-blur-xl transition-all duration-300 group-hover:border-black/[0.08] group-hover:bg-black/[0.04] dark:border-white/[0.05] dark:bg-white/[0.03] dark:group-hover:border-white/[0.1] dark:group-hover:bg-white/[0.06]">
+                        <div className="min-w-0 pr-2.5">
+                          <h3 className="truncate text-sm font-bold text-zinc-900 transition-colors duration-200 group-hover:text-indigo-600 dark:text-white dark:group-hover:text-indigo-400 sm:text-base">
+                            {project.title}
+                          </h3>
+                          <p className="truncate text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                            {project.subtitle || project.category}
+                          </p>
+                        </div>
+
+                        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-black/[0.06] bg-white text-zinc-700 shadow-xs transition-all duration-300 group-hover:border-indigo-500 group-hover:bg-indigo-600 group-hover:text-white dark:border-white/[0.08] dark:bg-white/10 dark:text-zinc-200 dark:group-hover:bg-indigo-500 dark:group-hover:text-white">
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          >
+                            <line x1="7" y1="17" x2="17" y2="7" />
+                            <polyline points="7 7 17 7 17 17" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })
             ) : (
               <p className="col-span-3 text-center py-10 text-xs text-zinc-400">No projects found in database.</p>
             )}
@@ -257,3 +157,4 @@ export default function SelectedWork() {
     </section>
   );
 }
+
