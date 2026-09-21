@@ -127,15 +127,10 @@ export default function ContactSection() {
 
 
   return (
-    <section id="contact" className="relative py-20 transition-colors duration-300 scroll-mt-20 overflow-hidden gsap-fade-up">
-      {/* COLOR GRADIENT AURA & MESH */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[950px] rounded-full bg-gradient-to-tr from-indigo-500/20 via-purple-500/15 to-pink-500/20 blur-[140px]" />
-      </div>
-
+    <section id="contact" className="relative py-20 transition-colors duration-300 scroll-mt-20 gsap-fade-up">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* CONTAINER CARD */}
-        <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white/60 p-4 sm:p-7 md:p-10 shadow-sm backdrop-blur-xl transition-all duration-500 dark:border-white/10 dark:bg-[#0c0c0e]/80">
+        {/* CONTAINER */}
+        <div className="relative">
           {/* LARGE ROTATING 3D GLASS ORB & GYROSCOPIC ORBITAL RINGS */}
           <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 flex h-[280px] w-[280px] sm:h-[480px] sm:w-[480px] lg:h-[680px] lg:w-[680px] items-center justify-center opacity-15 sm:opacity-20 dark:opacity-25 transition-opacity duration-700">
             {/* Ambient luminous fluid aura */}
@@ -259,7 +254,7 @@ export default function ContactSection() {
             </div>
 
             {/* RIGHT COLUMN: FROSTED GLASS FORM */}
-            <div className="relative rounded-xl border border-black/10 bg-white/70 p-5 shadow-md backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04] sm:p-7">
+            <div className="relative rounded-2xl border border-black/[0.08] bg-white/80 p-6 sm:p-8 shadow-sm backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#111114]/85">
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Row 1: Name & Email */}
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
