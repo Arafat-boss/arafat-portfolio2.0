@@ -162,3 +162,44 @@ button.btn-neumorphic-icon:active {
 .dark button.btn-neumorphic-icon:active {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35), -1px -1px 3px rgba(255, 255, 255, 0.03);
 }
+
+/* 3-COLUMN VERTICAL TESTIMONIAL MARQUEE ANIMATIONS */
+@keyframes marquee-vertical-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-vertical-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-marquee-up {
+  animation: marquee-vertical-up 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-down {
+  animation: marquee-vertical-down 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-up-slow {
+  animation: marquee-vertical-up 44s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover */
+.marquee-column:hover .animate-marquee-up,
+.marquee-column:hover .animate-marquee-down,
+.marquee-column:hover .animate-marquee-up-slow {
+  animation-play-state: paused;
+}
