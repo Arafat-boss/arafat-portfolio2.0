@@ -14,9 +14,27 @@ function FiverrShortLogo() {
       className="flex h-7 w-7 items-center justify-center rounded-lg border border-black/10 bg-black/[0.03] text-zinc-800 transition-all duration-200 group-hover:border-black/25 group-hover:bg-black/[0.06] group-hover:text-black dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-200 dark:group-hover:border-white/25 dark:group-hover:bg-white/[0.08] dark:group-hover:text-white flex-shrink-0"
       title="Fiverr Verified Review"
     >
-      <svg className="h-4 w-4 fill-current" viewBox="0 0 512 512">
-        <circle cx="384" cy="50" r="48" />
-        <path d="M272 0v96c-53.02 0-96 42.98-96 96v64h-80v-96H16v96h80v160H16v96h224v-96h-64V256h160v160h-64v96h224v-96h-64V160H272c0-88.37 71.63-160 160-160H272z" />
+      <svg className="h-4 w-4 fill-current" viewBox="0 0 100 100">
+        {/* Dot above i */}
+        <circle cx="77" cy="14" r="9.5" />
+
+        {/* Top arch of f */}
+        <path d="M53 2v17c-10 0-17 7-17 17H22C22 17 35 2 53 2z" />
+
+        {/* Crossbar connecting f and i */}
+        <rect x="8" y="32" width="76" height="16" />
+
+        {/* Left stem (f) */}
+        <rect x="22" y="48" width="14" height="20" />
+
+        {/* Left foot (f) */}
+        <rect x="8" y="68" width="42" height="14" />
+
+        {/* Right stem (i) */}
+        <rect x="70" y="48" width="14" height="20" />
+
+        {/* Right foot (i) */}
+        <rect x="56" y="68" width="42" height="14" />
       </svg>
     </div>
   );
