@@ -11,12 +11,12 @@ import {
 function FiverrShortLogo() {
   return (
     <div
-      className="flex h-7 w-7 items-center justify-center rounded-lg border border-black/10 bg-black/[0.03] text-zinc-700 transition-all duration-200 group-hover:border-black/25 group-hover:bg-black/[0.06] group-hover:text-zinc-950 dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-300 dark:group-hover:border-white/25 dark:group-hover:bg-white/[0.08] dark:group-hover:text-white flex-shrink-0"
+      className="flex h-7 w-7 items-center justify-center rounded-lg border border-black/10 bg-black/[0.03] text-zinc-800 transition-all duration-200 group-hover:border-black/25 group-hover:bg-black/[0.06] group-hover:text-black dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-200 dark:group-hover:border-white/25 dark:group-hover:bg-white/[0.08] dark:group-hover:text-white flex-shrink-0"
       title="Fiverr Verified Review"
     >
-      <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
-        <circle cx="21" cy="4" r="2.2" />
-        <path d="M16.4 8.5c-.8 0-1.4.3-1.8.8V8.6h-2.2v11.2h2.3v-5.9c0-1.1.6-1.8 1.6-1.8.2 0 .4 0 .6.1l.6-2.2c-.3-.1-.7-.1-1.1-.1zM9.5 8.5c-.8 0-1.4.3-1.8.8V8.6H5.5v11.2h2.3v-5.9c0-1.1.6-1.8 1.6-1.8.2 0 .4 0 .6.1l.6-2.2c-.4-.1-.7-.1-1.1-.1zM3.4 8.6H1.2v11.2h2.2V8.6zM2.3 4.2C1.5 4.2.9 4.8.9 5.6s.6 1.4 1.4 1.4 1.4-.6 1.4-1.4-.6-1.4-1.4-1.4z" />
+      <svg className="h-4 w-4 fill-current" viewBox="0 0 512 512">
+        <circle cx="384" cy="50" r="48" />
+        <path d="M272 0v96c-53.02 0-96 42.98-96 96v64h-80v-96H16v96h80v160H16v96h224v-96h-64V256h160v160h-64v96h224v-96h-64V160H272c0-88.37 71.63-160 160-160H272z" />
       </svg>
     </div>
   );
