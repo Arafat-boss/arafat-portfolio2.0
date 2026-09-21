@@ -8,16 +8,16 @@ import {
   column3Testimonials,
 } from "@/lib/data/testimonials";
 
-function FiverrLogo() {
+function FiverrShortLogo() {
   return (
-    <div className="flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/[0.08] px-2.5 py-0.5 text-[11px] font-bold text-emerald-600 transition-all duration-200 group-hover:border-emerald-500/40 group-hover:bg-emerald-500/[0.14] dark:border-emerald-400/25 dark:bg-emerald-400/[0.08] dark:text-emerald-400 flex-shrink-0">
-      <svg className="h-3 w-3 fill-current" viewBox="0 0 24 24">
-        <circle cx="21" cy="4" r="2" />
+    <div
+      className="flex h-7 w-7 items-center justify-center rounded-lg border border-black/10 bg-black/[0.03] text-zinc-700 transition-all duration-200 group-hover:border-black/25 group-hover:bg-black/[0.06] group-hover:text-zinc-950 dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-300 dark:group-hover:border-white/25 dark:group-hover:bg-white/[0.08] dark:group-hover:text-white flex-shrink-0"
+      title="Fiverr Verified Review"
+    >
+      <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
+        <circle cx="21" cy="4" r="2.2" />
         <path d="M16.4 8.5c-.8 0-1.4.3-1.8.8V8.6h-2.2v11.2h2.3v-5.9c0-1.1.6-1.8 1.6-1.8.2 0 .4 0 .6.1l.6-2.2c-.3-.1-.7-.1-1.1-.1zM9.5 8.5c-.8 0-1.4.3-1.8.8V8.6H5.5v11.2h2.3v-5.9c0-1.1.6-1.8 1.6-1.8.2 0 .4 0 .6.1l.6-2.2c-.4-.1-.7-.1-1.1-.1zM3.4 8.6H1.2v11.2h2.2V8.6zM2.3 4.2C1.5 4.2.9 4.8.9 5.6s.6 1.4 1.4 1.4 1.4-.6 1.4-1.4-.6-1.4-1.4-1.4z" />
       </svg>
-      <span className="tracking-tight font-sans text-[11.5px] font-semibold">
-        fiverr<span className="text-emerald-500 font-bold">.</span>
-      </span>
     </div>
   );
 }
@@ -25,7 +25,7 @@ function FiverrLogo() {
 function TestimonialCard({ item }: { item: Testimonial }) {
   return (
     <div className="group relative rounded-2xl border border-black/[0.08] bg-white/80 p-5 shadow-xs backdrop-blur-xl transition-all duration-300 hover:border-black/20 hover:bg-white hover:shadow-xl dark:border-white/[0.08] dark:bg-[#111114]/85 dark:hover:border-white/25 dark:hover:bg-[#16161a] dark:hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
-      {/* Header: Initials Badge, Name, Country & Fiverr Logo */}
+      {/* Header: Initials Badge, Name, Country & Short Fiverr "fi" Logo */}
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
           {/* Pure Initials Badge (No Client Photos) */}
@@ -44,8 +44,8 @@ function TestimonialCard({ item }: { item: Testimonial }) {
           </div>
         </div>
 
-        {/* Official Fiverr Brand Badge */}
-        <FiverrLogo />
+        {/* Short Black & White Fiverr "fi" Logo */}
+        <FiverrShortLogo />
       </div>
 
       {/* Review Content */}
@@ -53,7 +53,7 @@ function TestimonialCard({ item }: { item: Testimonial }) {
         &ldquo;{item.content}&rdquo;
       </p>
 
-      {/* Footer: 5-Star Rating, Project Type & Order Time */}
+      {/* Footer: Clean 5-Star Rating */}
       <div className="mt-4 flex items-center justify-between border-t border-black/[0.05] pt-3 text-[11px] dark:border-white/[0.05]">
         <div className="flex items-center gap-1.5">
           <div className="flex gap-0.5 text-amber-400">
@@ -66,16 +66,6 @@ function TestimonialCard({ item }: { item: Testimonial }) {
           <span className="font-bold text-zinc-700 dark:text-zinc-300 font-mono text-[11px]">
             5.0
           </span>
-        </div>
-
-        <div className="flex items-center gap-2 font-mono text-[10.5px] text-zinc-500 dark:text-white/40">
-          <span className="truncate max-w-[150px]">{item.projectType}</span>
-          {item.duration && (
-            <>
-              <span>•</span>
-              <span className="whitespace-nowrap">{item.duration}</span>
-            </>
-          )}
         </div>
       </div>
     </div>
