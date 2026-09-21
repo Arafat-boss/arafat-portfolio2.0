@@ -172,13 +172,8 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* 3-Column Vertical Slow Auto-Scrolling Wall */}
-        <div className="relative h-[600px] sm:h-[680px] lg:h-[720px] overflow-hidden">
-          {/* Top Fade Gradient Mask */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-28 sm:h-36 bg-gradient-to-b from-[#edf0f5] via-[#edf0f5]/80 to-transparent dark:from-[#080808] dark:via-[#080808]/85 dark:to-transparent" />
-
-          {/* Bottom Fade Gradient Mask */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 sm:h-36 bg-gradient-to-t from-[#edf0f5] via-[#edf0f5]/80 to-transparent dark:from-[#080808] dark:via-[#080808]/85 dark:to-transparent" />
+        {/* 3-Column Vertical Slow Auto-Scrolling Wall with True Transparent Alpha Mask */}
+        <div className="relative h-[600px] sm:h-[680px] lg:h-[720px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_88%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_88%,transparent_100%)]">
 
           {/* 3 Columns Grid */}
           <div className="grid h-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
