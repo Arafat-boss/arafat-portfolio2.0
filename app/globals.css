@@ -101,3 +101,64 @@ a.btn-neumorphic:active {
 .dark a.btn-neumorphic:active {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35), -1px -1px 3px rgba(255, 255, 255, 0.03);
 }
+
+/* Dedicated Square Neumorphic Icon Button */
+.btn-neumorphic-icon,
+a.btn-neumorphic-icon,
+button.btn-neumorphic-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  min-height: 46px;
+  padding: 0 !important;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ebebeb;
+  border: 1px solid #e2e2e2;
+  box-shadow: 2px 2px 5px #d4d4d4, -2px -2px 5px #ffffff;
+  color: #374151;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.btn-neumorphic-icon:hover,
+a.btn-neumorphic-icon:hover,
+button.btn-neumorphic-icon:hover {
+  transform: translateY(-2px);
+  border: 1px solid white;
+  box-shadow: 3px 3px 7px #cecece, -3px -3px 7px #ffffff;
+}
+
+.btn-neumorphic-icon:active,
+a.btn-neumorphic-icon:active,
+button.btn-neumorphic-icon:active {
+  transform: translateY(0);
+  box-shadow: 1px 1px 3px #d4d4d4, -1px -1px 3px #ffffff;
+}
+
+.dark .btn-neumorphic-icon,
+.dark a.btn-neumorphic-icon,
+.dark button.btn-neumorphic-icon {
+  color: #e4e4e7;
+  background: #242428;
+  border: 1px solid #323238;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25), -2px -2px 5px rgba(255, 255, 255, 0.04);
+}
+
+.dark .btn-neumorphic-icon:hover,
+.dark a.btn-neumorphic-icon:hover,
+.dark button.btn-neumorphic-icon:hover {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3), -3px -3px 7px rgba(255, 255, 255, 0.06);
+}
+
+.dark .btn-neumorphic-icon:active,
+.dark a.btn-neumorphic-icon:active,
+.dark button.btn-neumorphic-icon:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35), -1px -1px 3px rgba(255, 255, 255, 0.03);
+}
