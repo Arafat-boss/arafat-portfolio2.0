@@ -183,17 +183,17 @@ button.btn-neumorphic-icon:active {
 }
 
 .animate-marquee-up {
-  animation: marquee-vertical-up 38s linear infinite;
+  animation: marquee-vertical-up 80s linear infinite;
   will-change: transform;
 }
 
 .animate-marquee-down {
-  animation: marquee-vertical-down 38s linear infinite;
+  animation: marquee-vertical-down 86s linear infinite;
   will-change: transform;
 }
 
 .animate-marquee-up-slow {
-  animation: marquee-vertical-up 44s linear infinite;
+  animation: marquee-vertical-up 95s linear infinite;
   will-change: transform;
 }
 
