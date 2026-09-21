@@ -31,6 +31,6 @@ export interface GalleryItem {
   number: string;
   title: string;
   category: string;
-  filterTag: ProjectFilterTag;
+  filterTag?: ProjectFilterTag;
   description: string;
 }
