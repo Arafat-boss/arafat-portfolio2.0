@@ -173,7 +173,7 @@ export default function Testimonials() {
         </div>
 
         {/* 3-Column Vertical Slow Auto-Scrolling Wall */}
-        <div className="relative h-[600px] sm:h-[680px] lg:h-[720px] overflow-hidden rounded-3xl border border-black/10 bg-black/[0.015] p-3 sm:p-6 backdrop-blur-2xl dark:border-white/10 dark:bg-white/[0.015]">
+        <div className="relative h-[600px] sm:h-[680px] lg:h-[720px] overflow-hidden">
           {/* Top Fade Gradient Mask */}
           <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-28 sm:h-36 bg-gradient-to-b from-[#edf0f5] via-[#edf0f5]/80 to-transparent dark:from-[#080808] dark:via-[#080808]/85 dark:to-transparent" />
 
