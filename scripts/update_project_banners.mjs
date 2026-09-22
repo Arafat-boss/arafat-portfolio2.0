@@ -23,8 +23,8 @@ async function run() {
       },
       {
         $set: {
-          imageSrc: "/projects/study-platform-live.png",
-          liveBanner: "/projects/study-platform-live.png"
+          imageSrc: "/projects/study-platform-live.webp",
+          liveBanner: "/projects/study-platform-live.webp"
         }
       }
     );
@@ -39,8 +39,8 @@ async function run() {
       },
       {
         $set: {
-          imageSrc: "/projects/volunteer-platform-live.png",
-          liveBanner: "/projects/volunteer-platform-live.png"
+          imageSrc: "/projects/volunteer-platform-live.webp",
+          liveBanner: "/projects/volunteer-platform-live.webp"
         }
       }
     );
@@ -55,8 +55,8 @@ async function run() {
       },
       {
         $set: {
-          imageSrc: "/projects/game-reviews-live.png",
-          liveBanner: "/projects/game-reviews-live.png"
+          imageSrc: "/projects/game-reviews-live.webp",
+          liveBanner: "/projects/game-reviews-live.webp"
         }
       }
     );
