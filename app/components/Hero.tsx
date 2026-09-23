@@ -297,8 +297,11 @@ export default function Hero() {
           {/* MOBILE HERO IMAGE (< lg) - FULL VISIBLE HEAD & PORTRAIT */}
           <div className="relative mt-8 sm:mt-10 flex items-center justify-center overflow-hidden rounded-xl lg:hidden">
             <img
-              src="https://i.ibb.co.com/DHtbRXZS/imaget.png"
+              src="/hero-portrait.webp"
               alt="MD. ARAFAT SARKER"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               className="h-auto max-h-[460px] sm:max-h-[520px] w-auto max-w-full object-contain object-top drop-shadow-xl"
             />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#edf0f5] via-[#edf0f5]/60 to-transparent dark:from-[#080808] dark:via-[#080808]/60 dark:to-transparent" />
@@ -352,8 +355,11 @@ export default function Hero() {
             {/* Image Container with smooth bottom feathering mask & gradient overlay */}
             <div className="relative overflow-hidden rounded-xl [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]">
               <img
-                src="https://i.ibb.co.com/DHtbRXZS/imaget.png"
+                src="/hero-portrait.webp"
                 alt="Arafat's featured work"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="hero-image block aspect-[920/640] h-[520px] lg:h-[560px] xl:h-[600px] w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#fcfcfc] via-[#fcfcfc]/70 to-transparent dark:from-[#080808] dark:via-[#080808]/70 dark:to-transparent" />
