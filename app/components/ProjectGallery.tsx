@@ -9,7 +9,7 @@ export const defaultGalleryItems: GalleryItem[] = [
     id: "gal-1",
     title: "SaaS Platform & Cloud Analytics",
     description: "Next.js 15, TypeScript & Tailwind CSS full-stack web application with responsive dashboard architecture.",
-    src: "/gellary/3rd mocup.png",
+    src: "/gellary/3rd mocup.webp",
     category: "Next.js / React",
     number: "01",
   },
@@ -17,7 +17,7 @@ export const defaultGalleryItems: GalleryItem[] = [
     id: "gal-2",
     title: "Architectural Studio & Portfolio",
     description: "Modern Squarespace 7.1 website built with Fluid Engine, custom CSS grid layouts, and typography.",
-    src: "/gellary/4th mocup.png",
+    src: "/gellary/4th mocup.webp",
     category: "Squarespace",
     number: "02",
   },
@@ -25,7 +25,7 @@ export const defaultGalleryItems: GalleryItem[] = [
     id: "gal-3",
     title: "Creative Studio & Brand Experience",
     description: "High-impact Wix Studio site featuring custom smooth scroll animations and dynamic Velo interactions.",
-    src: "/gellary/6th mocup.png",
+    src: "/gellary/6th mocup.webp",
     category: "Wix Studio",
     number: "03",
   },
@@ -33,7 +33,7 @@ export const defaultGalleryItems: GalleryItem[] = [
     id: "gal-4",
     title: "FinTech Banking & Wealth Suite",
     description: "React & Next.js financial management dashboard with live metrics and dark mode interface.",
-    src: "/gellary/7th mocup.png",
+    src: "/gellary/7th mocup.webp",
     category: "Next.js / React",
     number: "04",
   },
@@ -41,7 +41,7 @@ export const defaultGalleryItems: GalleryItem[] = [
     id: "gal-5",
     title: "Hospitality & Restaurant Reservation",
     description: "Squarespace website with custom menu layouts, OpenTable booking, and mobile ordering.",
-    src: "/gellary/8th mocup.png",
+    src: "/gellary/8th mocup.webp",
     category: "Squarespace",
     number: "05",
   },
@@ -49,7 +49,7 @@ export const defaultGalleryItems: GalleryItem[] = [
     id: "gal-6",
     title: "AI Knowledge & Education Platform",
     description: "Full-Stack React web application with clean UI cards and optimized video streaming.",
-    src: "/gellary/9th mocup.png",
+    src: "/gellary/9th mocup.webp",
     category: "Next.js / React",
     number: "06",
   },
@@ -57,7 +57,7 @@ export const defaultGalleryItems: GalleryItem[] = [
     id: "gal-7",
     title: "Modern Business Portfolio & CMS",
     description: "Wix Studio custom build with interactive work showcase and responsive client inquiry form.",
-    src: "/gellary/10th mocup.png",
+    src: "/gellary/10th mocup.webp",
     category: "Wix Studio",
     number: "07",
   },
@@ -65,7 +65,7 @@ export const defaultGalleryItems: GalleryItem[] = [
     id: "gal-8",
     title: "Luxury Lifestyle & E-Commerce Store",
     description: "Wix E-Commerce store with custom product filtering and automated inventory sync.",
-    src: "/gellary/11.png",
+    src: "/gellary/11.webp",
     category: "Wix Studio",
     number: "08",
   },
@@ -73,7 +73,7 @@ export const defaultGalleryItems: GalleryItem[] = [
     id: "gal-9",
     title: "Real Estate & Property Showcase",
     description: "Modern Next.js real estate portal with virtual tours and lead generation forms.",
-    src: "/gellary/14.png",
+    src: "/gellary/14.webp",
     category: "Next.js / React",
     number: "09",
   },
@@ -479,6 +479,8 @@ export default function ProjectGallery() {
                             src={encodeURI(item.src)}
                             alt={item.title}
                             draggable={false}
+                            loading="lazy"
+                            decoding="async"
                             className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover/card:scale-105"
                           />
 
@@ -569,6 +571,7 @@ export default function ProjectGallery() {
                 <img
                   src={encodeURI(modalItem.src)}
                   alt={modalItem.title}
+                  decoding="async"
                   className="max-h-[50vh] sm:max-h-[58vh] w-auto max-w-full rounded-lg object-contain shadow-2xl transition-all duration-300 mx-auto"
                 />
 
