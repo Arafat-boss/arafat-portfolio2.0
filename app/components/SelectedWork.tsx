@@ -3,19 +3,20 @@
 import { useState, useEffect } from "react";
 import { ProjectItem } from "@/lib/types/project";
 import { siteConfig } from "@/lib/data/siteConfig";
+import { defaultProjectsData } from "@/lib/data/projects";
 
 const fallbackBanners: Record<string, string> = {
-  "study-platform": "/projects/study-platform-live.png",
-  "volunteer-platform": "/projects/volunteer-platform-live.png",
-  "game-reviews": "/projects/game-reviews-live.png",
+  "study-platform": "/projects/study-platform-live.webp",
+  "volunteer-platform": "/projects/volunteer-platform-live.webp",
+  "game-reviews": "/projects/game-reviews-live.webp",
 };
 
 export default function SelectedWork() {
-  const [projects, setProjects] = useState<ProjectItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState<ProjectItem[]>(defaultProjectsData);
+  const [loading, setLoading] = useState(false);
   const githubLink = siteConfig.socialLinks.find((s) => s.name === "GitHub")?.url || "https://github.com/Arafat-boss";
 
-  // Live dynamic fetch directly from MongoDB 'project' collection
+  // Live dynamic fetch directly from MongoDB 'project' collection with non-blocking update
   useEffect(() => {
     async function loadProjects() {
       try {
@@ -85,7 +86,7 @@ export default function SelectedWork() {
               ))
             ) : projects.length > 0 ? (
               projects.map((project) => {
-                const bannerSrc = project.imageSrc || fallbackBanners[project.id] || "/gellary/3rd mocup.png";
+                const bannerSrc = project.imageSrc || fallbackBanners[project.id] || "/gellary/3rd mocup.webp";
 
                 return (
                   <a
@@ -101,6 +102,7 @@ export default function SelectedWork() {
                         src={encodeURI(bannerSrc)}
                         alt={project.title}
                         loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
                       />
 
