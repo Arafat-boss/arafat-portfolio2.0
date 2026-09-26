@@ -9,7 +9,7 @@ export default function Preloader() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Prevent scrolling while preloader is active
+    // Prevent scrolling briefly while preloader performs smooth intro
     document.body.style.overflow = "hidden";
 
     const handleComplete = () => {
@@ -24,29 +24,25 @@ export default function Preloader() {
 
       tl.to(contentRef.current, {
         opacity: 0,
-        scale: 0.9,
-        y: -25,
-        duration: 0.8,
-        ease: "power2.inOut",
+        scale: 0.94,
+        y: -15,
+        duration: 0.4,
+        ease: "power2.out",
       }).to(
         preloaderRef.current,
         {
           opacity: 0,
-          duration: 0.8,
+          duration: 0.45,
           ease: "power3.inOut",
         },
-        "-=0.3"
+        "-=0.2"
       );
     };
 
-    // Extended display duration as requested (2.8 seconds)
+    // Fast, responsive splash screen (550ms) ensures instant site opening without stalling
     const timer = setTimeout(() => {
-      if (document.readyState === "complete") {
-        handleComplete();
-      } else {
-        window.addEventListener("load", handleComplete, { once: true });
-      }
-    }, 2800);
+      handleComplete();
+    }, 550);
 
     return () => {
       clearTimeout(timer);
