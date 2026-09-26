@@ -383,9 +383,10 @@ export default function ProjectGallery() {
                   >
                     <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-black/5 dark:bg-white/5">
                       <img
-                        src={encodeURI(item.src)}
+                        src={encodeURI(item.src.replace(/\.(png|jpg|jpeg)$/i, ".webp"))}
                         alt={item.title}
                         loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover object-top"
                       />
                     </div>
@@ -476,7 +477,7 @@ export default function ProjectGallery() {
                         {/* Screenshot image container */}
                         <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/5 dark:bg-black/40">
                           <img
-                            src={encodeURI(item.src)}
+                            src={encodeURI(item.src.replace(/\.(png|jpg|jpeg)$/i, ".webp"))}
                             alt={item.title}
                             draggable={false}
                             loading="lazy"
@@ -569,7 +570,7 @@ export default function ProjectGallery() {
               {/* Modal Image Display */}
               <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-black/60 p-3 sm:p-6 min-h-[220px] max-h-[55vh] sm:max-h-[62vh]">
                 <img
-                  src={encodeURI(modalItem.src)}
+                  src={encodeURI(modalItem.src.replace(/\.(png|jpg|jpeg)$/i, ".webp"))}
                   alt={modalItem.title}
                   decoding="async"
                   className="max-h-[50vh] sm:max-h-[58vh] w-auto max-w-full rounded-lg object-contain shadow-2xl transition-all duration-300 mx-auto"

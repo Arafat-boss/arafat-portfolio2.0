@@ -31,6 +31,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/projects/:file*.png",
+        destination: "/projects/:file*.webp",
+      },
+      {
+        source: "/gellary/:file*.png",
+        destination: "/gellary/:file*.webp",
+      },
+      {
+        source: "/gellary/:file*.jpg",
+        destination: "/gellary/:file*.webp",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

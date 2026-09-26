@@ -86,7 +86,8 @@ export default function SelectedWork() {
               ))
             ) : projects.length > 0 ? (
               projects.map((project) => {
-                const bannerSrc = project.imageSrc || fallbackBanners[project.id] || "/gellary/3rd mocup.webp";
+                const rawSrc = project.imageSrc || fallbackBanners[project.id] || "/projects/study-platform-live.webp";
+                const bannerSrc = rawSrc.replace(/\.(png|jpg|jpeg)$/i, ".webp");
 
                 return (
                   <a
@@ -103,6 +104,13 @@ export default function SelectedWork() {
                         alt={project.title}
                         loading="lazy"
                         decoding="async"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          const fallback = fallbackBanners[project.id] || "/projects/study-platform-live.webp";
+                          if (!target.src.endsWith(fallback)) {
+                            target.src = fallback;
+                          }
+                        }}
                         className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
                       />
 
