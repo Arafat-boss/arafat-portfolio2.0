@@ -127,8 +127,8 @@ export default function Home() {
       <ContactSection />
 
       {/* FOOTER */}
-      <footer className="border-t border-black/10 transition-colors duration-300 dark:border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-6 py-8 text-xs sm:text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between lg:px-8 dark:text-white/30">
+      <footer className="border-t border-black/10 transition-colors duration-300 dark:border-white/10 pb-20 sm:pb-24 md:pb-0">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-6 pt-8 pb-8 md:py-8 text-xs sm:text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between lg:px-8 dark:text-white/30">
           <p>© {new Date().getFullYear()} {personal.name}. All rights reserved.</p>
 
           <div className="flex flex-wrap gap-4 sm:gap-6 font-medium">
