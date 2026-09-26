@@ -1,5 +1,6 @@
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import CurvedBottomBar from "./components/CurvedBottomBar";
 import TechSkills from "./components/TechSkills";
 import SelectedWork from "./components/SelectedWork";
 import ProjectGallery from "./components/ProjectGallery";
@@ -16,6 +17,9 @@ export default function Home() {
     <main className="min-h-screen bg-transparent text-zinc-900 selection:bg-zinc-900 selection:text-white dark:text-white dark:selection:bg-white dark:selection:text-black">
       {/* RESPONSIVE NAVBAR */}
       <Navbar />
+
+      {/* MOBILE CURVED / SCOOPED BOTTOM TAB BAR */}
+      <CurvedBottomBar />
 
       {/* HERO SECTION */}
       <Hero />
