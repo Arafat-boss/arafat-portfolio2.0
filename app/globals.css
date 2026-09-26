@@ -184,6 +184,16 @@ button.btn-neumorphic-icon:active {
   }
 }
 
+@keyframes marquee-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .animate-marquee-up {
   animation: marquee-vertical-up 80s linear infinite;
   will-change: transform;
@@ -199,9 +209,24 @@ button.btn-neumorphic-icon:active {
   will-change: transform;
 }
 
+.animate-marquee-horizontal {
+  animation: marquee-horizontal 35s linear infinite;
+  will-change: transform;
+}
+
+/* Hide scrollbar utility for touch swipe carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Pause on hover */
 .marquee-column:hover .animate-marquee-up,
 .marquee-column:hover .animate-marquee-down,
-.marquee-column:hover .animate-marquee-up-slow {
+.marquee-column:hover .animate-marquee-up-slow,
+.hover-pause:hover {
   animation-play-state: paused;
 }

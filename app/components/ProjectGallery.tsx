@@ -148,6 +148,14 @@ export default function ProjectGallery() {
   const [galleryList] = useState<GalleryItem[]>(defaultGalleryItems);
   const [modalItem, setModalItem] = useState<GalleryItem | null>(null);
   const [mounted, setMounted] = useState(false);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollMobileLeft = () => {
+    mobileScrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
+  };
+  const scrollMobileRight = () => {
+    mobileScrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
+  };
 
   // Animation & Drag Progress
   const [progress, setProgress] = useState(0);
@@ -369,18 +377,73 @@ export default function ProjectGallery() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: COMPACT 3D CURVED CONVEYOR SHOWCASE */}
-          <div className="relative flex w-full flex-col items-center justify-center min-h-[380px] sm:min-h-[460px] lg:min-h-[560px] lg:h-[70vh] lg:max-h-[660px]">
+          {/* RIGHT COLUMN: COMPACT 3D CURVED CONVEYOR SHOWCASE (DESKTOP) & HORIZONTAL SNAP CAROUSEL (MOBILE) */}
+          <div className="relative flex w-full flex-col items-center justify-center min-h-[360px] sm:min-h-[440px] lg:min-h-[560px] lg:h-[70vh] lg:max-h-[660px]">
             
-            {/* MOBILE VIEW (lg:hidden): Continuous Smooth Horizontal Flow */}
-            <div className="w-screen max-w-[100vw] overflow-hidden -mx-4 sm:-mx-6 lg:hidden" aria-hidden="true">
-              <div className="flex w-max gap-3 sm:gap-4 animate-marquee-up [animation-duration:35s] will-change-transform py-2">
-                {galleryList.concat(galleryList).map((item, idx) => (
-                  <div
-                    key={`mob-${item.id}-${idx}`}
-                    onClick={() => setModalItem(item)}
-                    className="flex-none w-[240px] sm:w-[300px] overflow-hidden rounded-2xl border border-black/10 bg-white/85 p-2 shadow-md backdrop-blur-xl dark:border-white/10 dark:bg-[#111114]/90 cursor-pointer"
+            {/* MOBILE VIEW (lg:hidden): Smooth Horizontal Swipe & Snap Carousel */}
+            <div className="w-full lg:hidden" aria-label="Project Showcase Carousel">
+              {/* Mobile Carousel Header & Arrow Navigation */}
+              <div className="flex items-center justify-between mb-3 px-1">
+                <div className="flex items-center gap-2 text-xs font-semibold text-zinc-600 dark:text-zinc-300">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inset-0 animate-ping rounded-full bg-indigo-400 opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-500"></span>
+                  </span>
+                  <span>Swipe to explore ({galleryList.length} Projects)</span>
+                </div>
+
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={scrollMobileLeft}
+                    aria-label="Previous project"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-black/10 bg-white/90 text-zinc-700 shadow-xs transition active:scale-95 hover:bg-white dark:border-white/10 dark:bg-[#18181b] dark:text-white cursor-pointer"
                   >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4">
+                      <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={scrollMobileRight}
+                    aria-label="Next project"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-black/10 bg-white/90 text-zinc-700 shadow-xs transition active:scale-95 hover:bg-white dark:border-white/10 dark:bg-[#18181b] dark:text-white cursor-pointer"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Horizontal Scrollable Carousel Track */}
+              <div
+                ref={mobileScrollRef}
+                className="flex w-full gap-3.5 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-2 -mx-2 px-2 touch-pan-x"
+              >
+                {galleryList.map((item) => (
+                  <div
+                    key={`mob-${item.id}`}
+                    onClick={() => setModalItem(item)}
+                    className="flex-none w-[80vw] max-w-[300px] sm:w-[320px] snap-center overflow-hidden rounded-2xl border border-black/15 bg-white/95 p-2.5 shadow-md backdrop-blur-xl transition-all duration-200 active:scale-[0.98] dark:border-white/15 dark:bg-[#111114]/95 cursor-pointer"
+                  >
+                    {/* Traffic light header */}
+                    <div className="flex items-center justify-between border-b border-black/[0.08] bg-black/[0.02] px-2.5 py-1.5 mb-2 rounded-lg dark:border-white/[0.08] dark:bg-white/[0.02]">
+                      <div className="flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-rose-500/80" />
+                        <span className="h-2 w-2 rounded-full bg-amber-500/80" />
+                        <span className="h-2 w-2 rounded-full bg-emerald-500/80" />
+                      </div>
+                      <span className="font-mono text-[10px] font-semibold text-indigo-600 dark:text-indigo-400">
+                        {item.category}
+                      </span>
+                      <span className="font-mono text-[9px] text-zinc-400 dark:text-white/30">
+                        /{item.number}
+                      </span>
+                    </div>
+
+                    {/* Image */}
                     <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-black/5 dark:bg-white/5">
                       <img
                         src={encodeURI(item.src.replace(/\.(png|jpg|jpeg)$/i, ".webp"))}
@@ -390,13 +453,15 @@ export default function ProjectGallery() {
                         className="h-full w-full object-cover object-top"
                       />
                     </div>
-                    <div className="mt-2 px-1 pb-1">
-                      <span className="text-[10px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
-                        {item.category}
-                      </span>
+
+                    {/* Info */}
+                    <div className="mt-2.5 px-1 pb-1">
                       <h4 className="text-xs font-bold text-zinc-900 dark:text-white truncate">
                         {item.title}
                       </h4>
+                      <p className="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400 line-clamp-1">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 ))}
