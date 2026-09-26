@@ -1,36 +1,66 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    const saved = localStorage.getItem("theme") as "dark" | "light" | null;
-    const initialTheme = saved || (document.documentElement.classList.contains("dark") ? "dark" : "light");
-    
-    if (initialTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setTheme(initialTheme);
-    setMounted(true);
+  const updateStateFromDOM = useCallback(() => {
+    const isDark = document.documentElement.classList.contains("dark");
+    setTheme(isDark ? "dark" : "light");
   }, []);
 
+  useEffect(() => {
+    // Initial sync
+    const saved = localStorage.getItem("theme") as "dark" | "light" | null;
+    if (saved === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else if (saved === "light") {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    }
+
+    updateStateFromDOM();
+    setMounted(true);
+
+    // Listen to custom theme-change events from other components/toggles
+    const handleThemeChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ theme: "dark" | "light" }>;
+      if (customEvent.detail?.theme) {
+        setTheme(customEvent.detail.theme);
+      } else {
+        updateStateFromDOM();
+      }
+    };
+
+    window.addEventListener("theme-change", handleThemeChange);
+    return () => window.removeEventListener("theme-change", handleThemeChange);
+  }, [updateStateFromDOM]);
+
   const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    localStorage.setItem("theme", nextTheme);
+    const isCurrentlyDark = document.documentElement.classList.contains("dark");
+    const nextTheme: "dark" | "light" = isCurrentlyDark ? "light" : "dark";
 
     if (nextTheme === "dark") {
       document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
     } else {
       document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
     }
+
+    try {
+      localStorage.setItem("theme", nextTheme);
+    } catch {
+      // ignore
+    }
+
+    setTheme(nextTheme);
 
     // Dispatch custom event for particle canvas & components
     window.dispatchEvent(
@@ -47,11 +77,12 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
+      type="button"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className="group relative flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-700 transition-all duration-300 hover:border-black/25 hover:bg-black/10 hover:scale-105 active:scale-95 dark:border-white/15 dark:bg-white/5 dark:text-zinc-300 dark:hover:border-white/30 dark:hover:bg-white/10 dark:hover:text-white"
+      className="group relative flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-700 transition-all duration-300 hover:border-black/25 hover:bg-black/10 hover:scale-105 active:scale-95 dark:border-white/15 dark:bg-white/5 dark:text-zinc-300 dark:hover:border-white/30 dark:hover:bg-white/10 dark:hover:text-white cursor-pointer"
     >
       {theme === "dark" ? (
-        // Sun Icon for Dark Mode (Click to turn light)
+        // Sun Icon for Dark Mode (Click to switch to light)
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -60,7 +91,7 @@ export default function ThemeToggle() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="h-4 w-4 text-amber-300 transition-transform duration-500 group-hover:rotate-90"
+          className="h-4 w-4 text-amber-300 transition-transform duration-300 group-hover:rotate-90"
         >
           <circle cx="12" cy="12" r="4" />
           <path d="M12 2v2" />
@@ -73,7 +104,7 @@ export default function ThemeToggle() {
           <path d="m19.07 4.93-1.41 1.41" />
         </svg>
       ) : (
-        // Moon Icon for Light Mode (Click to turn dark)
+        // Moon Icon for Light Mode (Click to switch to dark)
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -82,7 +113,7 @@ export default function ThemeToggle() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="h-4 w-4 text-indigo-600 transition-transform duration-500 group-hover:-rotate-45"
+          className="h-4 w-4 text-zinc-900 transition-transform duration-300 group-hover:-rotate-45"
         >
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
         </svg>
