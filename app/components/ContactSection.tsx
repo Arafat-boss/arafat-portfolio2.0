@@ -127,7 +127,7 @@ export default function ContactSection() {
 
 
   return (
-    <section id="contact" className="relative py-20 transition-colors duration-300 scroll-mt-20 gsap-fade-up">
+    <section id="contact" className="relative py-20 transition-colors duration-300 scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* CONTAINER */}
         <div className="relative">
@@ -179,7 +179,7 @@ export default function ContactSection() {
                   LET&apos;S CONNECT
                 </p>
 
-                <h2 className="split mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-white">
+                <h2 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-white">
                   Have a project in mind?
                 </h2>
                 <p className="mt-2 text-base font-medium text-zinc-600 dark:text-white/80">
