@@ -198,6 +198,15 @@ npm run start
 
 ---
 
+## ⚡ Performance & Optimization
+- **Next-Gen Image Pipeline**: Automated WebP conversion reducing asset payload by 99.4% (from ~86MB to ~500KB).
+- **Instant Hero Render**: Local high-priority WebP portrait with asynchronous decoding and edge caching.
+- **Preloader Streamlining**: Sub-second splash screen transition avoiding blocking `window.onload` delays.
+- **Static Asset Caching**: 1-year immutable cache-control headers on static assets and images.
+- **Dynamic Database Resilience**: MongoDB image extension normalization and rewrite fallbacks.
+
+---
+
 ## 👤 Author
 
 **Md. Arafat Sarker**
