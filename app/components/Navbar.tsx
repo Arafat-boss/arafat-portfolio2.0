@@ -12,9 +12,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 25);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -28,82 +29,92 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   return (
-    <nav
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+    <header
+      className={`fixed inset-x-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         scrolled
-          ? "border-b border-black/5 bg-[#edf0f5]/85 backdrop-blur-md dark:border-white/5 dark:bg-[#080808]/85"
-          : "border-b border-transparent bg-transparent backdrop-blur-xs"
+          ? "top-3 sm:top-4 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+          : "top-0 w-full px-0"
       }`}
     >
-      <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* LOGO */}
-        <a
-          href="#hero"
-          className="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 transition hover:opacity-80 dark:text-white uppercase"
-        >
-          {personal.shortName}<span className="text-zinc-400 dark:text-white/40">.</span>
-        </a>
-
-        {/* DESKTOP NAV LINKS (HIDDEN ON MOBILE/TABLET) */}
-        <div className="hidden items-center gap-6 lg:gap-8 text-sm font-medium text-zinc-600 md:flex dark:text-white/60">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="transition hover:text-zinc-900 dark:hover:text-white"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        {/* RIGHT ACTION BUTTONS */}
-        <div className="flex items-center gap-2 sm:gap-4">
-          {/* Theme Toggle Button */}
-          <ThemeToggle />
-
-          {/* Resume Button */}
+      <nav
+        className={`flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          scrolled
+            ? "h-14 sm:h-16 px-4 sm:px-6 rounded-2xl border border-black/10 bg-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0d0d10]/80 dark:shadow-[0_12px_35px_rgba(0,0,0,0.6)]"
+            : "h-16 sm:h-20 w-full px-4 sm:px-6 lg:px-8 border-b border-black/10 bg-[#edf0f5]/70 backdrop-blur-md dark:border-white/10 dark:bg-[#080808]/70"
+        }`}
+      >
+        <div className={`flex items-center justify-between w-full ${scrolled ? "" : "max-w-7xl mx-auto"}`}>
+          {/* LOGO */}
           <a
-            href={personal.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            download
-            className="btn-neumorphic text-xs !px-3 sm:!px-4 !py-1.5 sm:!py-2 inline-flex items-center gap-1.5"
+            href="#hero"
+            className="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 transition hover:opacity-80 dark:text-white uppercase"
           >
-            <span>Resume</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-3.5 w-3.5">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
+            {personal.shortName}<span className="text-zinc-400 dark:text-white/40">.</span>
           </a>
 
-          {/* MOBILE HAMBURGER BUTTON */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-700 transition hover:bg-black/10 md:hidden dark:border-white/10 dark:bg-white/5 dark:text-white cursor-pointer"
-          >
-            {mobileMenuOpen ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-4 w-4">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
+          {/* DESKTOP NAV LINKS */}
+          <div className="hidden items-center gap-6 lg:gap-8 text-sm font-medium text-zinc-600 md:flex dark:text-white/60">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="transition hover:text-zinc-900 dark:hover:text-white"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          {/* RIGHT ACTION BUTTONS */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Theme Toggle Button */}
+            <ThemeToggle />
+
+            {/* Resume Button */}
+            <a
+              href={personal.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="btn-neumorphic text-xs !px-3 sm:!px-4 !py-1.5 sm:!py-2 inline-flex items-center gap-1.5"
+            >
+              <span>Resume</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-3.5 w-3.5">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-4 w-4">
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
-            )}
-          </button>
+            </a>
+
+            {/* MOBILE HAMBURGER BUTTON */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-700 transition hover:bg-black/10 md:hidden dark:border-white/10 dark:bg-white/5 dark:text-white cursor-pointer"
+            >
+              {mobileMenuOpen ? (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-4 w-4">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-4 w-4">
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
-      </div>
+      </nav>
 
       {/* MOBILE FULLSCREEN / SLIDE-DOWN NAVIGATION DRAWER */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-x-0 top-16 sm:top-20 z-40 flex h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] flex-col justify-between border-b border-black/10 bg-white/95 p-6 backdrop-blur-2xl transition-all duration-300 md:hidden dark:border-white/10 dark:bg-[#0c0c0e]/95"
+          className={`fixed inset-x-0 z-40 flex h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] flex-col justify-between border-b border-black/10 bg-white/95 p-6 backdrop-blur-2xl transition-all duration-300 md:hidden dark:border-white/10 dark:bg-[#0c0c0e]/95 ${
+            scrolled ? "top-20 rounded-2xl mx-4 shadow-2xl border border-black/10 dark:border-white/10 h-[calc(100vh-6rem)]" : "top-16 sm:top-20"
+          }`}
         >
           <div className="flex flex-col space-y-3 pt-2">
             <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-white/40">
@@ -150,6 +161,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 }
