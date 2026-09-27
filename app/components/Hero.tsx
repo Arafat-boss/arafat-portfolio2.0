@@ -307,7 +307,7 @@ export default function Hero() {
           </div>
 
           {/* MOBILE BIO CARD (< lg) */}
-          <div className="mobile-bio-card mt-6 block rounded-xl border border-black/10 bg-white/95 p-6 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-[#111]/95 dark:shadow-2xl lg:hidden">
+          <div className="mobile-bio-card mt-6 block rounded-xl border border-black/10 bg-white/95 p-6 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/10 dark:bg-[#111]/95 dark:shadow-2xl lg:hidden">
             <div className="flex items-center justify-between border-b border-black/10 pb-4 dark:border-white/10">
               <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500 dark:text-white/40">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -364,7 +364,7 @@ export default function Hero() {
             </div>
 
             {/* DESKTOP BIO CARD - POSITIONED ON THE LEFT OF THE IMAGE WITH CRISP SLEEK RADII */}
-            <div className="bio-card absolute right-full mr-5 lg:mr-7 top-1/2 z-20 w-[540px] lg:w-[620px] xl:w-[700px] 2xl:w-[750px] -translate-y-1/2 rounded-xl border border-black/10 bg-white/95 p-7 shadow-2xl backdrop-blur-2xl transition-colors duration-300 dark:border-white/10 dark:bg-[#0c0c0e]/95 dark:shadow-black/70 lg:p-8">
+            <div className="bio-card absolute right-full mr-5 lg:mr-7 top-1/2 z-20 w-[540px] lg:w-[620px] xl:w-[700px] 2xl:w-[750px] -translate-y-1/2 rounded-xl border border-black/10 bg-white/95 p-7 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.06),0_12px_35px_-8px_rgba(0,0,0,0.03)] backdrop-blur-2xl transition-colors duration-300 dark:border-white/10 dark:bg-[#0c0c0e]/95 dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] dark:shadow-black/70 lg:p-8">
               {/* Top Header */}
               <div className="flex items-center justify-between border-b border-black/10 pb-4 dark:border-white/10">
                 <div className="flex items-center gap-3">
