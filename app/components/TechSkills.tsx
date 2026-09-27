@@ -46,7 +46,7 @@ export default function TechSkills() {
       className="border-b border-black/10 bg-black/[0.015] py-16 sm:py-20 transition-colors duration-300 dark:border-white/10 dark:bg-white/[0.015] scroll-mt-20 gsap-fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-7 md:p-8">
+        <div className="relative rounded-xl border border-black/10 bg-white/70 p-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.04)] backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-7 md:p-8">
           <div className="mb-4 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
@@ -81,9 +81,9 @@ export default function TechSkills() {
                         key={skill.id}
                         onMouseEnter={() => setHoveredSkill(skill)}
                         onMouseLeave={() => setHoveredSkill(null)}
-                        className={`group relative flex flex-col items-center justify-center rounded-lg border p-2.5 sm:p-3 md:p-3.5 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg dark:hover:shadow-none ${
+                        className={`group relative flex flex-col items-center justify-center rounded-lg border p-2.5 sm:p-3 md:p-3.5 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_36px_-10px_rgba(0,0,0,0.06)] dark:hover:shadow-none ${
                           isHovered
-                            ? "border-indigo-500/40 bg-indigo-50/50 shadow-md dark:border-indigo-400/30 dark:bg-indigo-950/20"
+                            ? "border-indigo-500/40 bg-indigo-50/50 shadow-[0_8px_25px_-6px_rgba(99,102,241,0.18)] dark:border-indigo-400/30 dark:bg-indigo-950/20"
                             : "border-black/[0.06] bg-white/90 hover:border-black/20 dark:border-white/[0.06] dark:bg-white/[0.03] dark:hover:border-white/20"
                         }`}
                       >
@@ -172,7 +172,7 @@ export default function TechSkills() {
                       key={skill.id}
                       onMouseEnter={() => setHoveredSkill(skill)}
                       onMouseLeave={() => setHoveredSkill(null)}
-                      className={`group relative flex flex-col items-center justify-center rounded-lg border p-3 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-md ${
+                      className={`group relative flex flex-col items-center justify-center rounded-lg border p-3 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-xs ${
                         isHovered
                           ? "border-indigo-500/40 bg-indigo-50/50 dark:border-indigo-400/30 dark:bg-indigo-950/20"
                           : "border-black/[0.05] bg-white/70 hover:border-black/15 dark:border-white/[0.05] dark:bg-white/[0.02] dark:hover:border-white/15"
