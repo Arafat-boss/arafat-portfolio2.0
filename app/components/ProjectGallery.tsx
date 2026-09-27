@@ -278,7 +278,7 @@ export default function ProjectGallery() {
   return (
     <section
       id="gallery"
-      className="relative w-full py-16 sm:py-20 lg:py-24 transition-colors duration-300 scroll-mt-20 overflow-hidden gsap-fade-up"
+      className="relative w-full py-16 sm:py-20 lg:py-24 border-y border-black/10 bg-white transition-colors duration-300 dark:border-white/10 dark:bg-[#0c0c0f] scroll-mt-20 overflow-hidden gsap-fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* TASTESKILL-STYLE 2-COLUMN HERO BANNER */}
@@ -286,31 +286,11 @@ export default function ProjectGallery() {
           
           {/* LEFT COLUMN: HERO TYPOGRAPHY & INTERACTIVE CONTROLS */}
           <div className="flex flex-col justify-center z-10">
-            {/* Pill Badge */}
-            <a
-              href="#projects"
-              className="group/pill mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-indigo-600 transition-all duration-300 hover:border-indigo-500/50 hover:bg-indigo-500/15 dark:bg-indigo-500/15 dark:text-indigo-400"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inset-0 animate-ping rounded-full bg-indigo-400 opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-500"></span>
-              </span>
+            {/* Unified Badge */}
+            <div className="inline-flex w-fit items-center gap-2 rounded-md border border-black/10 bg-black/[0.03] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-700 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/70 mb-3 sm:mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>Visual Project Archive</span>
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="transition-transform duration-300 group-hover/pill:translate-x-0.5"
-              >
-                <path d="M5 12h14"></path>
-                <path d="m13 5 7 7-7 7"></path>
-              </svg>
-            </a>
+            </div>
 
             {/* Main Headline */}
             <h2 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl dark:text-white leading-[1.05]">
