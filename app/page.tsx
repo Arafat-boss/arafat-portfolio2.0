@@ -59,7 +59,7 @@ export default function Home() {
             {servicesData.map((service) => (
               <div
                 key={service.number}
-                className="gsap-stagger-item rounded-xl border border-black/10 bg-[#fdfdfd] p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-black/25 hover:shadow-md dark:border-white/10 dark:bg-[#0c0c0e] dark:hover:border-white/25 dark:hover:shadow-none"
+                className="gsap-stagger-item rounded-xl border border-black/10 bg-[#fdfdfd] p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-black/25 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.06)] dark:border-white/10 dark:bg-[#0c0c0e] dark:hover:border-white/25 dark:hover:shadow-none"
               >
                 <div className="mb-5 sm:mb-8 font-mono text-xs text-zinc-400 dark:text-white/25">
                   / {service.number}
