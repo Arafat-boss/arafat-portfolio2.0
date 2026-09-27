@@ -43,16 +43,17 @@ export default function TechSkills() {
   return (
     <section
       id="skills"
-      className="border-b border-black/10 bg-black/[0.015] py-16 sm:py-20 transition-colors duration-300 dark:border-white/10 dark:bg-white/[0.015] scroll-mt-20 gsap-fade-up"
+      className="border-y border-black/10 bg-white py-16 sm:py-20 lg:py-24 transition-colors duration-300 dark:border-white/10 dark:bg-[#0c0c0f] scroll-mt-20 gsap-fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-xl border border-black/10 bg-white/70 p-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.04)] backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-7 md:p-8">
+        <div className="relative rounded-xl border border-black/10 bg-[#f8fafc]/90 p-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.04)] backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#121216]/90 sm:p-7 md:p-8">
           <div className="mb-4 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
-                TOOLS & SKILLS
-              </p>
-              <h2 className="split mt-1 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+              <div className="inline-flex items-center gap-2 rounded-md border border-black/10 bg-black/[0.03] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-700 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/70 mb-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Tools & Skills</span>
+              </div>
+              <h2 className="split text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
                 Technologies I Use
               </h2>
             </div>
