@@ -8,7 +8,7 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    projectType: "Full-Stack Web Application",
+    projectType: "MERN Stack Web Application",
     message: "",
   });
 
@@ -97,7 +97,7 @@ export default function ContactSection() {
         setFormData({
           name: "",
           email: "",
-          projectType: "Full-Stack Web Application",
+          projectType: "MERN Stack Web Application",
           message: "",
         });
 
@@ -288,7 +288,7 @@ export default function ContactSection() {
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                     className="w-full appearance-none rounded-lg border border-black/10 bg-white/90 px-3.5 py-2.5 pr-10 text-xs font-medium text-zinc-900 backdrop-blur-md transition-colors cursor-pointer hover:bg-white focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-white/10 dark:bg-[#18181b] dark:text-white dark:hover:bg-[#202025] dark:focus:border-indigo-400 dark:focus:bg-[#18181b] dark:focus:ring-indigo-400/20"
                   >
-                    <option value="Full-Stack Web Application" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">Full-Stack Web Application</option>
+                    <option value="MERN Stack Web Application" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">MERN Stack Web Application</option>
                     <option value="Frontend (Next.js / React.js)" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">Frontend (Next.js / React.js)</option>
                     <option value="Backend API & Database" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">Backend API & Database</option>
                     <option value="MERN Stack MVP" className="bg-white text-zinc-900 dark:bg-[#18181b] dark:text-white py-1">MERN Stack MVP</option>

@@ -249,7 +249,7 @@ export default function Hero() {
 
           {/* Description */}
           <p className="hero-description mt-6 sm:mt-8 max-w-2xl text-sm leading-relaxed sm:text-lg sm:leading-7 text-zinc-600 dark:text-white/55">
-            Analytical, self-motivating and confident Full-Stack Developer specializing in React.js, Next.js, Node.js, Express.js and MongoDB. I thrive on building beautiful, robust and conversion-focused web experiences.
+            Analytical, self-motivating and confident MERN Stack Developer specializing in React.js, Next.js, Node.js, Express.js and MongoDB. I thrive on building beautiful, robust and conversion-focused web experiences.
           </p>
 
           {/* Buttons */}
@@ -314,7 +314,7 @@ export default function Hero() {
                 A little about me
               </span>
               <span className="rounded-md bg-black/5 px-2.5 py-1 font-mono text-[11px] text-zinc-500 dark:bg-white/5 dark:text-white/40">
-                Full-Stack
+                MERN Stack
               </span>
             </div>
 
@@ -375,7 +375,7 @@ export default function Hero() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="rounded-md border border-black/5 bg-black/[0.02] px-3 py-1 font-mono text-xs text-zinc-500 dark:border-white/5 dark:bg-white/[0.03] dark:text-white/40">
-                    Full-Stack • MERN
+                    MERN Stack
                   </span>
                   <span
                     className="text-2xl font-light text-zinc-400 dark:text-white/30"

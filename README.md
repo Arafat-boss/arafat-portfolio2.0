@@ -1,4 +1,4 @@
-# 🚀 Md. Arafat Sarker — Modern Full-Stack Portfolio 2.0
+# 🚀 Md. Arafat Sarker — Modern MERN Stack Portfolio 2.0
 
 <div align="center">
 
@@ -28,7 +28,7 @@
 
 ## 🌟 Project Overview
 
-This repository houses the personal developer portfolio of **MD. ARAFAT SARKER** (Full-Stack Developer • MERN & Next.js Specialist). The web application is engineered to deliver a seamless blend of modern glassmorphism UI, interactive canvas graphics, smooth GSAP micro-animations, and live database connectivity for content management.
+This repository houses the personal developer portfolio of **MD. ARAFAT SARKER** (MERN Stack Developer • Next.js & React Specialist). The web application is engineered to deliver a seamless blend of modern glassmorphism UI, interactive canvas graphics, smooth GSAP micro-animations, and live database connectivity for content management.
 
 ---
 
@@ -48,7 +48,7 @@ This repository houses the personal developer portfolio of **MD. ARAFAT SARKER**
 - **Expandable 32+ Skills View**: Filterable category tabs (*Languages, Frontend, Backend, Database, Tools, Design*) with live dynamic data fetched from MongoDB.
 
 ### 4. 💼 Selected Work & Real Projects
-- **Interactive Project Cards**: Showcases live full-stack projects featuring real-time image previews, live demo links, source code repositories, and technical stack badges.
+- **Interactive Project Cards**: Showcases live MERN stack projects featuring real-time image previews, live demo links, source code repositories, and technical stack badges.
 
 ### 5. 🖼️ Interactive Project Showcase Gallery (Lightbox Modal)
 - **Touch & Drag Carousel**: Smooth pointer/touch drag-to-scroll functionality with autoplay and responsive breakpoints.
@@ -56,7 +56,7 @@ This repository houses the personal developer portfolio of **MD. ARAFAT SARKER**
 - **Keyboard Navigation**: Full support for `ArrowLeft`, `ArrowRight`, and `Escape` keys.
 
 ### 6. 💼 Services & Process Workflow
-- **Service Offerings**: Clear breakdown of full-stack engineering, frontend UI/UX architecture, API development, and cloud deployments.
+- **Service Offerings**: Clear breakdown of MERN stack engineering, frontend UI/UX architecture, API development, and cloud deployments.
 - **Structured 4-Step Process**: Clean roadmap demonstrating development from discovery to deployment.
 
 ### 7. 💬 Client Testimonials
@@ -210,7 +210,7 @@ npm run start
 ## 👤 Author
 
 **Md. Arafat Sarker**
-- **Role**: Full-Stack Developer (MERN & Next.js Specialist)
+- **Role**: MERN Stack Developer (Next.js & React Specialist)
 - **GitHub**: [@Arafat-boss](https://github.com/Arafat-boss)
 - **LinkedIn**: [Md. Arafat Sarker](https://www.linkedin.com/in/md-arafat-sarker/)
 - **Facebook**: [Arraf Ja](https://www.facebook.com/Arraf.Ja/)

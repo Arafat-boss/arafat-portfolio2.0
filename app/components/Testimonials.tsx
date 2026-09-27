@@ -122,7 +122,7 @@ export default function Testimonials() {
                 countryFlag: "🇺🇸",
                 content: item.quote || item.content || "Great experience working with Arafat!",
                 rating: item.rating || 5,
-                projectType: item.projectType || "Full-Stack Project",
+                projectType: item.projectType || "MERN Stack Project",
                 duration: "Verified Order",
                 verified: true,
               };

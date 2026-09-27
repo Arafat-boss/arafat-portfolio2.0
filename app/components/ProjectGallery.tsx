@@ -8,7 +8,7 @@ export const defaultGalleryItems: GalleryItem[] = [
   {
     id: "gal-1",
     title: "SaaS Platform & Cloud Analytics",
-    description: "Next.js 15, TypeScript & Tailwind CSS full-stack web application with responsive dashboard architecture.",
+    description: "Next.js 15, TypeScript & Tailwind CSS MERN Stack web application with responsive dashboard architecture.",
     src: "/gellary/3rd mocup.webp",
     category: "Next.js / React",
     number: "01",
@@ -48,7 +48,7 @@ export const defaultGalleryItems: GalleryItem[] = [
   {
     id: "gal-6",
     title: "AI Knowledge & Education Platform",
-    description: "Full-Stack React web application with clean UI cards and optimized video streaming.",
+    description: "MERN Stack React web application with clean UI cards and optimized video streaming.",
     src: "/gellary/9th mocup.webp",
     category: "Next.js / React",
     number: "06",
@@ -319,7 +319,7 @@ export default function ProjectGallery() {
 
             {/* Sub-headline */}
             <p className="mt-3 text-xl font-normal leading-snug tracking-tight text-zinc-700 sm:text-2xl sm:leading-tight dark:text-zinc-200">
-              Modern Web Design & Full-Stack Development
+              Modern Web Design & MERN Stack Development
             </p>
 
             {/* Accent statement */}
@@ -329,7 +329,7 @@ export default function ProjectGallery() {
 
             {/* Description */}
             <p className="mt-4 max-w-lg text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-white/60">
-              Explore bespoke client builds, high-converting stores, fluid animated portfolios, and scalable full-stack web applications crafted with obsessive attention to detail.
+              Explore bespoke client builds, high-converting stores, fluid animated portfolios, and scalable MERN Stack web applications crafted with obsessive attention to detail.
             </p>
 
             {/* Action Buttons */}

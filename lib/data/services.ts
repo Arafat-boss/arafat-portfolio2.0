@@ -3,7 +3,7 @@ import { ServiceItem, ProcessStep } from "../types/service";
 export const servicesData: ServiceItem[] = [
   {
     number: "01",
-    title: "Full-Stack Development",
+    title: "MERN Stack Development",
     description:
       "Complete web applications using the MERN stack with clean architecture and scalable backend systems.",
   },
