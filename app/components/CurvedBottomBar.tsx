@@ -148,7 +148,7 @@ export default function CurvedBottomBar() {
         </motion.div>
 
         {/* MAIN COMPACT CURVED NAVIGATION BAR CONTAINER */}
-        <div className="relative overflow-hidden rounded-[22px] border border-black/10 bg-white/50 px-2 pt-2 pb-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-all duration-300 dark:border-white/10 dark:bg-black/50 dark:shadow-[0_12px_35px_rgba(0,0,0,0.6)]">
+        <div className="relative overflow-hidden rounded-[22px] border border-black/10 bg-white/50 px-2 pt-2 pb-1.5 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-all duration-300 dark:border-white/10 dark:bg-black/50 dark:shadow-[0_12px_35px_rgba(0,0,0,0.6)]">
           
           {/* SLIDING SCOOPED NOTCH OVERLAY */}
           <motion.div
