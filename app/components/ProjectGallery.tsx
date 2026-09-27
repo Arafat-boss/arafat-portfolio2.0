@@ -426,7 +426,7 @@ export default function ProjectGallery() {
                   <div
                     key={`mob-${item.id}`}
                     onClick={() => setModalItem(item)}
-                    className="flex-none w-[80vw] max-w-[300px] sm:w-[320px] snap-center overflow-hidden rounded-2xl border border-black/15 bg-white/95 p-2.5 shadow-md backdrop-blur-xl transition-all duration-200 active:scale-[0.98] dark:border-white/15 dark:bg-[#111114]/95 cursor-pointer"
+                    className="flex-none w-[80vw] max-w-[300px] sm:w-[320px] snap-center overflow-hidden rounded-2xl border border-black/15 bg-white/95 p-2.5 shadow-[0_16px_40px_-15px_rgba(0,0,0,0.06)] backdrop-blur-xl transition-all duration-200 active:scale-[0.98] dark:border-white/15 dark:bg-[#111114]/95 cursor-pointer"
                   >
                     {/* Traffic light header */}
                     <div className="flex items-center justify-between border-b border-black/[0.08] bg-black/[0.02] px-2.5 py-1.5 mb-2 rounded-lg dark:border-white/[0.08] dark:bg-white/[0.02]">
@@ -522,7 +522,7 @@ export default function ProjectGallery() {
                       }}
                     >
                       {/* Browser Mockup Window Frame (Compact & Refined) */}
-                      <div className="overflow-hidden rounded-[16px] border border-black/15 bg-white/90 shadow-[0_18px_45px_-12px_rgba(0,0,0,0.25)] backdrop-blur-2xl transition-all duration-300 group-hover/card:border-indigo-500/50 group-hover/card:shadow-[0_24px_55px_-12px_rgba(99,102,241,0.35)] dark:border-white/15 dark:bg-[#111114]/90 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.85)]">
+                      <div className="overflow-hidden rounded-[16px] border border-black/10 bg-white/90 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-all duration-300 group-hover/card:border-indigo-500/50 group-hover/card:shadow-[0_25px_60px_-15px_rgba(99,102,241,0.22)] dark:border-white/15 dark:bg-[#111114]/90 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.85)]">
                         
                         {/* Traffic light header bar */}
                         <div className="flex items-center justify-between border-b border-black/[0.08] bg-black/[0.02] px-3 py-2 dark:border-white/[0.08] dark:bg-white/[0.02]">
