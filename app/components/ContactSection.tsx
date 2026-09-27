@@ -254,7 +254,7 @@ export default function ContactSection() {
             </div>
 
             {/* RIGHT COLUMN: FROSTED GLASS FORM */}
-            <div className="relative rounded-2xl border border-black/[0.08] bg-white/80 p-6 sm:p-8 shadow-sm backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#111114]/85">
+            <div className="relative rounded-2xl border border-black/[0.08] bg-white/80 p-6 sm:p-8 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#111114]/85">
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Row 1: Name & Email */}
                 <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
