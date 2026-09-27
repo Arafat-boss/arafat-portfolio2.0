@@ -63,7 +63,7 @@ export default function StatsCounter() {
   return (
     <section
       ref={containerRef}
-      className="border-y border-black/10 transition-colors duration-300 dark:border-white/10"
+      className="border-t border-black/10 transition-colors duration-300 dark:border-white/10"
     >
       <div className="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
         {statsData.map((stat, index) => (
