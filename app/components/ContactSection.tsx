@@ -127,7 +127,10 @@ export default function ContactSection() {
 
 
   return (
-    <section id="contact" className="relative py-20 transition-colors duration-300 scroll-mt-20">
+    <section
+      id="contact"
+      className="relative border-y border-black/10 bg-white py-20 lg:py-28 transition-colors duration-300 dark:border-white/10 dark:bg-[#0c0c0f] scroll-mt-20"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* CONTAINER */}
         <div className="relative">
@@ -175,9 +178,10 @@ export default function ContactSection() {
             {/* LEFT COLUMN: CONTACT DETAILS */}
             <div className="flex flex-col justify-between">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
-                  LET&apos;S CONNECT
-                </p>
+                <div className="inline-flex items-center gap-2 rounded-md border border-black/10 bg-black/[0.03] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-700 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/70 mb-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Let&apos;s Connect</span>
+                </div>
 
                 <h2 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-white">
                   Have a project in mind?
