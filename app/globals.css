@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Aref+Ruqaa:wght@400;700&family=Galada&family=Great+Vibes&family=Kalam:wght@400;700&family=Ma+Shan+Zheng&family=Marck+Script&family=Parisienne&family=Sacramento&family=Satisfy&family=Yuji+Boku&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
