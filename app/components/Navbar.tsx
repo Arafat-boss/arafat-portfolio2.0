@@ -39,7 +39,7 @@ export default function Navbar() {
       <nav
         className={`flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           scrolled
-            ? "h-14 sm:h-16 px-4 sm:px-6 rounded-2xl border border-black/10 bg-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0d0d10]/80 dark:shadow-[0_12px_35px_rgba(0,0,0,0.6)]"
+            ? "h-14 sm:h-16 px-4 sm:px-6 rounded-2xl border border-black/10 bg-white/80 shadow-[0_16px_45px_-12px_rgba(0,0,0,0.06)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0d0d10]/80 dark:shadow-[0_12px_35px_rgba(0,0,0,0.6)]"
             : "h-16 sm:h-20 w-full px-4 sm:px-6 lg:px-8 border-b border-black/10 bg-[#edf0f5]/70 backdrop-blur-md dark:border-white/10 dark:bg-[#080808]/70"
         }`}
       >
