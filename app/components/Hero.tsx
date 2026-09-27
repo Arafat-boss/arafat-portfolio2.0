@@ -294,17 +294,16 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* MOBILE HERO IMAGE (< lg) - FULL VISIBLE HEAD & PORTRAIT */}
-          <div className="relative mt-8 sm:mt-10 flex items-center justify-center overflow-hidden rounded-xl lg:hidden">
+          {/* MOBILE HERO IMAGE (< lg) - SEAMLESS BLEND INTO BACKGROUND */}
+          <div className="relative mt-8 sm:mt-10 flex items-center justify-center lg:hidden [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]">
             <img
               src="/hero-portrait.webp"
               alt="MD. ARAFAT SARKER"
               loading="eager"
               decoding="async"
               fetchPriority="high"
-              className="h-auto max-h-[460px] sm:max-h-[520px] w-auto max-w-full object-contain object-top drop-shadow-xl"
+              className="h-auto max-h-[460px] sm:max-h-[520px] w-auto max-w-full object-contain object-top"
             />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#edf0f5] via-[#edf0f5]/60 to-transparent dark:from-[#080808] dark:via-[#080808]/60 dark:to-transparent" />
           </div>
 
           {/* MOBILE BIO CARD (< lg) */}
@@ -352,17 +351,16 @@ export default function Hero() {
           <div className="absolute -inset-10 rounded-full bg-cyan-500/[0.03] dark:bg-white/[0.03] blur-3xl" />
 
           <div className="hero-image-wrap relative mb-0">
-            {/* Image Container with smooth bottom feathering mask & gradient overlay */}
-            <div className="relative overflow-hidden rounded-xl [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]">
+            {/* Image Container with smooth bottom feathering mask */}
+            <div className="relative [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]">
               <img
                 src="/hero-portrait.webp"
-                alt="Arafat's featured work"
+                alt="MD. ARAFAT SARKER"
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
                 className="hero-image block aspect-[920/640] h-[520px] lg:h-[560px] xl:h-[600px] w-full object-cover"
               />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#fcfcfc] via-[#fcfcfc]/70 to-transparent dark:from-[#080808] dark:via-[#080808]/70 dark:to-transparent" />
             </div>
 
             {/* DESKTOP BIO CARD - POSITIONED ON THE LEFT OF THE IMAGE WITH CRISP SLEEK RADII */}
