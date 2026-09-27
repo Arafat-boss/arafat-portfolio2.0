@@ -3,16 +3,42 @@
 import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 
+const GREETINGS = [
+  { text: "Welcome", style: "font-['Great_Vibes',cursive] font-normal tracking-wide text-[22px] sm:text-[25px]" },
+  { text: "স্বাগতম", style: "font-['Galada',cursive] font-normal tracking-wide text-[18px] sm:text-[21px]" },
+  { text: "Bienvenido", style: "font-['Alex_Brush',cursive] font-normal tracking-wide text-[22px] sm:text-[25px]" },
+  { text: "Bienvenue", style: "font-['Parisienne',cursive] font-normal tracking-wide text-[20px] sm:text-[23px]" },
+  { text: "Benvenuto", style: "font-['Allura',cursive] font-normal tracking-wider text-[22px] sm:text-[25px]" },
+  { text: "ようこそ", style: "font-['Yuji_Boku',serif] font-normal tracking-widest text-[17px] sm:text-[19px]" },
+  { text: "Willkommen", style: "font-['Satisfy',cursive] font-normal tracking-wide text-[18px] sm:text-[20px]" },
+  { text: "Bem-vindo", style: "font-['Sacramento',cursive] font-bold tracking-wide text-[22px] sm:text-[25px]" },
+  { text: "欢迎", style: "font-['Ma_Shan_Zheng',cursive] font-normal tracking-widest text-[18px] sm:text-[21px]" },
+  { text: "स्वागतम्", style: "font-['Kalam',cursive] font-bold tracking-wide text-[18px] sm:text-[20px]" },
+  { text: "أهلاً وسهلاً", style: "font-['Aref_Ruqaa',serif] font-bold tracking-normal text-[19px] sm:text-[22px]" },
+];
+
 export default function Preloader() {
+  const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const preloaderRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Prevent scrolling briefly while preloader performs smooth intro
+    // Prevent scrolling during preloader
     document.body.style.overflow = "hidden";
 
-    const handleComplete = () => {
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      currentIndex++;
+      if (currentIndex < GREETINGS.length) {
+        setIndex(currentIndex);
+      } else {
+        clearInterval(interval);
+        handleExit();
+      }
+    }, 260);
+
+    const handleExit = () => {
       if (!preloaderRef.current) return;
 
       const tl = gsap.timeline({
@@ -22,223 +48,67 @@ export default function Preloader() {
         },
       });
 
+      // Smooth elegant upward curtain lift (Apple / Luxury Portfolio style)
       tl.to(contentRef.current, {
         opacity: 0,
-        scale: 0.94,
-        y: -15,
-        duration: 0.4,
-        ease: "power2.out",
+        scale: 0.95,
+        y: -20,
+        duration: 0.35,
+        ease: "power2.in",
       }).to(
         preloaderRef.current,
         {
-          opacity: 0,
-          duration: 0.45,
-          ease: "power3.inOut",
+          yPercent: -100,
+          duration: 0.85,
+          ease: "power4.inOut",
         },
-        "-=0.2"
+        "-=0.1"
       );
     };
 
-    // Fast, responsive splash screen (550ms) ensures instant site opening without stalling
-    const timer = setTimeout(() => {
-      handleComplete();
-    }, 550);
-
     return () => {
-      clearTimeout(timer);
+      clearInterval(interval);
       document.body.style.overflow = "";
     };
   }, []);
 
   if (!loading) return null;
 
+  const currentGreeting = GREETINGS[index] || GREETINGS[0];
+
   return (
     <div
       ref={preloaderRef}
-      className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#050505] text-white selection:bg-white selection:text-black"
-      aria-label="Loading Arafat's Portfolio"
+      className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-black text-white selection:bg-white selection:text-black will-change-transform"
+      aria-label="Loading portfolio"
     >
-      <style>{`
-        @keyframes loaderUmbralBW {
-          0%, 100% {
-            stop-color: rgba(255, 255, 255, 0.08);
-          }
-          50% {
-            stop-color: rgba(255, 255, 255, 0.7);
-          }
-        }
+      {/* Ambient monochromatic glow */}
+      <div className="pointer-events-none absolute h-[380px] w-[380px] rounded-full bg-white/[0.03] blur-[140px]" />
 
-        @keyframes loaderParticles {
-          0%, 100% {
-            transform: translateY(16px);
-          }
-          50% {
-            transform: translateY(4px);
-          }
-        }
-
-        .loader-particles {
-          animation: loaderParticles 3.5s ease-in-out infinite;
-        }
-
-        .loader-animated-stop {
-          animation: loaderUmbralBW 3.5s infinite;
-        }
-      `}</style>
-
-      {/* Ambient monochrome glow */}
-      <div className="absolute h-[420px] w-[420px] rounded-full bg-white/[0.035] blur-[140px]" />
-      <div className="absolute h-64 w-64 rounded-full bg-white/[0.02] blur-[100px]" />
-
+      {/* Center Multilingual Greeting Container */}
       <div
         ref={contentRef}
-        className="relative z-10 flex flex-col items-center justify-center"
+        className="relative z-10 flex flex-col items-center justify-center px-4 will-change-transform"
       >
-        {/* Animated Custom Isometric 3D Monolith SVG Loader (Black & White Theme) */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="210"
-          width="210"
-          viewBox="0 0 200 200"
-          className="drop-shadow-[0_0_30px_rgba(255,255,255,0.22)]"
-        >
-          <g style={{ order: -1 }}>
-            {/* Base platform */}
-            <polygon
-              transform="rotate(45 100 100)"
-              strokeWidth="1.5"
-              stroke="rgba(255,255,255,0.15)"
-              fill="#171717"
-              points="70,70 150,50 130,130 50,150"
-            />
+        {/* Animated Greeting Word with Unique Typography Style per Language */}
+        <div className="flex items-center justify-center min-h-[40px] sm:min-h-[46px] py-1">
+          <h1
+            key={currentGreeting.text}
+            className={`text-white select-none flex items-center gap-2 drop-shadow-[0_0_20px_rgba(255,255,255,0.25)] animate-[fadeIn_0.15s_ease-out] ${currentGreeting.style}`}
+          >
+            <span>{currentGreeting.text}</span>
+            <span className="inline-block h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-white animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.9)]" />
+          </h1>
+        </div>
 
-            {/* Diamond top plate with Monochrome Gradient */}
-            <polygon
-              strokeWidth="1.5"
-              stroke="rgba(255,255,255,0.2)"
-              fill="url(#gradienteBW)"
-              points="100,70 150,100 100,130 50,100"
-            />
-
-            <defs>
-              <linearGradient y2="100%" x2="10%" y1="0%" x1="0%" id="gradienteBW">
-                <stop style={{ stopColor: "#0a0a0a", stopOpacity: 1 }} offset="20%" />
-                <stop style={{ stopColor: "#262626", stopOpacity: 1 }} offset="60%" />
-              </linearGradient>
-            </defs>
-
-            {/* Left Accent Facet (Silver/Charcoal) */}
-            <polygon
-              transform="translate(20, 31)"
-              strokeWidth="1.5"
-              stroke="rgba(255,255,255,0.3)"
-              fill="#525252"
-              points="80,50 80,75 80,99 40,75"
-            />
-
-            {/* Gradient Beam Light Left (White Glow) */}
-            <polygon
-              transform="translate(20, 31)"
-              strokeWidth="1"
-              stroke=""
-              fill="url(#gradienteBW2)"
-              points="40,-40 80,-40 80,99 40,75"
-            />
-
-            <defs>
-              <linearGradient y2="100%" x2="0%" y1="-17%" x1="10%" id="gradienteBW2">
-                <stop style={{ stopColor: "rgba(255,255,255,0)", stopOpacity: 1 }} offset="20%" />
-                <stop
-                  className="loader-animated-stop"
-                  style={{ stopColor: "rgba(255,255,255,0.5)", stopOpacity: 1 }}
-                  offset="100%"
-                />
-              </linearGradient>
-            </defs>
-
-            {/* Right Accent Facet (Platinum) */}
-            <polygon
-              transform="rotate(180 100 100) translate(20, 20)"
-              strokeWidth="1.5"
-              stroke="rgba(255,255,255,0.4)"
-              fill="#737373"
-              points="80,50 80,75 80,99 40,75"
-            />
-
-            {/* Gradient Beam Light Right (White Glow) */}
-            <polygon
-              transform="rotate(0 100 100) translate(60, 20)"
-              strokeWidth="1"
-              stroke=""
-              fill="url(#gradienteBW3)"
-              points="40,-40 80,-40 80,85 40,110.2"
-            />
-
-            <defs>
-              <linearGradient y2="100%" x2="10%" y1="0%" x1="0%" id="gradienteBW3">
-                <stop style={{ stopColor: "rgba(255,255,255,0)", stopOpacity: 1 }} offset="20%" />
-                <stop
-                  className="loader-animated-stop"
-                  style={{ stopColor: "rgba(255,255,255,0.5)", stopOpacity: 1 }}
-                  offset="100%"
-                />
-              </linearGradient>
-            </defs>
-
-            {/* Floating Particle Blocks (White, Platinum, Light Silver) */}
-            <polygon
-              transform="rotate(45 100 100) translate(80, 95)"
-              strokeWidth="1"
-              stroke="rgba(255,255,255,0.8)"
-              fill="#ffffff"
-              points="5,0 5,5 0,5 0,0"
-              className="loader-particles"
-            />
-            <polygon
-              transform="rotate(45 100 100) translate(80, 55)"
-              strokeWidth="1"
-              stroke="rgba(255,255,255,0.6)"
-              fill="#d4d4d4"
-              points="6,0 6,6 0,6 0,0"
-              className="loader-particles"
-              style={{ animationDelay: "0.5s" }}
-            />
-            <polygon
-              transform="rotate(45 100 100) translate(70, 80)"
-              strokeWidth="1"
-              stroke="rgba(255,255,255,0.9)"
-              fill="#ffffff"
-              points="3,0 3,3 0,3 0,0"
-              className="loader-particles"
-              style={{ animationDelay: "1s" }}
-            />
-
-            {/* Lower Shadow Pedestal (Deep Obsidian / Black) */}
-            <polygon
-              strokeWidth="1"
-              stroke="rgba(255,255,255,0.08)"
-              fill="#121212"
-              points="29.5,99.8 100,142 100,172 29.5,130"
-            />
-            <polygon
-              transform="translate(50, 92)"
-              strokeWidth="1"
-              stroke="rgba(255,255,255,0.08)"
-              fill="#0d0d0d"
-              points="50,50 120.5,8 120.5,35 50,80"
-            />
-          </g>
-        </svg>
-
-        {/* Brand label & Shimmering Monochrome Loading Bar */}
-        <div className="mt-5 flex flex-col items-center gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
-            ARAFAT<span className="text-white">.</span>
-          </p>
-
-          <div className="relative h-[2px] w-36 overflow-hidden rounded-full bg-white/10">
-            <div className="absolute inset-y-0 left-0 w-1/2 animate-[shimmer_1.8s_infinite] rounded-full bg-gradient-to-r from-transparent via-white to-transparent" />
-          </div>
+        {/* Minimal Black & White Progress Bar */}
+        <div className="mt-4 sm:mt-5 h-[2px] w-24 sm:w-28 overflow-hidden rounded-full bg-white/15">
+          <div
+            className="h-full rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.7)] transition-all duration-250 ease-out"
+            style={{
+              width: `${((index + 1) / GREETINGS.length) * 100}%`,
+            }}
+          />
         </div>
       </div>
     </div>
