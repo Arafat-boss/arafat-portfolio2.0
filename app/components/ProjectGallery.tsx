@@ -160,19 +160,18 @@ export default function ProjectGallery() {
   // Animation & Drag Progress
   const [progress, setProgress] = useState(0);
   const progressRef = useRef(0);
-  const isHoveredRef = useRef(false);
   const isDraggingRef = useRef(false);
   const dragStartYRef = useRef(0);
-  const dragStartProgressRef = useRef(0);
-  const velocityRef = useRef(0);
+  const totalDragDeltaRef = useRef(0);
   const lastYRef = useRef(0);
   const lastTimeRef = useRef(0);
+  const velocityRef = useRef(0);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // 60FPS Continuous Smooth Animation Loop (Flowing TOP to BOTTOM)
+  // 60FPS Continuous Smooth Animation Loop (Flowing gently from TOP to BOTTOM)
   useEffect(() => {
     let animId: number;
     let lastTimestamp = performance.now();
@@ -183,22 +182,24 @@ export default function ProjectGallery() {
 
       if (!isDraggingRef.current) {
         // Apply inertia friction
-        if (Math.abs(velocityRef.current) > 0.001) {
+        if (Math.abs(velocityRef.current) > 0.0002) {
           progressRef.current += velocityRef.current;
-          velocityRef.current *= 0.92;
+          velocityRef.current *= 0.93; // Smooth gradual deceleration
+        } else {
+          velocityRef.current = 0;
         }
 
-        // Moves from TOP to BOTTOM smoothly (progress decreases)
-        const autoSpeed = isHoveredRef.current ? 0.03 : 0.18;
+        // Constant uninterrupted gentle auto-flow from top to bottom
+        const autoSpeed = 0.12;
         progressRef.current -= autoSpeed * deltaSec;
       }
 
       // Keep progress bounded cleanly to loop infinitely
       const count = galleryList.length;
       if (progressRef.current < 0) {
-        progressRef.current += count;
+        progressRef.current = (progressRef.current % count) + count;
       } else if (progressRef.current >= count) {
-        progressRef.current -= count;
+        progressRef.current = progressRef.current % count;
       }
 
       setProgress(progressRef.current);
@@ -209,32 +210,42 @@ export default function ProjectGallery() {
     return () => cancelAnimationFrame(animId);
   }, [galleryList.length]);
 
-  // Pointer / Touch Handlers for 3D Stage
+  // Pointer / Touch Handlers for 3D Stage (Smooth bidirectional dragging)
   const handlePointerDown = (e: React.PointerEvent) => {
     isDraggingRef.current = true;
     dragStartYRef.current = e.clientY;
     lastYRef.current = e.clientY;
     lastTimeRef.current = performance.now();
-    dragStartProgressRef.current = progressRef.current;
+    totalDragDeltaRef.current = 0;
     velocityRef.current = 0;
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDraggingRef.current) return;
     const now = performance.now();
-    const diffY = e.clientY - dragStartYRef.current;
+    const dt = Math.max(1, now - lastTimeRef.current);
     const deltaY = e.clientY - lastYRef.current;
+    totalDragDeltaRef.current += Math.abs(deltaY);
 
-    velocityRef.current = -(deltaY / 220);
+    // Drag step: dragging DOWN (deltaY > 0) moves cards down (progress decreases)
+    // Dragging UP (deltaY < 0) moves cards up (progress increases)
+    const step = deltaY / 320;
+    progressRef.current -= step;
+
+    // Calculate natural release velocity for fluid throwing/sliding
+    velocityRef.current = -step * (16 / dt);
+
     lastYRef.current = e.clientY;
     lastTimeRef.current = now;
-
-    // Dragging down advances cards down
-    progressRef.current = dragStartProgressRef.current - diffY / 220;
   };
 
   const handlePointerUp = () => {
     isDraggingRef.current = false;
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    const wheelStep = (e.deltaY / 400) * 0.04;
+    velocityRef.current += wheelStep;
   };
 
   // Lightbox Modal Keyboard & Navigation
@@ -448,24 +459,19 @@ export default function ProjectGallery() {
               </div>
             </div>
 
-            {/* DESKTOP 3D CURVED CAROUSEL (lg:block): Compact cards flowing TOP to BOTTOM */}
+            {/* DESKTOP 3D CURVED CAROUSEL (lg:block): Smooth continuous flow with drag up/down support */}
             <div
-              className="relative mx-auto hidden w-full h-full touch-pan-y select-none lg:block"
+              className="relative mx-auto hidden w-full h-full touch-none select-none lg:block cursor-grab active:cursor-grabbing"
               style={{ perspective: "2800px" }}
-              onMouseEnter={() => {
-                isHoveredRef.current = true;
-              }}
-              onMouseLeave={() => {
-                isHoveredRef.current = false;
-              }}
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
               onPointerCancel={handlePointerUp}
+              onWheel={handleWheel}
             >
               {/* 3D Transform Stage with subtle perspective tilt */}
               <div
-                className="absolute inset-0 cursor-grab active:cursor-grabbing"
+                className="absolute inset-0"
                 style={{
                   transformStyle: "preserve-3d",
                   transform: "rotateX(2.5deg) rotateY(-3.5deg)",
@@ -489,20 +495,18 @@ export default function ProjectGallery() {
                         width: "50%",
                         maxWidth: "460px",
                         willChange: "transform, opacity",
-                        transition: isDraggingRef.current
-                          ? "none"
-                          : "opacity 0.2s ease-out",
                         ...style3d,
                       }}
-                      className="group/card"
+                      className="cursor-pointer"
                       onClick={() => {
-                        if (Math.abs(d) <= 0.9) {
+                        // Only open modal on pure click/tap without dragging
+                        if (totalDragDeltaRef.current < 6 && Math.abs(d) <= 1.2) {
                           setModalItem(item);
                         }
                       }}
                     >
-                      {/* Browser Mockup Window Frame (Compact & Refined) */}
-                      <div className="overflow-hidden rounded-[16px] border border-black/10 bg-white/90 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-all duration-300 group-hover/card:border-indigo-500/50 group-hover/card:shadow-[0_25px_60px_-15px_rgba(99,102,241,0.22)] dark:border-white/15 dark:bg-[#111114]/90 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.85)]">
+                      {/* Browser Mockup Window Frame (Clean & Crisp - No distracting hover slowdown) */}
+                      <div className="overflow-hidden rounded-[16px] border border-black/10 bg-white/95 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-shadow duration-300 dark:border-white/15 dark:bg-[#111114]/95 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.85)]">
                         
                         {/* Traffic light header bar */}
                         <div className="flex items-center justify-between border-b border-black/[0.08] bg-black/[0.02] px-3 py-2 dark:border-white/[0.08] dark:bg-white/[0.02]">
@@ -527,25 +531,13 @@ export default function ProjectGallery() {
                             draggable={false}
                             loading="lazy"
                             decoding="async"
-                            className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover/card:scale-105"
+                            className="h-full w-full object-cover object-top"
                           />
-
-                          {/* Hover Overlay */}
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/45 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover/card:opacity-100">
-                            <span className="flex items-center gap-1.5 rounded-lg border border-white/30 bg-white/95 px-3 py-1.5 text-[11px] font-bold text-zinc-900 shadow-xl backdrop-blur-md transition-transform duration-200 group-hover/card:scale-105">
-                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-3.5 w-3.5">
-                                <path d="M15 3h6v6" />
-                                <path d="M10 14 21 3" />
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                              </svg>
-                              <span>Inspect Project</span>
-                            </span>
-                          </div>
                         </div>
 
                         {/* Card Footer Bar */}
-                        <div className="p-2.5 sm:p-3 bg-white/50 dark:bg-[#111114]/50 border-t border-black/[0.04] dark:border-white/[0.04]">
-                          <h4 className="text-xs font-bold text-zinc-900 transition-colors group-hover/card:text-indigo-600 dark:text-white dark:group-hover/card:text-indigo-400 line-clamp-1">
+                        <div className="p-2.5 sm:p-3 bg-white/60 dark:bg-[#111114]/60 border-t border-black/[0.04] dark:border-white/[0.04]">
+                          <h4 className="text-xs font-bold text-zinc-900 dark:text-white line-clamp-1">
                             {item.title}
                           </h4>
                           <p className="mt-0.5 text-[10px] text-zinc-500 dark:text-zinc-400 line-clamp-1">
@@ -557,8 +549,6 @@ export default function ProjectGallery() {
                   );
                 })}
               </div>
-
-
             </div>
           </div>
         </div>
