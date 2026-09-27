@@ -42,7 +42,7 @@ function FiverrShortLogo() {
 
 function TestimonialCard({ item }: { item: Testimonial }) {
   return (
-    <div className="group relative rounded-2xl border border-black/[0.08] bg-white/80 p-5 shadow-xs backdrop-blur-xl transition-all duration-300 hover:border-black/20 hover:bg-white hover:shadow-xl dark:border-white/[0.08] dark:bg-[#111114]/85 dark:hover:border-white/25 dark:hover:bg-[#16161a] dark:hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
+    <div className="group relative rounded-2xl border border-black/[0.08] bg-white/80 p-5 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.03)] backdrop-blur-xl transition-all duration-300 hover:border-black/20 hover:bg-white hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.06)] dark:border-white/[0.08] dark:bg-[#111114]/85 dark:hover:border-white/25 dark:hover:bg-[#16161a] dark:hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
       {/* Header: Initials Badge, Name, Country & Short Fiverr "fi" Logo */}
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
