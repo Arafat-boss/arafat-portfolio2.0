@@ -42,7 +42,7 @@ export default function SelectedWork() {
       className="py-16 sm:py-20 transition-colors duration-300 scroll-mt-20 gsap-fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white/70 p-5 shadow-sm backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-7 md:p-8">
+        <div className="relative overflow-hidden rounded-xl border border-black/10 bg-white/70 p-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.04)] backdrop-blur-2xl transition-all duration-500 dark:border-white/10 dark:bg-[#0d0d0f]/80 sm:p-7 md:p-8">
           <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
@@ -95,7 +95,7 @@ export default function SelectedWork() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="gsap-stagger-item group relative flex flex-col overflow-hidden rounded-xl border border-black/[0.07] bg-white/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/40 hover:shadow-lg dark:border-white/[0.08] dark:bg-[#121216]/90 dark:hover:border-indigo-400/40 dark:hover:shadow-[0_16px_35px_-8px_rgba(0,0,0,0.7)]"
+                    className="gsap-stagger-item group relative flex flex-col overflow-hidden rounded-xl border border-black/[0.07] bg-white/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/40 hover:shadow-[0_28px_65px_-15px_rgba(0,0,0,0.06)] dark:border-white/[0.08] dark:bg-[#121216]/90 dark:hover:border-indigo-400/40 dark:hover:shadow-[0_20px_50px_-8px_rgba(0,0,0,0.7)]"
                   >
                     {/* ACTUAL WEBSITE BANNER IMAGE CONTAINER */}
                     <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/5 border-b border-black/[0.06] dark:border-white/[0.06] dark:bg-black/30">
