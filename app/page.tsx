@@ -7,12 +7,10 @@ import ProjectGallery from "./components/ProjectGallery";
 import Testimonials from "./components/Testimonials";
 import ContactSection from "./components/ContactSection";
 import StatsCounter from "./components/StatsCounter";
+import Footer from "./components/Footer";
 import { servicesData, processStepsData } from "@/lib/data/services";
-import { siteConfig } from "@/lib/data/siteConfig";
 
 export default function Home() {
-  const { personal, socialLinks } = siteConfig;
-
   return (
     <main className="min-h-screen bg-transparent text-zinc-900 selection:bg-zinc-900 selection:text-white dark:text-white dark:selection:bg-white dark:selection:text-black">
       {/* RESPONSIVE NAVBAR */}
@@ -184,25 +182,7 @@ export default function Home() {
       <ContactSection />
 
       {/* FOOTER */}
-      <footer className="border-t border-black/10 transition-colors duration-300 dark:border-white/10 pb-20 sm:pb-24 md:pb-0">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-6 pt-8 pb-8 md:py-8 text-xs sm:text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between lg:px-8 dark:text-white/30">
-          <p>© {new Date().getFullYear()} {personal.name}. All rights reserved.</p>
-
-          <div className="flex flex-wrap gap-4 sm:gap-6 font-medium">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noreferrer"
-                className="transition hover:text-zinc-900 dark:hover:text-white"
-              >
-                {social.name}
-              </a>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
