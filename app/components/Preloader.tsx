@@ -7,14 +7,14 @@ const GREETINGS = [
   { text: "Welcome", style: "font-['Great_Vibes',cursive] font-normal tracking-wide text-[22px] sm:text-[25px]" },
   { text: "স্বাগতম", style: "font-['Galada',cursive] font-normal tracking-wide text-[18px] sm:text-[21px]" },
   { text: "Bienvenido", style: "font-['Alex_Brush',cursive] font-normal tracking-wide text-[22px] sm:text-[25px]" },
-  { text: "Bienvenue", style: "font-['Parisienne',cursive] font-normal tracking-wide text-[20px] sm:text-[23px]" },
-  { text: "Benvenuto", style: "font-['Allura',cursive] font-normal tracking-wider text-[22px] sm:text-[25px]" },
   { text: "ようこそ", style: "font-['Yuji_Boku',serif] font-normal tracking-widest text-[17px] sm:text-[19px]" },
   { text: "Willkommen", style: "font-['Satisfy',cursive] font-normal tracking-wide text-[18px] sm:text-[20px]" },
   { text: "Bem-vindo", style: "font-['Sacramento',cursive] font-bold tracking-wide text-[22px] sm:text-[25px]" },
   { text: "欢迎", style: "font-['Ma_Shan_Zheng',cursive] font-normal tracking-widest text-[18px] sm:text-[21px]" },
+  { text: "Bienvenue", style: "font-['Parisienne',cursive] font-normal tracking-wide text-[20px] sm:text-[23px]" },
   { text: "स्वागतम्", style: "font-['Kalam',cursive] font-bold tracking-wide text-[18px] sm:text-[20px]" },
   { text: "أهلاً وسهلاً", style: "font-['Aref_Ruqaa',serif] font-bold tracking-normal text-[19px] sm:text-[22px]" },
+  { text: "Benvenuto", style: "font-['Allura',cursive] font-normal tracking-wider text-[22px] sm:text-[25px]" },
 ];
 
 export default function Preloader() {
