@@ -231,3 +231,17 @@ button.btn-neumorphic-icon:active {
 .hover-pause:hover {
   animation-play-state: paused;
 }
+
+/* SPECTRUM DRIFT ANIMATION FOR SPOTLIGHT GRADIENT TEXT */
+@keyframes spectrum-drift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-spectrum-drift {
+  animation: spectrum-drift 12s linear infinite;
+}
