@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import GSAPProvider from "./components/GSAPProvider";
 import ParticleBackground from "./components/ParticleBackground";
-import ButtonExplosion from "./components/ButtonExplosion";
 import Preloader from "./components/Preloader";
 import { siteConfig } from "@/lib/data/siteConfig";
 
@@ -77,7 +76,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Preloader />
         <GSAPProvider>
           <ParticleBackground />
-          <ButtonExplosion />
           {children}
         </GSAPProvider>
       </body>
