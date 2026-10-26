@@ -39,26 +39,35 @@ export default function Navbar() {
       <nav
         className={`flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           scrolled
-            ? "h-14 sm:h-16 px-4 sm:px-6 rounded-2xl border border-black/10 bg-white/80 shadow-[0_16px_45px_-12px_rgba(0,0,0,0.06)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0d0d10]/80 dark:shadow-[0_12px_35px_rgba(0,0,0,0.6)]"
-            : "h-16 sm:h-20 w-full px-4 sm:px-6 lg:px-8 border-b border-black/10 bg-[#edf0f5]/70 backdrop-blur-md dark:border-white/10 dark:bg-[#080808]/70"
+            ? "h-14 sm:h-16 px-4 sm:px-6 rounded-2xl border border-black/10 bg-white/70 shadow-[0_16px_45px_-12px_rgba(0,0,0,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-black/50 dark:shadow-[0_12px_35px_rgba(0,0,0,0.7)]"
+            : "h-16 sm:h-20 w-full px-4 sm:px-6 lg:px-8 bg-transparent border-b border-transparent"
         }`}
       >
         <div className={`flex items-center justify-between w-full ${scrolled ? "" : "max-w-7xl mx-auto"}`}>
           {/* LOGO */}
           <a
             href="#hero"
-            className="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 transition hover:opacity-80 dark:text-white uppercase"
+            className={`text-lg sm:text-xl font-bold tracking-tight transition hover:opacity-80 uppercase ${
+              scrolled
+                ? "text-zinc-900 dark:text-white"
+                : "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+            }`}
           >
-            {personal.shortName}<span className="text-zinc-400 dark:text-white/40">.</span>
+            {personal.shortName}
+            <span className={scrolled ? "text-zinc-400 dark:text-white/40" : "text-white/60"}>.</span>
           </a>
 
           {/* DESKTOP NAV LINKS */}
-          <div className="hidden items-center gap-6 lg:gap-8 text-sm font-medium text-zinc-600 md:flex dark:text-white/60">
+          <div className="hidden items-center gap-6 lg:gap-8 text-sm font-medium md:flex">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="transition hover:text-zinc-900 dark:hover:text-white"
+                className={`transition ${
+                  scrolled
+                    ? "text-zinc-600 hover:text-zinc-900 dark:text-white/70 dark:hover:text-white"
+                    : "text-white/85 hover:text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
+                }`}
               >
                 {link.label}
               </a>
@@ -76,7 +85,11 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               download
-              className="btn-neumorphic text-xs !px-3 sm:!px-4 !py-1.5 sm:!py-2 inline-flex items-center gap-1.5"
+              className={`btn-neumorphic text-xs !px-3 sm:!px-4 !py-1.5 sm:!py-2 inline-flex items-center gap-1.5 transition-all ${
+                scrolled
+                  ? ""
+                  : "!bg-white/15 hover:!bg-white/25 !text-white !border-white/20 hover:!border-white/40 backdrop-blur-md shadow-sm"
+              }`}
             >
               <span>Resume</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-3.5 w-3.5">
@@ -86,11 +99,15 @@ export default function Navbar() {
               </svg>
             </a>
 
-            {/* MOBILE HAMBURGER BUTTON */}
+            {/* MOBILE HAMBURGER BUTTON (Hidden on Desktop) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 bg-black/5 text-zinc-700 transition hover:bg-black/10 md:hidden dark:border-white/10 dark:bg-white/5 dark:text-white cursor-pointer"
+              className={`flex md:hidden h-9 w-9 items-center justify-center rounded-lg border transition cursor-pointer ${
+                scrolled
+                  ? "border-black/10 bg-black/5 text-zinc-700 hover:bg-black/10 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                  : "border-white/20 bg-white/15 text-white hover:bg-white/25 backdrop-blur-md shadow-sm"
+              }`}
             >
               {mobileMenuOpen ? (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-4 w-4">
